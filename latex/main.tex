@@ -1,0 +1,102 @@
+\documentclass[11pt,oneside,a4paper]{report}
+
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[danish,english]{babel}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=2.7cm]{geometry}
+
+\usepackage[sc]{mathpazo} % consider options: osf, sc
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{array}
+
+\usepackage{amsthm}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{wrapfig}
+
+\usepackage{tikz,tkz-graph,tkz-berge,tkz-euclide}
+\usetikzlibrary{calc,shapes,arrows,backgrounds,fit,positioning}
+
+%\setlength{\parindent}{0pt}
+\setlength{\parskip}{2ex} 
+
+\algsetup{linenosize=\large}
+
+\renewcommand{\vec}[1]{\ensuremath {\mathbf #1}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}{Corollary}[thm]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[thm]{Example}
+
+%\newcommand{\fitellipsis}[2] % first and second node names without parentheses
+%{\draw [red] let \p1=(#1), \p2=(#2), \n1={atan2(\y2-\y1,\x2-\x1)}, \n2={veclen(\y2-\y1,\x2-\x1)}
+%	in ($ (\p1)!0.5!(\p2) $) ellipse [x radius=\n2/2+1cm, y radius=0.8cm, rotate=\n1];
+%}
+
+%\newcommand{\longfitellipsis}[3] % first and second node names without parentheses
+%{\draw [red] let \p1=(#1), \p2=(#2), \n1={atan2(\y2-\y1,\x2-\x1)}, \n2={veclen(\y2-\y1,\x2-\x1)}
+%	in ($ (\p1)!0.5!(\p2) $) ellipse [x radius=\n2/2+1cm, y radius=0.8cm, rotate=\n1];
+%}
+
+\floatname{algorithm}{Procedure}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\newcommand{\alggoto}[1]{\textbf{goto} \autoref{#1}}
+
+\newcommand{\alginput}[1]{\hspace*{\algorithmicindent}\algorithmicrequire{#1}}
+\newcommand{\algoutput}[1]{\hspace*{\algorithmicindent}\algorithmicensure{#1}}
+\newcommand{\algio}[2]{
+	\alginput{#1}\\
+	\algoutput{#2}
+}
+
+\newcommand{\setalglineno}[1]{%
+  \setcounter{ALC@line}{\numexpr#1-1}}
+
+\begin{document}
+
+\begin{titlepage}
+	\begin{center}
+		\vspace*{1cm}
+		\huge{Structurale properties of decomposable digraphs}
+		
+		\vspace*{0.5cm}
+		\large{by}
+		
+		\vspace{0.5cm}
+		\Large{Gabriella Juhl Jensen}
+		
+		\vspace*{0.5cm}
+		\normalsize{supervised by}
+		
+		\vspace{0.5cm}
+		\large{Prof. Jørgen Bang-Jensen}
+		
+		\vfill
+		
+		\vspace*{0.7cm}
+		\includegraphics[width=0.4\textwidth]{sdulogo.PNG}
+		
+		\vspace*{1cm}
+		\MakeUppercase{University of southern Denmark}
+		
+		\vspace*{0.3cm}
+		\MakeUppercase{Department of mathematics and computer science}
+		
+		\vspace*{0.3cm}
+		\large{}
+	\end{center}
+\end{titlepage}
+\tableofcontents
+	\part{Primitive graphs and gabbigubbi}
+	\input{introduction/introduction}
+\end{document}
