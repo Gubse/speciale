@@ -1,10 +1,10 @@
 Before going deep into structural properties of decomposable digraphs we first need to establish what a graph is.
-For some graph $G(V,E)$ where $V$ and $E$ are two sets contaning the vertices (also commonly called nodes) and egdes of the graph respectivlely.
+For some graph $G(V,E)$ where $V$ and $E$ are two sets contaning the \textbf{vertices} (also commonly called nodes) and \textbf{egdes} of the graph respectivlely.
 %Example $V=\lbrace a,b,c \rbrace$ then $a,\ b$ and $c$ are three distinct vertices of the graph $G$ and the only vertices of $G$.
 We define the \textbf{size} of the graph to be the number of vertices $|V|$ this is also known as \textbf{cardinality} of $V$.
 %In the case of the example the size of $G$ $|V|=3$ it is also called the order of a graph.
 An \textbf{edge} $e \in E$ where $e \equiv (a, b)$ and $\{ a, b \} \subseteq V$ then $e$ is an edge in $G$, $e$ is said to be \textbf{incedent} to $a$ and $b$. 
-We call $a,b \in V$ \textbf{adjecent} if there is an edge $(a,b)$ or $(b,a)$ (an edge between the two given vertices is said to be adjecent).
+We call $a,b \in V$ \textbf{adjecent} if there is an edge $(a,b)$ or $(b,a)$ (two given vertices connected by an edge is said to be adjecent).
 If an edge goes from and to the same vertex $(a,a)$ it is called a \textbf{loop}.
 The set of edges $e_1, \dots, e_k$ is usally describe whit the letter $E$ where each edge contains a pair of vertices that are adjecent. \\
 In a graph we have something called a \textbf{walk} which is a alternately ordering of vertices an edges in the graph $G$ where the edge in between the two vertices in the ordering is an edge between the vertices in $G$ (for $(a,e_1,b)$ to be a walk the edge $e_1$ has to be between $a$ and $b$).
@@ -90,23 +90,24 @@ A digraph is called \textbf{semi connected} if there for each pair $u$ and $v$ e
 It is said to be \textbf{strongly connected} if for each pair of vertices $u$ and $v$ there exists a path from both $u$ to $v$ and $v$ to $u$. A strongly connected digraph is also called a \textbf{strong} digraph. 
 A strong digraph have a subset $S$ called a \textbf{seperator} if $D-S$ is not strong, we also say that $S$ \textbf{seperates} $D$. 
 A seperator $S$ is called \textbf{minimal seperator} of $D$ if there exists no proper subset $X\subset S$ that seperates $D$.
-Now we can introduce a \textbf{$k$-strong} digraph $D$ which is a strong digraph with $|V|\geq k+1$ and a minimal seperator $S$ \textcolor{red}{on} $|S|\geq k$.
+Now we can introduce a \textbf{$k$-strong} digraph $D$ which is a strong digraph with $|V|\geq k$ and a minimal seperator $S$ \textcolor{red}{on} $|S|= k$.
 
-In a digraph $D(V,A)$ we mostly use the \textbf{dregree} as two different degrees namely \textbf{out degree}, $d^+(v)$,and \textbf{in degree}, $d^-(v)$, that is the arcs from $v$ and to $v$ respectively.
-
-
-
+In a digraph $D(V,A)$ we mostly use the \textbf{dregree} as two different degrees namely \textbf{out degree}, $d^+(v)$, and \textbf{in degree}, $d^-(v)$, that is the arcs from $v$ and to $v$ respectively. 
+In a digraph $D$ we can talk about the over all \textbf{minimum out degree}, $\delta ^+(D)=\min\lbrace d^+(v)|v\in V\rbrace$ and \textbf{minimum in degree}, $\delta ^-(D)=\min\lbrace d^-(v)|v\in V\rbrace$
+somtime we is going to need the minimum of these to $\delta(D)=\min \lbrace\delta ^+(D),\delta ^-(D) \rbrace$ and called the \textbf{minimum degree}.
+For every vertex $v$ the vertices that is \textbf{adjacent} with $v$ we denote $N^+(v)$ and $N^-(v)$ as the set of vertices that is dominated by (\textbf{out-nieghbours})$v$ and dominates (\textbf{in-nieghbours})$v$, respectivly. 
+This means that $d^+(v)=|N^+(v)|$ and $d^-(v)=|N^-(v)|$.\\
+For simplicity when mentioning paths and cycles in digraphs it will be \textbf{directed} paths and cycles if not anything else is mensioned. 
+By \textbf{directed} means that we go from tail to head on every arc on the path or cycle.
+When mentioning paths in a digraph it sometimes makes more sence specifing the head an tail of the path, so a path from $s$ to $t$ is denoted \textbf{($s,\ t$)-path}.
+In some digraphs there is more than one path between the same two vertices these paths can use the same arcs or same vertices or be totally distinct from eachother, the maximum number of disjoint path between two vertices in a digraph is denoted $\lambda_D(s,t)$
+ 
 
 
 
 
 
 \section{somthing else}
-We can use \textcolor{red}{these} to describe som specific collection of graphs as the graph \textbf{tournaments}.
-\textbf{Tournaments} is a digraph where the underlying graph is complete. 
-So a complete graph of order 5 any orientation of the edges concludes in a tournament.
-If instead of replacing the one edge by one arc in either direction, but instead replace it by two arcs the digraph is called \textbf{semicomplete}.
-
 The reason for grouping the digraphs into smaller collections of digraphs (like tournaments is a smaller collection of semicomplete digraphs) is because of problems that is hard to solve on general graph but is easy/polynomial solvable on specific graphs.
 
 A group of these problems is called NP-hard problems which sometimes sound easy solvable for graphs but only for some specific graphs we know how to solve it in polynomial time. 
