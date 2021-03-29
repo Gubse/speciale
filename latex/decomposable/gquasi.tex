@@ -1,0 +1,20 @@
+First we need to recall what a quasi transitive digraph is. 
+For every triplet $x,y,z$ in a quasi-transitive digraph if $x\rightarrow y$ ($x$ dominates $y$) and $y\rightarrow z$ ($y$ domitaes $z$), then there has to be at least one arc in either dirction between $x$ and $z$. Quasi-transitive digraphs can be decomposed no matter if there are strong or nonstrong digraphs. 
+\begin{thm}\cite{bangJGT85}
+    Let $D$ be a quasi-transitive digraph.
+    \begin{enumerate}
+        \item If $D$ is not strong, then there exists a transitive acyclic digraph $T$ on $t$ vertices and strong quasitransitive digraphs $H_1,\dots,H_t$ such that $D=T[H_1,\dots,H_t]$.
+        \item If $D$ is strong, then there exists a strong semicomplete digraph $S$ on $s$ vertices and quasitransitive digraphs $Q_1,\dots ,Q_s$ such that each $Q_i$ is either a single vertex or is nonstrong and $D=S[Q_1,\dots,Q_s]$.
+    \end{enumerate}
+    \label{thm:quasidecom}
+\end{thm}
+\begin{proof}
+    blablabla
+\end{proof}
+From this theorem we can see that quasi-transitive digraphs is totally $\phi_1$-decomposable. 
+Since the transitive digraph for the nonstrong quasi-transitive digraphs is acyclic $T\in \phi_1$ and each $Q_i$ is in itself strong quasi triansitive digraphs and you can therefore use \autoref{thm:quasidecom} agian.  
+For the strong quasi-transitive digraphs $D$, $S$ is semicomplete so $S\in \phi_1$ and each $Q_i \in \phi_1$ because it is either one vertex which is a digraph that is both acyclic and semicomplete or it is non-strong and must be quasi-transitive and therefore \autoref{thm:quasidecom} can be used agian. So every nonstrong and strong quasi-transitive digraphs is totally $\phi_1$-decomposable.
+
+\begin{thm}
+    \textcolor{red}{quasi decomposition can be found in poly time}
+\end{thm}
