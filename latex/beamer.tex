@@ -87,10 +87,38 @@ for a integer $c$, the class denoted $D(c)$ is the for a digraph $D$ you can fir
 \end{frame}
 
 \begin{frame}
+    \frametitle{Contraction clean vertices}
     \begin{lemma}~\cite{bangJGT85}
         Let $D$ be a digraph, $\Pi$ a list of $k$ terminal pairs and $H\subset D$ a clean module with respect to $\Pi$. Let $D'$ be the contraction of $H$ into a single vertex $h$. Then $D$ has a waek $\Pi$-linkage if and only if $D'$ has a weak $\Pi$-linkage.  
     \end{lemma}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Max inside Hause External Path}
+    \begin{lemma}
+        Let $D=S[H_1,\dots H_s]$ be a decomposable digraph, let $\Pi'$ be a list of $h$ terminal pair and let $F$ be a set of arcs in $D$ satisfying that $d^-_F(v),d^+_F(v) \leq r$ for all $v \in V(D)$. If $(D\backslash F,\Pi')$ has a weak linkage, then it has a weak linkage $P_1,\dots , P_h$ such that, we have $|V\left( \bigcup_{i\in \openE} P_i\cap H_j \right)|\leq 2h(h+r)$, for every $j\in [1,\dots,s]$, where $\openE$ denotes the set of indeces $i$ for wich $P_i$ is external.
+    \end{lemma}
+\end{frame}
+\begin{frame}
+    \frametitle{Algorithm for Digraph with Deleted Arcs}
+    \begin{lemma}
+        Let $\mathcal{C}$ be a class of digraphs for which there exists an algorithm $\mathcal{A}$ to decide the weak k-linkage problem, whose running time is bounded by $f(n,k)$. Let $D=(V,A)$ be a digraph, $\Pi$ a list of $k$ pairs of terminals and $F\subseteq V\times V$ such that $D':= (V,A\cup F)$ is a member of $\mathcal{C}$. There exists an algorithm  $\mathcal{A}^-$, whose running time is bounded by $f(n,k+|F|)$, to decide whether $D$ has a weak $\Pi$-linkage.
+    \end{lemma}
+\end{frame}
+\begin{frame}
+    \frametitle{The theorem of the main Algorithm}
+    \begin{thm}
+        Let $\phi$ be a bombproof class of digraph. There is a polynomial algorithm $\mathcal{M}$ that takes as input a 5tuple $[D,k,k',\Pi,F]$ where $D$ is a totally $\phi$-decomposable digraph, $k,k'$ are natural numbers with $k'\leq k$,$\Pi$ is a list of $k'$ terminal pairs and $F\subseteq A(D)$ is a set of arcs satiesfying 
+        \begin{equation}
+            d_F^-(v),d_F^+(v)\leq k-k' \text{for all} v\in V(D)
+        \end{equation}
+        \begin{equation*}
+            |F|\leq (k-k')2k
+        \end{equation*}
+        and decides wheter $D\backslash F$ contains a weak $\Pi$-linkage.
+    \end{thm}
+\end{frame}
 
+\bibliographystyle{unsrt}
+\bibliography{bib}
 \end{document}
