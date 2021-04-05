@@ -1,0 +1,96 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc}
+\usepackage[danish,english]{babel}
+\usepackage{graphicx}
+\usepackage[a4paper,margin=2.7cm]{geometry}
+
+\usepackage[sc]{mathpazo} % consider options: osf, sc
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage{array}
+
+\usepackage{amsthm}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{float}
+\usepackage{xcolor}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+
+\usepackage{tikz,tkz-graph,tkz-berge,tkz-euclide}
+\renewcommand{\vec}[1]{\ensuremath {\mathbf #1}}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}{Corollary}[thm]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}[thm]{Example}
+
+
+%Information to be included in the title page:
+\title{Algorithm for Finding linkage in a Totally $\phi$-decomposable Digraph}
+\author{Gabriella Juhl Jensen}
+\institute{Jørgen Bang-Jensen}
+\date{2021}
+
+
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Decomposable Digraph}
+A digraph $D=S[H_1,\dots , H_s]$ is called Decomposable where $|S|=s$ and each $H_i$ are disjoint digraphs replacing every vertex in $S$. 
+The digraphs $H_i$ will in this presentation be called \textbf{hauses}.
+For a set of digraphs $\phi$ we can talk about $\phi$-decomposable digraphs. 
+For a digraph $D=S[H_1,\dots ,H_s]$ to be $\phi$-decomposable either $D\in \phi$ or $S\in \phi$.\\
+
+For a digraph $D=S[H_1,\dots ,H_s]$ to be  totally $\phi$-decomposable it has to be $\phi$-decomposable and if $D\notin \phi$, then $S\in \phi$ and each $H_i$ has to be totally $\phi$-decomposable for $i=1,\dots ,s$.
+\end{frame}
+
+\begin{frame}
+\frametitle{The weak linkage Problem}
+Given two pair of vertices $s_1,t_1$ and $s_2,t_2$ finding arc-disjoint paths between each pair is 2-weak linkage problem. Then the $k$-weak linkage problem is finding k arc-disjoint paths between k pair of terminals.
+where a terminal  pair is a source and a zink in the paths of the solution of the linkage problem.
+When talking about linkage problem for decomposable digraph, we can have hauses with terminals in and some without any terminals. 
+The hauses with no terminals in is called \textbf{clean hauses}.
+Then a terminal pair can either be inside the same hauses or in different hauses. If a terminal pair is contained inside the same hause it is called an internal pair other wise we call the pair external.
+The same with a path if it is fully containd inside a hause it is called an internal path other wise it is external.
+you can have an external path for a internal piar if the path go out of the hause and in agian.
+\end{frame}
+
+\begin{frame}
+\frametitle{Notation for the weak linkage problem}
+Every thing on this list is denoted like this unless it is specifed noot to be like that.
+\begin{itemize}
+    \item a natruel number $k$ is going to repricent the number of terminal pairs there in the linkage problem.
+    \item $\Pi$ denote the set of terminal pairs $(s_1,t_1),\dots ,(s_k,t_k)$.
+    \item $D$ is the totally $\phi$-decomposable digraph where each hause is denoted $H_i$ for $i=1,\dots ,s$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bombproof sets}
+\begin{definition}~\cite{bangJGT85}
+    We say that a class of digraphs $\phi$ is Bombproof is there exsists a polynomial algorithm $\mathcal{A}_\phi$ to find a totally $\phi$-decomposition of every totally $\phi$-decomposable digraph and, for every integer $c$, there exists a polynomial algorithm  $\mathcal{B}_\phi$ to decide the weak $k$-linkage problem for the class
+    \begin{equation}
+        \phi(c):=\bigcup_{D\in \phi}D(c) 
+    \end{equation}
+\end{definition}
+for a integer $c$, the class denoted $D(c)$ is the for a digraph $D$ you can first add as many parallel arcs to arcs that already exists in $D$ you can blow up $b$ vertices where $0\leq b\leq c$ the digraph that is blown up to has a size $\leq c$. 
+\end{frame}
+
+\begin{frame}
+    \begin{lemma}~\cite{bangJGT85}
+        Let $D$ be a digraph, $\Pi$ a list of $k$ terminal pairs and $H\subset D$ a clean module with respect to $\Pi$. Let $D'$ be the contraction of $H$ into a single vertex $h$. Then $D$ has a waek $\Pi$-linkage if and only if $D'$ has a weak $\Pi$-linkage.  
+    \end{lemma}
+\end{frame}
+
+
+\end{document}
