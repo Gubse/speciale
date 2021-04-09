@@ -1,0 +1,71 @@
+\ttl@starttoc {default@1}
+\contentsline {chapter}{\numberline {1}Intro}{2}{}%
+\contentsline {section}{\numberline {1.1}Graphs and digraphs}{2}{}%
+\contentsline {section}{\numberline {1.2}Computational complexity}{2}{}%
+\contentsline {section}{\numberline {1.3}Graph classes}{2}{}%
+\contentsline {subsection}{\numberline {1.3.1}Semicomplete and tournament}{2}{}%
+\contentsline {subsection}{\numberline {1.3.2}Round}{2}{}%
+\contentsline {subsection}{\numberline {1.3.3}Acyclic}{2}{}%
+\contentsline {subsection}{\numberline {1.3.4}transitive}{2}{}%
+\contentsline {subsection}{\numberline {1.3.5}Quasi-transitive}{2}{}%
+\contentsline {subsection}{\numberline {1.3.6}bipartite and multipartite}{2}{}%
+\contentsline {subsection}{\numberline {1.3.7}locally semicomplete}{2}{}%
+\contentsline {chapter}{\numberline {2}NP-hard problems}{3}{}%
+\contentsline {section}{\numberline {2.1}Linkage}{3}{}%
+\contentsline {section}{\numberline {2.2}Hamilton cycle}{3}{}%
+\contentsline {section}{\numberline {2.3}Weak-linkage}{3}{}%
+\contentsline {section}{\numberline {2.4}strong spanning subdigraphs}{3}{}%
+\contentsline {chapter}{\numberline {3}General decomposable}{4}{}%
+\contentsline {section}{\numberline {3.1}Properties}{4}{}%
+\contentsline {section}{\numberline {3.2}Decomposability}{4}{}%
+\contentsline {section}{\numberline {3.3}Improving the computational bounds}{4}{}%
+\contentsline {chapter}{\numberline {4}Quasi-transitive digraphs}{5}{}%
+\contentsline {section}{\numberline {4.1}Properties}{5}{}%
+\contentsline {section}{\numberline {4.2}Decomposability}{5}{}%
+\contentsline {section}{\numberline {4.3}Improving the computational bounds}{5}{}%
+\contentsline {chapter}{\numberline {5}Locally semicomplete}{6}{}%
+\contentsline {section}{\numberline {5.1}Properties}{6}{}%
+\contentsline {section}{\numberline {5.2}Decomposability}{6}{}%
+\contentsline {section}{\numberline {5.3}Improving the computational bounds}{6}{}%
+\ttl@stoptoc {default@1}
+\ttl@starttoc {default@2}
+\contentsline {chapter}{\numberline {6}Intro}{3}{}%
+\contentsline {section}{\numberline {6.1}Graphs and digraphs}{3}{}%
+\contentsline {section}{\numberline {6.2}Computational complexity}{3}{}%
+\contentsline {section}{\numberline {6.3}Graph classes}{3}{}%
+\contentsline {subsection}{\numberline {6.3.1}Semicomplete and tournament}{3}{}%
+\contentsline {subsection}{\numberline {6.3.2}Round}{3}{}%
+\contentsline {subsection}{\numberline {6.3.3}Acyclic}{3}{}%
+\contentsline {subsection}{\numberline {6.3.4}transitive}{3}{}%
+\contentsline {subsection}{\numberline {6.3.5}Quasi-transitive}{3}{}%
+\contentsline {subsection}{\numberline {6.3.6}bipartite and multipartite}{3}{}%
+\contentsline {subsection}{\numberline {6.3.7}locally semicomplete}{3}{}%
+\contentsline {chapter}{\numberline {7}Decomposable digraphs}{4}{}%
+\contentsline {section}{\numberline {7.1}Quasi-transitive digraphs}{4}{}%
+\contentsline {section}{\numberline {7.2}Locally semicomplete}{4}{}%
+\contentsline {section}{\numberline {7.3}$\phi $-decomposable}{4}{}%
+\contentsline {chapter}{\numberline {8}Path cover, Hamilton cycles and pancyclic digraphs}{5}{}%
+\contentsline {section}{\numberline {8.1}Introduction to problem}{5}{}%
+\contentsline {subsection}{\numberline {8.1.1}Mabey why it is NP-hard}{5}{}%
+\contentsline {section}{\numberline {8.2}Decomposable graphs in general}{5}{}%
+\contentsline {section}{\numberline {8.3}Quasi-transitive digraphs}{5}{}%
+\contentsline {section}{\numberline {8.4}locally semicomplete digraphs}{5}{}%
+\contentsline {chapter}{\numberline {9}Linkage}{6}{}%
+\contentsline {section}{\numberline {9.1}Introduction to problem}{6}{}%
+\contentsline {subsection}{\numberline {9.1.1}Mabey why it is NP-hard}{6}{}%
+\contentsline {section}{\numberline {9.2}Decomposable graphs in general}{6}{}%
+\contentsline {section}{\numberline {9.3}Quasi-transitive digraphs}{6}{}%
+\contentsline {section}{\numberline {9.4}locally semicomplete digraphs}{6}{}%
+\contentsline {chapter}{\numberline {10}Weak k-linkage}{7}{}%
+\contentsline {section}{\numberline {10.1}Introduction to problem}{7}{}%
+\contentsline {subsection}{\numberline {10.1.1}Mabey why it is NP-hard}{7}{}%
+\contentsline {section}{\numberline {10.2}Decomposable graphs in general}{7}{}%
+\contentsline {section}{\numberline {10.3}Quasi-transitive digraphs}{7}{}%
+\contentsline {section}{\numberline {10.4}locally semicomplete digraphs}{7}{}%
+\contentsline {chapter}{\numberline {11}Strong spanning subdigraphs}{8}{}%
+\contentsline {section}{\numberline {11.1}Introduction to problem}{8}{}%
+\contentsline {subsection}{\numberline {11.1.1}Mabey why it is NP-hard}{8}{}%
+\contentsline {section}{\numberline {11.2}Decomposable graphs in general}{8}{}%
+\contentsline {section}{\numberline {11.3}Quasi-transitive digraphs}{8}{}%
+\contentsline {section}{\numberline {11.4}locally semicomplete digraphs}{8}{}%
+\contentsfinish 

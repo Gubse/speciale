@@ -1,0 +1,64 @@
+
+\documentclass[11pt,oneside,a4paper]{report}
+\usepackage{titletoc}
+
+\newcommand{\stdsec}{
+    \section{Properties}
+    \section{Decomposability}
+    \section{Improving the computational bounds}
+}
+
+\newcommand{\introstuff}{
+\chapter{Intro}
+\section{Graphs and digraphs}
+\section{Sets and their algebras}
+\section{Graph classes}
+\section{Computational complexity}
+}
+
+\begin{document}
+\begin{titlepage}
+        This is the first title page.
+\end{titlepage}
+
+\startlist{toc}
+\printlist{toc}{}{\section*{First table of contents}}
+\introstuff
+
+\chapter{NP-hard problems}
+\section{Linkage}
+\section{Hamilton cycle}
+\section{Weak-linkage}
+
+\chapter{Quasi-transitive digraphs}
+\stdsec
+
+\chapter{Semicomplete}
+\stdsec
+
+\chapter{Locally semicomplete}
+\stdsec
+
+\chapter{General decomposable}
+\stdsec
+
+\cleardoublepage
+\setcounter{page}{1}
+\begin{titlepage}
+       This is the second title page.
+\end{titlepage}
+
+\startlist{toc}
+\printlist{toc}{}{\section*{Second table of contents}}
+\introstuff
+
+\chapter{Decomposable digraphs}
+\section{Quasi-transitive digraphs}
+\section{Semicomplete}
+\section{Locally semicomplete}
+\section{$\phi$ decomposable}
+
+\chapter{Linkage} \stdsec
+\chapter{Hamilton cycle} \stdsec
+\chapter{Weak k-linkage} \stdsec
+\end{document}

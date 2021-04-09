@@ -1,0 +1,76 @@
+
+\documentclass[11pt,oneside,a4paper]{report}
+\usepackage{titletoc}
+
+\newcommand{\stdsec}{
+    \section{Properties}
+    \section{Decomposability}
+    \section{Improving the computational bounds}
+}
+\newcommand{\stdsectwo}{
+    \section{Introduction to problem}
+    \subsection{Mabey why it is NP-hard}
+    \section{Decomposable graphs in general}
+    \section{Quasi-transitive digraphs}
+    \section{locally semicomplete digraphs}
+}
+
+\newcommand{\introstuff}{
+\chapter{Intro}
+\section{Graphs and digraphs}
+\section{Computational complexity}
+\section{Graph classes}
+\subsection{Semicomplete and tournament}
+\subsection{Round}
+\subsection{Acyclic}
+\subsection{transitive}
+\subsection{Quasi-transitive}
+\subsection{bipartite and multipartite}
+\subsection{locally semicomplete}
+}
+
+\begin{document}
+\begin{titlepage}
+        This is the first title page.
+\end{titlepage}
+
+\startlist{toc}
+\printlist{toc}{}{\section*{First table of contents}}
+\introstuff
+
+\chapter{NP-hard problems}
+\section{Linkage}
+\section{Hamilton cycle}
+\section{Weak-linkage}
+\section{strong spanning subdigraphs}
+
+\chapter{General decomposable}
+\stdsec
+
+\chapter{Quasi-transitive digraphs}
+\stdsec
+
+\chapter{Locally semicomplete}
+\stdsec
+
+
+\cleardoublepage
+\setcounter{page}{1}
+\begin{titlepage}
+       This is the second title page.
+\end{titlepage}
+
+\startlist{toc}
+\printlist{toc}{}{\section*{Second table of contents}}
+\introstuff
+
+\chapter{Decomposable digraphs}
+\section{Quasi-transitive digraphs}
+\section{Locally semicomplete}
+\section{$\phi$-decomposable}
+
+\chapter{Path cover, Hamilton cycles and pancyclic digraphs} \stdsectwo
+\chapter{Linkage} \stdsectwo
+\chapter{Weak k-linkage} \stdsectwo
+\chapter{Strong spanning subdigraphs} \stdsectwo
+\end{document}
