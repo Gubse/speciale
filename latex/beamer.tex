@@ -23,6 +23,19 @@
 \usepackage{wrapfig}
 \usepackage{subcaption}
 
+\floatname{algorithm}{Procedure}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\newcommand{\alggoto}[1]{\textbf{goto} \autoref{#1}}
+
+\newcommand{\alginput}[1]{\hspace*{\algorithmicindent}\algorithmicrequire{#1}}
+\newcommand{\algoutput}[1]{\hspace*{\algorithmicindent}\algorithmicensure{#1}}
+\newcommand{\algio}[2]{
+	\alginput{#1}\\
+	\algoutput{#2}
+}
+
 \usepackage{tikz,tkz-graph,tkz-berge,tkz-euclide}
 \renewcommand{\vec}[1]{\ensuremath {\mathbf #1}}
 \newtheorem{thm}{Theorem}[section]
@@ -118,6 +131,77 @@ for a integer $c$, the class denoted $D(c)$ is the for a digraph $D$ you can fir
         and decides wheter $D\backslash F$ contains a weak $\Pi$-linkage.
     \end{thm}
 \end{frame}
+
+\begin{frame}
+    \frametitle{The main algortihm}
+    The main algorithm for this part is a proof of a theorem that tells that there exists a algorithm for finding the $k$-linkage in special kind of graphs. This result is found by ... in .... .
+\begin{thm}
+    Let $\phi$ be a bombproof class of digraphs. There is a polynomial algorithm $\mathcal{M}$ that takes as input a 5 tuple $[D,k,k',\Pi, F]$, where $D$ is a totally $\phi$-decomposable digraph, $k$,$k'$ are natrual numbers with $k'\leq k$, $\Pi$ is a list of $k'$ terminal pairs and $F\subseteq A(D)$ is a set of arcs satisfying
+    \begin{align}
+        d^-_F(v),d^+_F(v)&\leq k-k' \ \forall v\in V(D)\\
+        |F|&\leq (k-k')2k \nonumber
+    \end{align}
+    and decides wheter $D\backslash F$ contains a waek $\Pi$-linkage.
+    \label{thm:mainalgo}
+\end{thm}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Search}
+    \frametitle{The main algortihm}
+    To proof \autoref{thm:mainalgo} we first state the algorithm $\mathcal{M}$ then we prove that it works, and last that the time for the algorithm is polynomial.
+    \captionof{algorithm}{The main algorithm $\mathcal{M}$}
+
+        \begin{algorithmic}[1]
+            \algio{
+                Digraph $D$, two natural numbers $k$ and $k'$ where $k'\leq k$, a list of $k'$ terminal pairs $\Pi$, A set of arcs $F\subseteq A(D)$ satiesfying:
+                \begin{align*}
+                    d^-_F(v),d^+_F(v)&\leq k-k' \ \forall v\in V(D)\\
+                    |F|&\leq (k-k')2k
+                \end{align*}
+            }{
+                Either "No weak-linkage exists" or "there exists a weak-linkage in $(D,\Pi)$ with arc set $F$."
+            }
+            \STATE If $\Pi=\emptyset$ output that a solution exists and return
+            \STATE Run $\mathcal{A}_\phi$ to find a total $\phi$-decomposition of $D=S[H_1,\dots,H_s]$.
+            \STATE If this decomposition is trivial that is $D=S$, then  $D\in \phi\subset \phi(1)$, so run $\mathcal{B}^-_{\phi}$ on $(D\backslash F,\Pi)$ to decide the problem and return.
+            \STATE Find among $H_1,\dots, H_s$ those hauses $K_1,\dots , K_l$ that contain at least one terminal. Let $D'$ be obtaint by contracting all the clean hauses. Let $F'$ be the set of arcs obtaint from $F$ after the contraction.
+            \STATE Let $\Pi^e\subset \Pi$ $(\Pi^i\subset \Pi)$ be the list of external (internal) pairs $(s_q,t_q)\in \Pi$.
+            \FOR{every partion of $\Pi^i=\Pi_1\cup\Pi_2$ look for external paths linking the pairs in $\Pi^e\cup \Pi$ and internal pairs in $\Pi_2$}
+                \IF{$\Pi^e\cup \Pi_1=\emptyset$, then for $i=1,\dots,l:$} 
+                    \STATE run $\mathcal{M}$ recursively on input $[K_i,k,k'_i,\Pi \cap K_i,F\capA(K_i)]$, where $\Pi\cap K_i$ denotes the list of terminal pairs that lie inside K_i and $k'_i$ is the number of those pairs.
+                \ENDIF
+                \IF{$\Pi^e\cup\Pi_1\neq \emptyset$}
+                    \STATE let $k'_i$ be the number of pairs in $\Pi_2\cap K_i$
+                    \FOR{each possible choice of $l$ vertex sets $W_i\subseteq V(K_i)$,$i=1,\dots,l$ of size $\min \lbrace |V(K_i)|,2(k'-k'_i)(k-k')\rbrace$ and arc sets $F_i\subseteq A(K_i\left< W_i\right>)\backslash F$, $i=1,\dots ,l$ with $F_i$ satisfying \begin{align}
+                        d^-_{F_i\cup(F\capA(K_i))}(v),&d^+_{F_i\cup(F\capA(K_i))}(v)\leq k'-k'_i.\\
+                        |F_i|\leq &2(k'-k'_i)(k-k')
+                    \end{align}}
+                        \FOR{every $K_i$}
+                            \STATE remobe all the vertices of $V(K_i)\backslash W_i$ and then all remaining arcs except those in $F_i$.
+                        \ENDFOR
+                        \STATE Define $D''$ to be the digraph obtaint from $D'$ with this procedure.
+                        \STATE Run $B_{\phi}^-$ on $(D''\F',\Pi^e\cup\Pi_1)$.
+                        \FOR{$i=1,\dots,l$}
+                            \STATE run $mathcal{M}$ recursively on input $[K_i,k,k'_i,\Pi_2\cap K_i,F_i\cup(F\capA(K_i))]$.
+                        \ENDFOR 
+                    \ENDFOR
+                \ENDIF
+               % \REMARK If step ??? all intances examined are linked or at step ??? there is a choice of $W_i,F_i,i=1,\dots,l$ such that all instances examined are linked, then output that a weak linkage exists and return.
+            \ENDFOR 
+            \IF{all choices of $\Pi_1,\Pi_2$ have been consideredwithout verifying the existens of any weak linkage, then output that no weak linkage exists.}
+        \end{algorithmic}
+\end{frame}
+
+
+%\begin{frame}
+%    \frametitle{The main algortihm}
+%    
+%\end{frame}
+
+%\begin{frame}
+%    \frametitle{The main algortihm}
+%    
+%\end{frame}
 
 \bibliographystyle{unsrt}
 \bibliography{bib}
