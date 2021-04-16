@@ -123,7 +123,7 @@ for a integer $c$, the class denoted $D(c)$ is the for a digraph $D$ you can fir
     \begin{thm}
         Let $\phi$ be a bombproof class of digraph. There is a polynomial algorithm $\mathcal{M}$ that takes as input a 5tuple $[D,k,k',\Pi,F]$ where $D$ is a totally $\phi$-decomposable digraph, $k,k'$ are natural numbers with $k'\leq k$,$\Pi$ is a list of $k'$ terminal pairs and $F\subseteq A(D)$ is a set of arcs satiesfying 
         \begin{equation}
-            d_F^-(v),d_F^+(v)\leq k-k' \text{for all} v\in V(D)
+            d_F^-(v),d_F^+(v)\leq k-k' \text{ for alle } v\in V(D)
         \end{equation}
         \begin{equation*}
             |F|\leq (k-k')2k
@@ -193,10 +193,11 @@ for a integer $c$, the class denoted $D(c)$ is the for a digraph $D$ you can fir
 \end{frame}
 
 
-%\begin{frame}
-%    \frametitle{The main algortihm}
-%    
-%\end{frame}
+\begin{frame}
+    \frametitle{Step by step what $\mathcal{M}$ does}
+    The first (1.) step "$\Pi=\emptyset$" makes sure that if we call the algorithm $\mathcal{M}$ with no pairs then there exists the solution with zero acrs to solve the weak-linkage. 
+    
+\end{frame}
 
 %\begin{frame}
 %    \frametitle{The main algortihm}

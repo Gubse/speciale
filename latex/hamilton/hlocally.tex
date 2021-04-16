@@ -13,7 +13,7 @@ These digraphs are easy to regonize with the following corolary we can do it in 
 to explain this \autoref{thm:pathmerge} it tells us that for every path mergeable digraph in every two disjoint $(x,y)$-path there has to be from one of the path a vertex that dominates the first vertex after $x$ in the other path. This has to hold for every distict pair of vertices $x$ and $y$. \\
 It turns out that in these digraph we can easily determine whether it is a hamiltonian digraph too.
 \begin{thm}
-    A path-mergeable digraph $D$ of order $n\geq 2$ is hamiltonian if and only if $D$is strong and $UG(D)$ is $2$-connected.
+    A path-mergeable digraph $D$ of order $n\geq 2$ is hamiltonian if and only if $D$ is strong and $UG(D)$ is $2$-connected.
     \label{thm:pathham}
 \end{thm}
 \begin{corollary}
@@ -28,6 +28,13 @@ So it turns out that for path-mergeable digraphs this problem is polynomial solv
     proof this ... ... ... ... ... ... ... 
 \end{proof}
 
-Then it turns out that \autoref{thm:pathham} and \autoref{cor:polypath} can be imporved if we are only looking at the in-locally semicomplete digraph, since the locally semicomplete digraph is a subclass of these, it is part of what we are interested in, in this thises.
+Then it turns out that \autoref{thm:pathham} and \autoref{cor:polypath} can be imporved if we are only looking at the in-locally semicomplete digraph, since the locally semicomplete digraph is a subclass of these, and it is the ones we are interested in, in this thises. It turns out that every strong in-locally semicomplete digraph has a 2-connected underlyning graph, which means the only thing we need to check is whether it is a strong digraph.
+\begin{thm}
+    A locally in-semicomplete digraph $D$ of order $n\geq 2$ is hamiltonian if and only if $D$ is strong.
+\end{thm}
 
+It turns out that when looking at the strong locally in-semicomplete digraphs out of the path-mergeable digraph finding the hamiltonian cycle can be done i polynomial time by theorem discorvered by ... ...
+\begin{thm}
+    There is an $O(m+n\log n)$-algorithm for finding a hamiltonian cycle in a strong locally in-semicomplete digraph.
+\end{thm}
 
