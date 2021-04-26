@@ -3,9 +3,9 @@ Before this gets relevant we are going to introduce a class of digraphs called p
 A short explanaition of a path mergeable digraph is that it is the class of digraphs where given two paths with the start- and endpoint incommen you can merge the two paths into one using all vertices in the two paths. 
 A more formal definition of path mergeable digraphs is if there exists a pair of distinct vertices $x,y\in V(D)$ and any two disjoint $(x,y)$-paths there exists a new path from $x$ to $y$ where it is a union of the vertices used in the two vertex-disjoint paths (ending up with a "merge" path of the two given path).\\
 These digraphs are easy to regonize with the following corolary we can do it in polynomial time too and the following theroem gives us a nice propertie of path-mergeable digraphs.
-\begin{corollary}~\cite{banggutin}
+\begin{cor}~\cite{banggutin}
     Path-mergeable digraphs can be regonized in polynomial time
-\end{corollary}
+\end{cor}
 \begin{thm}~\cite{banggutin}
     A digraph $D$ is path mergeable if and only if for every pair of distict vertices $x,y\in V(D)$ and every pair $P=xx_1\dots x_ry,\ P'=xy_1\dots y_sy$, $r,s\geq 1$ of internally disjoint $(x,y)$-paths in $D$, either there exists an $i\in \lbrace 1,\dots ,r\rbrace$, such that $x_i\rightarrow y_1$, or there exists a $j\in \lbrace 1,\dots, y_j\rightarrow x_1\rbrace$.
     \label{thm:pathmerge}
@@ -16,14 +16,14 @@ It turns out that in these digraph we can easily determine whether it is a hamil
     A path-mergeable digraph $D$ of order $n\geq 2$ is hamiltonian if and only if $D$ is strong and $UG(D)$ is $2$-connected.
     \label{thm:pathham}
 \end{thm}
-\begin{corollary}
+\begin{cor}
     There is an $O(nm)$-algorithm to decide whether a given strong path-mergeable digraph has a hamiltonian cycle and find one if it exists.
     \label{cor:polypath}
-\end{corollary}
+\end{cor}
 So it turns out that for path-mergeable digraphs this problem is polynomial solveable, and a subclass of these path-mergeable digraph is namely the locally semicomplete digraphs. If we can prove this we only know that we can solve the hamilton cycle in polynomial time and since the locally semicomplete digraphs is a subclass of in-locally semicomplete digraphs we have an even better time for these.
-\begin{proposition}
+\begin{prop}
     Every locally in-semicomplete (out-semicomplete) digraph is path-mergeable.
-\end{proposition}
+\end{prop}
 \begin{proof}
     proof this ... ... ... ... ... ... ... 
 \end{proof}
@@ -35,6 +35,6 @@ Then it turns out that \autoref{thm:pathham} and \autoref{cor:polypath} can be i
 
 It turns out that when looking at the strong locally in-semicomplete digraphs out of the path-mergeable digraph finding the hamiltonian cycle can be done i polynomial time by theorem discorvered by ... ...
 \begin{thm}
-    There is an $O(m+n\log n)$-algorithm for finding a hamiltonian cycle in a strong locally in-semicomplete digraph.
+    There is an $O(m+n\text{log}n)$-algorithm for finding a hamiltonian cycle in a strong locally in-semicomplete digraph.
 \end{thm}
 

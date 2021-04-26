@@ -1,5 +1,22 @@
 First we need to recall what a quasi transitive digraph is. 
-For every triplet $x,y,z$ in a quasi-transitive digraph if $x\rightarrow y$ ($x$ dominates $y$) and $y\rightarrow z$ ($y$ domitaes $z$), then there has to be at least one arc in either dirction between $x$ and $z$. Quasi-transitive digraphs can be decomposed no matter if there are strong or nonstrong digraphs. 
+For every triplet $x,y,z$ in a quasi-transitive digraph if $x\rightarrow y$ ($x$ dominates $y$) and $y\rightarrow z$ ($y$ domitaes $z$), then there has to be at least one arc in either dirction between $x$ and $z$. 
+When working with quasi-transitive digraphs there are many things you can depend on, things that the structure has already diceded for us.
+\begin{lemma}~\cite{banggutin}
+    Suppose that $A$ and $B$ are distinct strong components of a quasi-transitive digraph $D$ with at least one arc from $A$ to $B$. Then $A\rightarrow B$.
+    \label{lemma:dominatingset}
+\end{lemma}
+Recall that this means that every vertex in $A$ has an arc to every vertex in $B$.
+Like non-strong quasi-transitive digraph we can also say something about strong quasitransitive digraphs.
+\begin{lemma}~\cite{banggutin,bangJGT2}
+    Let $D$ be a strong quasi-transitive digraph on at least two vertices. Then the following hold:
+    \begin{itemize}
+        \item[(a)] $\overline{UG(D)}$ is disconnected;
+        \item[(b)] If $S$ and $S'$ are two subdigraphs of $D$ such that $\overline{UG(S)}$ and $\overline{UG(S')}$ are distinct connected components of $\overline{UG(D)}$, then either $S\rightarrow S'$ or $S'\rightarrow S$ or both $S\rightarrow S'$ and $S'\rightarrow S$ in which case $|V(S)|=|V(S')|=1$. 
+    \end{itemize} 
+    \label{lemma:underlyinggraph}
+\end{lemma}
+These to lemmas is also a part of proving the one theorem which states that quasi-transitive digraphs can be decomposed no matter if there are strong or nonstrong digraphs. 
+
 \begin{thm}\cite{bangJGT85}
     Let $D$ be a quasi-transitive digraph.
     \begin{enumerate}
@@ -8,7 +25,15 @@ For every triplet $x,y,z$ in a quasi-transitive digraph if $x\rightarrow y$ ($x$
     \end{enumerate}
     \label{thm:quasidecom}
 \end{thm}
+This theroem is also what we are going to use more then ones, to prove several of the problem solving theorems through out this thises.
 \begin{proof}
+    Since we can decompose both strong quasi-transitive digraphs and non-strong quasi-transitive digraph we are going to prove if $D$ is not strong first and there after if $D$ is strong.
+    So suppose $D$ is not strong, then we know we can enumerate the strong components in an acyclic order let these be $H_1,\dots , H_t$. 
+    Recall that an acyclic ordering of the strong components does not mean that there is no arcs going back in the ordering, but we will prove that now. 
+    Now from \autoref{lemma:dominatingset} we know that if there is an arc between two of the strong components, one of them dominates the other.
+    Let with out loss of generality these set be $H_i$ and $H_j$ and let $H_i\rightarrow H_j$. 
+    Then Since $D$ is not-strong $H_j\nrightarrow H_i$ now let say that $H_j \rightarrow H_k$, then since $D$ is quasi-transitive then either $H_k\rightarrow H_i$ or $H_i \rightarrow H_k$. 
+    But since $H_i\cup H_j \cup H_k$ is not strong $H_k\nrightarrow H_i$ meaning contracting each $H_i$ for $i=1\dots,t$ we will have a transitive digraph $T$ and we have also shown that there are no backwards going arcs in the ordering meaning that $T$ is not only transitive but acyclic. 
     blablabla
 \end{proof}
 From this theorem we can see that quasi-transitive digraphs is totally $\phi_1$-decomposable. 

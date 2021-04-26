@@ -1,0 +1,31 @@
+In this section we will go over how time is measured for an algorithm and what it means for a problem to be polynomially solveable or polynomially verifyable. Also what it means for a problem to be NP-hard and NP-complete and how we found out if a problem is either of them. 
+
+\subsection{Measure time of algorithm (Polynomial, exponential)}
+The runing time of an algorithm is based on how many steps it is going thourgh which is somtimes based on the input that the algorithm takes we are going to denote an algorithms running time as a function $f(n)$ over the input $n$. 
+This is how different functions can descirbe the running time of an algorithm, if an algorithm has the same number of steps no matter what the input is it has a constat running time where the constant is the number of steps the algorithm uses. 
+
+An algorithm can also take the form of an polynomial function or even exponentiel, if this is the case we uses some notation as big-$O$ notation or $\theta$. 
+Big-oh is the most used one and is the notation we are going to use in this thises, if the algorithm takes $f(n)=4n^3 +2n^2-n+2$ time we denote it in big-oh notation as $O(n^3)$ as it is the biggest term of $f(n)$.  
+
+Since the shorter the runningtime is the better the algortihm is.
+Since the exponentiel runningtime algortihms take forever on large inputs, we would want to improve them, but sometimes you are left with problems where that is not a possibility.
+
+So we are going to classify the problems in gruops of how long time it take to decide or verify the problems solution. a problem that is decided i polynomiel time is in the class called $P$.
+Which means for every given time of input in a problem from \textbf{P} we can find the solution for the problem in polynomiel time.
+
+\subsection{NP problems and classifications}
+As shortly described above there is something called a \textbf{polynomial verifier} for a problem. 
+That means given a problem and then given a solution we can in polynomial time verify if it is a solution to the given problem. This is the class we call NP.
+\begin{definition}
+    \textbf{NP} is the class of languages that have polynomial time verifiers.
+\end{definition}
+
+Obiously if you can find a solution in polynomial time you can also verify whether a solution is correct in polynomial time. 
+So $P\subseteq NP$. 
+There is also a class called $NP-Hard$ but before we can explain that we need to explain what it means for a problem to be polynomial reduceable to another problem. 
+For a specific problem $A$ and another problem $B$ then if there exists an algorithm that can take a solution from $A$ and make it a solution for $B$ in polynomial time. 
+When such a algorithm exists it is called a polynomial verifier and we say that $A$ is \textbf{polynomial reducable} to $B$ or just that $A$ is \textbf{reduced} to $B$. 
+\textbf{NP-Hard} are the class of problems that every NP problem can be polynomiel reduced to. 
+A problems in the class of NP-Hard problems does not nessesarily mean that it is NP it-self.
+If a problem is both \textbf{NP} and \textbf{NP-Hard} we call it \textbf{NP-Complete}. 
+The problems we are \textcolor{red}{mostly} focusing on is in the class of \textbf{NP-Complete} problems.   

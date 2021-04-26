@@ -5,7 +5,6 @@
 \usepackage[T1]{fontenc}
 \usepackage[danish,english]{babel}
 \usepackage{graphicx}
-\usepackage[a4paper,margin=2.7cm]{geometry}
 
 \usepackage[sc]{mathpazo} % consider options: osf, sc
 
@@ -22,6 +21,8 @@
 \usepackage{xcolor}
 \usepackage{wrapfig}
 \usepackage{subcaption}
+
+\usepackage{tikz,tkz-graph,tkz-berge,tkz-euclide}
 
 \floatname{algorithm}{Procedure}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
@@ -40,18 +41,13 @@
 \renewcommand{\vec}[1]{\ensuremath {\mathbf #1}}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{cor}{Corollary}[thm]
-\newtheorem{lemma}[thm]{Lemma}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{example}[thm]{Example}
 
 
 %Information to be included in the title page:
-\title{Algorithm for Finding linkage in a Totally $\phi$-decomposable Digraph}
+\title{Algorithm for Finding Linkage in a Totally $\phi$-decomposable Digraph}
 \author{Gabriella Juhl Jensen}
 \institute{Jørgen Bang-Jensen}
 \date{2021}
-
-
 
 \begin{document}
 
@@ -60,7 +56,7 @@
 \begin{frame}
 \frametitle{Decomposable Digraph}
 A digraph $D=S[H_1,\dots , H_s]$ is called Decomposable where $|S|=s$ and each $H_i$ are disjoint digraphs replacing every vertex in $S$. 
-The digraphs $H_i$ will in this presentation be called \textbf{hauses}.
+The digraphs $H_i$ will in this presentation be called \textbf{houses}.
 For a set of digraphs $\phi$ we can talk about $\phi$-decomposable digraphs. 
 For a digraph $D=S[H_1,\dots ,H_s]$ to be $\phi$-decomposable either $D\in \phi$ or $S\in \phi$.\\
 
@@ -71,11 +67,11 @@ For a digraph $D=S[H_1,\dots ,H_s]$ to be  totally $\phi$-decomposable it has to
 \frametitle{The weak linkage Problem}
 Given two pair of vertices $s_1,t_1$ and $s_2,t_2$ finding arc-disjoint paths between each pair is 2-weak linkage problem. Then the $k$-weak linkage problem is finding k arc-disjoint paths between k pair of terminals.
 where a terminal  pair is a source and a zink in the paths of the solution of the linkage problem.
-When talking about linkage problem for decomposable digraph, we can have hauses with terminals in and some without any terminals. 
-The hauses with no terminals in is called \textbf{clean hauses}.
-Then a terminal pair can either be inside the same hauses or in different hauses. If a terminal pair is contained inside the same hause it is called an internal pair other wise we call the pair external.
-The same with a path if it is fully containd inside a hause it is called an internal path other wise it is external.
-you can have an external path for a internal piar if the path go out of the hause and in agian.
+When talking about linkage problem for decomposable digraph, we can have houses with terminals in and some without any terminals. 
+The houses with no terminals in is called \textbf{clean houses}.
+Then a terminal pair can either be inside the same houses or in different houses. If a terminal pair is contained inside the same house it is called an internal pair other wise we call the pair external.
+The same with a path if it is fully containd inside a house it is called an internal path other wise it is external.
+you can have an external path for a internal piar if the path go out of the house and in agian.
 \end{frame}
 
 \begin{frame}
@@ -84,17 +80,18 @@ Every thing on this list is denoted like this unless it is specifed noot to be l
 \begin{itemize}
     \item a natruel number $k$ is going to repricent the number of terminal pairs there in the linkage problem.
     \item $\Pi$ denote the set of terminal pairs $(s_1,t_1),\dots ,(s_k,t_k)$.
-    \item $D$ is the totally $\phi$-decomposable digraph where each hause is denoted $H_i$ for $i=1,\dots ,s$.
+    \item $D$ is the totally $\phi$-decomposable digraph where each house is denoted $H_i$ for $i=1,\dots ,s$.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Bombproof sets}
 \begin{definition}~\cite{bangJGT85}
-    We say that a class of digraphs $\phi$ is Bombproof is there exsists a polynomial algorithm $\mathcal{A}_\phi$ to find a totally $\phi$-decomposition of every totally $\phi$-decomposable digraph and, for every integer $c$, there exists a polynomial algorithm  $\mathcal{B}_\phi$ to decide the weak $k$-linkage problem for the class
+    We say that a class of digraphs $\phi$ is Bombproof is there exsists a polynomial algorithm $\mathcal{A}_{\phi}$ to find a totally $\phi$-decomposition of every totally $\phi$-decomposable digraph and, for every integer $c$, there exists a polynomial algorithm  $\mathcal{B}_{\phi}$ to decide the weak $k$-linkage problem for the class
     \begin{equation}
         \phi(c):=\bigcup_{D\in \phi}D(c) 
     \end{equation}
+    \label{def:bombproof}
 \end{definition}
 for a integer $c$, the class denoted $D(c)$ is the for a digraph $D$ you can first add as many parallel arcs to arcs that already exists in $D$ you can blow up $b$ vertices where $0\leq b\leq c$ the digraph that is blown up to has a size $\leq c$. 
 \end{frame}
@@ -102,20 +99,24 @@ for a integer $c$, the class denoted $D(c)$ is the for a digraph $D$ you can fir
 \begin{frame}
     \frametitle{Contraction clean vertices}
     \begin{lemma}~\cite{bangJGT85}
-        Let $D$ be a digraph, $\Pi$ a list of $k$ terminal pairs and $H\subset D$ a clean module with respect to $\Pi$. Let $D'$ be the contraction of $H$ into a single vertex $h$. Then $D$ has a waek $\Pi$-linkage if and only if $D'$ has a weak $\Pi$-linkage.  
+        Let $D$ be a digraph, $\Pi$ a list of $k$ terminal pairs and $H\subset D$ a clean house with respect to $\Pi$. Let $D'$ be the contraction of $H$ into a single vertex $h$. Then $D$ has a waek $\Pi$-linkage if and only if $D'$ has a weak $\Pi$-linkage.  
+        \label{lemma:cleanhouse}
     \end{lemma}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Max inside Hause External Path}
+    \frametitle{Max inside House External Path}
     \begin{lemma}
-        Let $D=S[H_1,\dots H_s]$ be a decomposable digraph, let $\Pi'$ be a list of $h$ terminal pair and let $F$ be a set of arcs in $D$ satisfying that $d^-_F(v),d^+_F(v) \leq r$ for all $v \in V(D)$. If $(D\backslash F,\Pi')$ has a weak linkage, then it has a weak linkage $P_1,\dots , P_h$ such that, we have $|V\left( \bigcup_{i\in \openE} P_i\cap H_j \right)|\leq 2h(h+r)$, for every $j\in [1,\dots,s]$, where $\openE$ denotes the set of indeces $i$ for wich $P_i$ is external.
+        Let $D=S[H_1,\dots H_s]$ be a decomposable digraph, let $\Pi'$ be a list of $h$ terminal pair and let $F$ be a set of arcs in $D$ satisfying that $d^-_F(v),d^+_F(v) \leq r$ for all $v \in V(D)$.
+        If $(D\backslash F,\Pi')$ has a weak linkage, then it has a weak linkage $P_1,\dots , P_h$ such that, we have $|V\left( \bigcup_{i\in \mathcal{E}} P_i\cap H_j \right)|\leq 2h(h+r)$, for every $j\in [1,\dots,s]$, where $\mathcal{E}$ denotes the set of indeces $i$ for wich $P_i$ is external.
+        \label{lemma:external}
     \end{lemma}
 \end{frame}
 \begin{frame}
     \frametitle{Algorithm for Digraph with Deleted Arcs}
     \begin{lemma}
         Let $\mathcal{C}$ be a class of digraphs for which there exists an algorithm $\mathcal{A}$ to decide the weak k-linkage problem, whose running time is bounded by $f(n,k)$. Let $D=(V,A)$ be a digraph, $\Pi$ a list of $k$ pairs of terminals and $F\subseteq V\times V$ such that $D':= (V,A\cup F)$ is a member of $\mathcal{C}$. There exists an algorithm  $\mathcal{A}^-$, whose running time is bounded by $f(n,k+|F|)$, to decide whether $D$ has a weak $\Pi$-linkage.
+        \label{lemma:deletarcs}
     \end{lemma}
 \end{frame}
 \begin{frame}
@@ -146,63 +147,137 @@ for a integer $c$, the class denoted $D(c)$ is the for a digraph $D$ you can fir
 \end{thm}
 \end{frame}
 
+
 \begin{frame}[allowframebreaks]{Search}
     \frametitle{The main algortihm}
     To proof \autoref{thm:mainalgo} we first state the algorithm $\mathcal{M}$ then we prove that it works, and last that the time for the algorithm is polynomial.
     \captionof{algorithm}{The main algorithm $\mathcal{M}$}
-
-        \begin{algorithmic}[1]
-            \algio{
-                Digraph $D$, two natural numbers $k$ and $k'$ where $k'\leq k$, a list of $k'$ terminal pairs $\Pi$, A set of arcs $F\subseteq A(D)$ satiesfying:
-                \begin{align*}
-                    d^-_F(v),d^+_F(v)&\leq k-k' \ \forall v\in V(D)\\
-                    |F|&\leq (k-k')2k
-                \end{align*}
-            }{
-                Either "No weak-linkage exists" or "there exists a weak-linkage in $(D,\Pi)$ with arc set $F$."
-            }
-            \STATE If $\Pi=\emptyset$ output that a solution exists and return
-            \STATE Run $\mathcal{A}_\phi$ to find a total $\phi$-decomposition of $D=S[H_1,\dots,H_s]$.
-            \STATE If this decomposition is trivial that is $D=S$, then  $D\in \phi\subset \phi(1)$, so run $\mathcal{B}^-_{\phi}$ on $(D\backslash F,\Pi)$ to decide the problem and return.
-            \STATE Find among $H_1,\dots, H_s$ those hauses $K_1,\dots , K_l$ that contain at least one terminal. Let $D'$ be obtaint by contracting all the clean hauses. Let $F'$ be the set of arcs obtaint from $F$ after the contraction.
-            \STATE Let $\Pi^e\subset \Pi$ $(\Pi^i\subset \Pi)$ be the list of external (internal) pairs $(s_q,t_q)\in \Pi$.
-            \FOR{every partion of $\Pi^i=\Pi_1\cup\Pi_2$ look for external paths linking the pairs in $\Pi^e\cup \Pi$ and internal pairs in $\Pi_2$}
-                \IF{$\Pi^e\cup \Pi_1=\emptyset$, then for $i=1,\dots,l:$} 
-                    \STATE run $\mathcal{M}$ recursively on input $[K_i,k,k'_i,\Pi \cap K_i,F\capA(K_i)]$, where $\Pi\cap K_i$ denotes the list of terminal pairs that lie inside K_i and $k'_i$ is the number of those pairs.
-                \ENDIF
-                \IF{$\Pi^e\cup\Pi_1\neq \emptyset$}
-                    \STATE let $k'_i$ be the number of pairs in $\Pi_2\cap K_i$
-                    \FOR{each possible choice of $l$ vertex sets $W_i\subseteq V(K_i)$,$i=1,\dots,l$ of size $\min \lbrace |V(K_i)|,2(k'-k'_i)(k-k')\rbrace$ and arc sets $F_i\subseteq A(K_i\left< W_i\right>)\backslash F$, $i=1,\dots ,l$ with $F_i$ satisfying \begin{align}
-                        d^-_{F_i\cup(F\capA(K_i))}(v),&d^+_{F_i\cup(F\capA(K_i))}(v)\leq k'-k'_i.\\
-                        |F_i|\leq &2(k'-k'_i)(k-k')
-                    \end{align}}
-                        \FOR{every $K_i$}
-                            \STATE remobe all the vertices of $V(K_i)\backslash W_i$ and then all remaining arcs except those in $F_i$.
-                        \ENDFOR
-                        \STATE Define $D''$ to be the digraph obtaint from $D'$ with this procedure.
-                        \STATE Run $B_{\phi}^-$ on $(D''\F',\Pi^e\cup\Pi_1)$.
-                        \FOR{$i=1,\dots,l$}
-                            \STATE run $mathcal{M}$ recursively on input $[K_i,k,k'_i,\Pi_2\cap K_i,F_i\cup(F\capA(K_i))]$.
-                        \ENDFOR 
+    \algio{
+        Digraph $D$, two natural numbers $k$ and $k'$ where $k'\leq k$, a list of $k'$ terminal pairs $\Pi$, A set of arcs $F\subseteq A(D)$ satiesfying:
+        \begin{align*}
+            d^-_F(v),d^+_F(v)&\leq k-k' \ \forall v\in V(D)\\
+            |F|&\leq (k-k')2k
+        \end{align*}
+    }{
+        Either "No weak-linkage exists" or "there exists a weak-linkage in $(D,\Pi)$ with arc set $F$."
+    }
+    \begin{algorithmic}[1]
+        \STATE If $\Pi=\emptyset$ output that a solution exists and return
+        \STATE Run $\mathcal{A}_{\phi}$ to find a total $\phi$-decomposition of $D=S[H_1,\dots,H_s]$.
+        \IF{this decomposition is trivial that is $D=S$}    
+            \STATE $D\in \phi\subset \phi(1)$, so run $\mathcal{B}^-_{\phi}$ on $(D\backslash F,\Pi)$ to decide the problem and return.
+        \ENDIF
+        \STATE Find among $H_1,\dots, H_s$ those houses $K_1,\dots , K_l$ that contain at least one terminal. 
+        Let $D'$ be obtaint by contracting all the clean houses. 
+        Let $F'$ be the set of arcs obtaint from $F$ after the contraction.
+        \STATE Let $\Pi^e\subset \Pi$ $(\Pi^i\subset \Pi)$ be the list of external (internal) pairs $(s_q,t_q)\in \Pi$.
+        \FOR{every partion of $\Pi^i=\Pi_1\cup\Pi_2$ look for external paths linking the pairs in $\Pi^e\cup \Pi_1$ and internal pairs in $\Pi_2$}
+            \IF{$\Pi ^e\cup \Pi _1=\emptyset$, then for $i=1,\dots ,l$:} \label{state:6a}
+                \STATE run $\mathcal{M}$ recursively on input $[K_i, k, k'_i,\Pi \cap K_i, F\cap A(K_i)]$, where $\Pi \cap K_i$ denotes the list of terminal pairs that lie inside $K_i$ and $k'_i$ is the number of those pairs.
+            \ENDIF
+            \IF{$\Pi ^e \cup \Pi _1\neq \emptyset $} \label{state:6b}
+                \STATE let $k_i'$ be the number of pairs in $\Pi _2\cap K_i$
+                \FOR{each possible choice of $l$ vertex sets $W_i\subseteq V(K_i)$,$i=1,\dots,l$ of size $\min \lbrace |V(K_i)|,2(k'-k'_i)(k-k')\rbrace$ and arc sets $F_i\subseteq A(K_i\left< W_i\right>)\backslash F$, $i=1,\dots ,l$ with $F_i$ satisfying 
+                \begin{align}
+                    d^-_{F_i\cup(F\cap A(K_i))}(v),&d^+_{F_i\cup(F\cap A(K_i))}(v)\leq k'-k'_i.\\
+                    |F_i|\leq &2(k'-k'_i)(k-k')
+                \end{align}
+                }
+                    \FOR{every $K_i$}
+                        \STATE remove all the vertices of $V(K_i)\backslash W_i$ and then all remaining arcs except those in $F_i$.
                     \ENDFOR
-                \ENDIF
-               % \REMARK If step ??? all intances examined are linked or at step ??? there is a choice of $W_i,F_i,i=1,\dots,l$ such that all instances examined are linked, then output that a weak linkage exists and return.
-            \ENDFOR 
-            \IF{all choices of $\Pi_1,\Pi_2$ have been consideredwithout verifying the existens of any weak linkage, then output that no weak linkage exists.}
-        \end{algorithmic}
-\end{frame}
+                    \STATE Define $D''$ to be the digraph obtaint from $D'$ with this procedure.
+                    \STATE Run $B_{\phi}^-$ on $(D''\backslash F',\Pi^e\cup\Pi_1)$.
+                    \FOR{$i=1,\dots,l$}
+                        \STATE run $\mathcal{M}$ recursively on input $[K_i,k,k'_i,\Pi_2\cap K_i,F_i\cup(F\cap A(K_i))]$.
+                    \ENDFOR 
+                \ENDFOR
+            \ENDIF
+            \IF{the if statement in \autoref{state:6a} all intances examined are linked $\OR$ at  the if statement in \autoref{state:6b} there is a choice of $W_i,F_i,i=1,\dots,l$ such that all instances examined are linked} 
+                \STATE output that a weak linkage exists and return.
+            \ENDIF
+        \ENDFOR 
+        \IF{all choices of $\Pi_1,\Pi_2$ have been consideredwithout verifying the existens of any weak linkage}
+            \STATE output that no weak linkage exists.
+        \ENDIF
+    \end{algorithmic}
+ \end{frame}
 
 
 \begin{frame}
     \frametitle{Step by step what $\mathcal{M}$ does}
-    The first (1.) step "$\Pi=\emptyset$" makes sure that if we call the algorithm $\mathcal{M}$ with no pairs then there exists the solution with zero acrs to solve the weak-linkage. 
-    
+    First we deskribe wiht words what the input and output of the algorithm is. 
+    The output is already written in words and is very undestandeble. \\
+    The input can be elaborated somewhat more, first $\mathcal{M}$ is polynomial but also recursively defined. 
+    It decides whether $(D,\Pi)$  has a weak-linkage on overall $k$ terminals. 
+    Since the algorithm is recursive it does not find all the solutions in one go therfore we define $k'$ as the number of terminals that we still need to find a weak linkage for, and $F$ is a part of the solution of at most $k-k'$ already found weak-linkages of $D$, $\Pi$ is the set of terminals that we what to find the weak linkage for. \\
+    So you can in the begining have $F=\emptyset$ and $k=k'$. This will help on the undestaniding of the algorithm.    
 \end{frame}
 
-%\begin{frame}
-%    \frametitle{The main algortihm}
-%    
-%\end{frame}
+\begin{frame}[allowframebreaks]{Search}
+    \frametitle{Step by step what $\mathcal{M}$ does}
+     
+    Step 1: "$\Pi=\emptyset$" makes sure that if we call the algorithm $\mathcal{M}$ with no pairs then there exists the solution with zero acrs to solve the weak-linkage problem. \\
+
+    Step 2: Recall that the digraph is totally $\phi$-decomposable and $\phi$ is bomproof and from \autoref{def:bombproof} we know tha the digraph has a algortihm $\mathcal{A}_{\phi}$ that gives the $\phi$-decomposition of the digraph. \\
+
+    Step 3-5: From \autoref{def:bombproof} we know that $\mathcal{B}_{\phi}$ decides a weak-linkage for $D\in \phi$, since we cant guarentee that $D\backslash F \in \phi$ we use \autoref{lemma:deletarcs} that tells us that $\mathcal{B}_{\phi}^-$ can decide a weak-linkage in $D\backslash F=(V,A\backslash F)$ if $D' \in phi$ $D'=(V,(A\backslash F)\cup F)=(V,A)=D\in \phi$. \\
+
+    Step 6: Here we find all the non-clean houses from $H_1,..,H_s$ and contract all the clean houses w.r.t. $\Pi$ we make a new nummeration of all the non-clean houses $K_1,\dots ,K_l$ of $D$ w.r.t. $\Pi$
+    Since by \autoref{lemma:cleanhouse} we know that contracting one clean house in $D$ if it has a linkage so does our new digraph, then use this lemma agian and agian until there is no more clean houses.
+    This is our new digraph $D'$ with non-clean houses $K_1,\dots,K_l$ and if we find a weak linkage w.r.t. $\Pi$ in $D'$ we know that $D$ has a weak linkage from continueing using \autoref{lemma:cleanhouse}.
+    We also let $F'=F\cap A'$ where $A'$ is the arcset of $D'$.\\
+
+    Step 7: Recall an internal pair is where both vertices is in the same house and an external pair is where the vertices is two different houses. 
+
+    Step 8: This for loop is looking for two different cinds of path between internal pairs since the path for an internal pair can be an internal path (fully cept in the house) or an external path going out of and later in the house. 
+    For simplyfication look at \autoref{fig:internalpair}
+    \begin{figure}
+        \begin{tikzpicture}[main/.style ={draw,circle}]
+            \node[main](a) {$a$};
+        \end{tikzpicture}
+        \label{fig:internalpair}
+    \end{figure}
+
+    Step 9-11: if $\Pi^e\cup \Pi_1=\emptyset$ , either we have already found all external path in this partition or there was none. 
+    Either way all terminal pairs left is internal so and $\Pi =\Pi_2$. So we are only interesten in finding the internal path of the internal pairs, which is why we can call $\mathcal{M}$ on each house for itself.
+    Each $K_i$ could be a big graph in itself that is decomposable with at least some house $H_i$ where $|H_i|\geq 2$, if this is not the case the algorithm returns after step 3: and continue with the next. 
+    If $\mathcal{M}$ has already found some external paths $F$ might not be empty  and may use some arcs inside $K_i$ therefore $F\cap A(K_i)$. $\Pi \cap K_i$ is becouse we are not interested in the terminal pairs that are not a part of the graph we are looking at (pairs inside $K_j$ where $j\neq i$).
+
+    Step 12: Looking for external paths in a big graph is a bit more deficualt since we do not know which arcs and vertices not to use.
+    
+    Step 13-14: First we find all the pairs that is internal pairs, we want to link as internal paths, the number of these is $k'_i$ for each $i=1,\dots l$. Then we choose a very specifik size of vertex sets $W_i$ and loop over every choiche of these. These vertex set induces a subdigraph, where we make a possible arc set where inside not containg what is inside $F$ we call these $F_i$ we make these set as big as possible linkage need for the rest of the terminal pairs (those we want to find external paths of$\Pi^e\cup \Pi_1$) the number of those is $k'-k'_i$ since every pair mabey has to go through the house we are looking at.
+    
+    Step 15-19: For each house we remove all vertices not in the vertex set $W_i$ after removing these vertices we remove all remaining arcs except those arcs in $F_i$.
+    This is defined in the algorithm as $D''$. We can show that $D''\in \phi(2k^2)$. First we know that since $D$ is totally decomposable $S\in \phi$ and from \autoref{def:bombproof} and the definition on $D(c)$ we can take $S$ add as many parralelle arcs as we want we only need to blow up $l$ vertices those houses of $D$ that are not clean we know that there is $k'$ terminal pairs and that $k'\leq k$ meaning $l\leq 2k$ these $l$ vertices needs to be blown up and from lemma \autoref{lemma:external} lets say that we want to find $k''\leq k'$ external paths in $D$ ($|\Pi^e \cup \Pi_1|=k''$) then we are only looking at $k''$ terminals meaning in every blow up we need at most $2k''(k''+(k-k'))$ since $k''\leq k'$ we have $2k''(k''+(k-k'))\leq 2k''k$ vertices in $W_i$ and $2kk''\leq 2kk'\leq 2k^2$ which is the biggest number we will need to blow up the $l$ vertices meaning $c=2k^2$ so $D''\in \phi (2k^2)$.
+
+    Step 20-24: We need to make sure that the tuple $[K_i,k,k'_i,\Pi_2 \cap K_i,F_i\cup(F\cap A(K_i))]$ upholds every condition for every choice of that tuple. 
+    Since we are not focusing on loops we know that the max number of arcs is bounded by the max number of vertices $|F_i|\leq 2kk''$ the rest of the terminals is the number of internal pairs which we in the algorithm denote $k'_i$. we know that $k'_i\leq k'-k''$ meaning $k''\leq k'-k'_i$.
+    we start calculating the to demands of $F$ in the tuple.
+    Note that $d_{(F\cap A(K_i))}(v)=d_{F}(v), \ \forall v\in V(K_i)$ and we also know $d_{F_i}(v)\leq k''$ so
+    \begin{align}
+        d^+_{F\cup F_i},d^-_{F\cup F_i}\leq k-k' + k'' = k-(k'-k'')\leq k- k'_i \\
+        |(F \cap A(K_i))\cup F_i|\leq |F|+|F_i|\leq 2k(k-k') +2kk''\\
+        \leq 2k(k-\textcolor{blue}{k'})+2k(\textcolor{blue}{k'}-k'_i)=2k(k-k'_i).
+    \end{align}
+    Clearly the tuple for $F$ holds forall its conditions.
+\end{frame} 
+
+\begin{frame}[allowframebreaks]{Search}
+    \frametitle{induction on $\mathcal{M}$}
+    We have now proved and explained each step in the algorithm, that it does what we think. 
+    Now we need to check whether given your favorite digraph, that upholds the conditions, the algorithm gives the right result.
+    If the digraph do not terminate before examine list $\Pi^e\cap \Pi_1$ of $k''$ terminal pairs if $k''=0$ we enter step 9 and $F_i=\emptyset, \text{ for } i=1,\dots l$, and by the induction hypothesis we can assume that if there exists a weak linkage in each $K_i$ the algorithm would find it. 
+    Now if this is not the case and $k''>0$ step 12 is then entered and we construct $D''$ which we have described belong to $\phi(2k^2)$ and then as descirbed before we can use $B_\phi^-$ which is correct by \autoref{def:bombproof}, so the algorithm will find a weak $\Pi''$-linkage if it exists in $D''\backslash F'$. 
+    After all this there is made a recursiv call on each $K_i$ finding $k'_i$ weak linkages and by the above proof we know it works. 
+    So since $B_\phi^-$ correctly finds the weak linkage inside $D''\backslash F'$ using only arcs from $F_i$ $\forall i\in[l]$, then each $K_i$ is recursively called from $D''$ we can easily come back to $D'$ since we find the weak $k'_i$-linkage inside each $K_i$ which is not using any of the arcs from $F_i$ we know that together these stil form the seperated weak linkages.
+    By \autoref{lemma:deletarcs} we know that we can find a weak linkage in $D\backslash F$ if we can find it in $D''\backslash F'$ which just proved we can. given a perfekt weak $\Pi$-linkage.
+\end{frame}
+
+\begin{frame}
+    \frametitle{this can be done in polynomial time}
+     
+\end{frame}
 
 \bibliographystyle{unsrt}
 \bibliography{bib}

@@ -32,8 +32,8 @@ If the locally semicomplete digraph is nonstrong it turns out that it is decompo
 \end{thm}
 For simplification of \autoref{thm:semicompletedecom} the properties is drawn out in \autoref{fig:properties}
 \begin{figure}
-    \begin{tikzpicture}
-        \node[$a$](a)
+    \begin{tikzpicture}[main/.style ={draw,circle}]
+        \node[main](a){$a$};
     \end{tikzpicture}
     \caption{(a)(b) and (c)}
     \label{fig:properties}
@@ -50,7 +50,7 @@ When finding a good seperator in a evil locally semicomplete digraph, then the p
     Let $D$ be an evil locally semicomplete digraph then $D$ is strong and satisfies the following properties.
     \begin{itemize}
         \item[(a)]There is a good seperator S such that the semicomplete decomposition of $D-S$ has exactly three components $D'_1,D'_2,D'_3$ (and $D\left<S\right>$ is semicomplete by \autoref{lem:whichsemicomplete});
-        \item[(b)] Furthermore, for each such $S$, there are integers $\alpha, \beta,\mu,\nu$ with $\lambda_2\leg \alpha \leq \beta \leq p-1$ and $p+1\leq \mu \leq \nu \leq p+q$ such that 
+        \item[(b)] Furthermore, for each such $S$, there are integers $\alpha, \beta,\mu,\nu$ with $\lambda_2\leq \alpha \leq \beta \leq p-1$ and $p+1\leq \mu \leq \nu \leq p+q$ such that 
         \begin{align}
             &N^-(D_\alpha)\cap V(D_\mu)\neq \emptyset \text{and} N^+(D_\alpha)\cap V(D_\nu)\neq \emptyset,\\
             \text{or} &N^-(D_\mu)\cap V(D_\alpha)\neq \emptyset \text{and} N^+(D_\mu)\cap V(D_\beta)\neq \emptyset,
@@ -66,7 +66,7 @@ Even though this is a structure we can work with, we can actually go deeper into
         \item[(i)] $D_p\Rightarrow S\Rightarrow D_1$.
         \item[(ii)] If $sv$ is an arc from $S$ to $D'_2$ with $s\in V(D_i)$ and $v\in V(D_j)$, then 
         \begin{equation*}
-            D_i\cup D_{i+1}\cup \dots D_{p+q}\Rightarrow D_1\cup\dots \cup D_{\lambda_2-1}\Rightarrow D_\lambda_2\cup \dots \cup D_j
+            D_i\cup D_{i+1}\cup \dots D_{p+q}\Rightarrow D_1\cup\dots \cup D_{\lambda_2-1}\Rightarrow D_{\lambda_2}\cup \dots \cup D_j
         \end{equation*}.
         \item[(iii)] $D_{p+q}\Rightarrow D'_3$ and $D_f\Rightarrow D_{f+1}$ for $f\in [p+q]$, where $p+q+1=1$.
         \item[(iv)] If there is any arc from $D_i$ to $D_j$ with $i\in [\lambda_2-1]$ and $j\in [\lambda_2,p-1]$, then $D_a\Rightarrow D_b$ for all $a\in [i,\lambda_2-1]$ and $b\in[\lambda_2,j]$.
