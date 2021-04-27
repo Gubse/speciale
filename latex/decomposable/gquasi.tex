@@ -34,10 +34,11 @@ This theroem is also what we are going to use more then ones, to prove several o
     Let with out loss of generality these set be $H_i$ and $H_j$ and let $H_i\rightarrow H_j$. 
     Then Since $D$ is not-strong $H_j\nrightarrow H_i$ now let say that $H_j \rightarrow H_k$, then since $D$ is quasi-transitive then either $H_k\rightarrow H_i$ or $H_i \rightarrow H_k$. 
     But since $H_i\cup H_j \cup H_k$ is not strong $H_k\nrightarrow H_i$ meaning contracting each $H_i$ for $i=1\dots,t$ we will have a transitive digraph $T$ and we have also shown that there are no backwards going arcs in the ordering meaning that $T$ is not only transitive but acyclic. 
-    blablabla
+    This end the proof of the non-strong quasi-transitive digraph leving only the strong ones left.
+    Now suppose that $D$ is a strong quasi-transitive digraph, we now look at the underlying graph $UG(D)$ after this we find the complement of it, $\overline{UG(D)}$ since $D$ is strong we know from \autoref{lemma:underlyinggraph} that $\overline{UG(D)}$ is disconnected, so we find $Q_1,\dots , Q_s$ where $\overline{UG(Q_i)}$ is connected in $\overline{UG(D)}$ $\forall i \in [s]$. Since these subdigraphs $\overline{UG(Q_i)}$ of $\overline{UG(D)}$ is connected we know that $Q_i$ is non-strong or a single vertex in $D$ from the same lemma each $Q_i$ reprecent $S$ in \autoref{lemma:underlyinggraph} which means when contracting $Q_i$ $\forall i\in [s]$ into a single vertex $q_i$ called $S$, we have that every pair of vertex in $S$ have one arc between in either direction or one in both direction making $S$ semicomplte. This concludes the proof.
 \end{proof}
 From this theorem we can see that quasi-transitive digraphs is totally $\phi_1$-decomposable. 
-Since the transitive digraph for the nonstrong quasi-transitive digraphs is acyclic $T\in \phi_1$ and each $Q_i$ is in itself strong quasi triansitive digraphs and you can therefore use \autoref{thm:quasidecom} agian.  
+Since the transitive digraph for the nonstrong quasi-transitive digraphs is acyclic $T\in \phi_1$ and each $H_i$ is itself strong quasi-triansitive digraphs and you can therefore use \autoref{thm:quasidecom} agian.  
 For the strong quasi-transitive digraphs $D$, $S$ is semicomplete so $S\in \phi_1$ and each $Q_i \in \phi_1$ because it is either one vertex which is a digraph that is both acyclic and semicomplete or it is non-strong and must be quasi-transitive and therefore \autoref{thm:quasidecom} can be used agian. So every nonstrong and strong quasi-transitive digraphs is totally $\phi_1$-decomposable.
 
 \begin{thm}
