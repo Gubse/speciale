@@ -1,0 +1,44 @@
+From \autoref{thm:quasidecom} we know that a quasi-transitive digraph is a composition of acyclic transitive digraphs and semicomplete digraphs.
+We know that $\phi_1$ is the union of acyclic and semicomplete digraphs, which means that every quasi-transitive digraphs are $\phi_1$-decomposable as described in \autoref{chap:decomposable}. 
+\begin{thm}~\cite{bangJGT85}
+    For every fixed $k$, there exists a polynomial algorithm for the $k$-linkage problem on acyclic digraphs.
+\end{thm}
+\begin{thm}
+    For every fixed $k$, there exists a polynomial algorithm for the $k$-linkage problem on semicomplete digraph.
+\end{thm}
+Note that this means that there exists polynomial algorithms for a fixed $k$ to solve the $k$-linkage problem for digraphs in $\phi_1$.\\
+For a decomposition $D=S[M_1,\dots M_s]$ and a set of terminal pairs, we can split the set into two different sets of terminals. 
+The set of \textbf{internal pairs} $\Pi_i$, where internal pair means that both $s_i$ and $t_i$ is in the same hause, and the set of \textbf{external pairs} $\Pi_e$ which is the rest such that $\Pi=\Pi_i \cup \Pi_e$.\\
+\begin{lemma}~\cite{bangJGT85}
+    Let $D=S[M_1,\dots ,M_s]$ be a decomposable digraph and $\Pi$ a set of pairs of terminals. Then $(D,\Pi)$ has a linkage if and only if it has a linkage whose external paths do not use any arc of $D\left<M_i\right>$ for $i\in [s]$.
+\end{lemma}
+\begin{proof}
+    \textcolor{red}{blablabalbalbalab}
+\end{proof}
+Meaning that the external paths do not use arcs inside the hauses only arcs to come from house to house (arcs from the quotient digraph $S$). Be aweare that internal pairs can be linked by an internal path or an external path going out of the house and later in agian, where ofcourse external pairs has to be linked by external paths. 
+
+Before getting into the algorithm for solbing this for $\phi$-decomposable digraphs, we need to set some conditions for the set $\phi$. 
+When a set of digraphs $\phi$ upholds these conditions we are going to say that $\phi$ is a linkage ejector. 
+But first we need to establish that a set of digraphs can be closed with respect to blow-up.
+\textbf{blow-up} means blowing up a vertex $v$, with a digraph $K$(Replacing $v$ with the digraph $K$).
+When a set of digraphs $\phi$ is closed with respect to this operation it means that for a digraph $D\in \phi$ there exists a digraph $K$ such that after $K$ has replaced $v$ the digraph is still a part of the set $\phi$. 
+This definition brings this nice lemma.
+
+\begin{lemma}
+    If a class $\phi$ is closed with respect to the blowing-up operation $S\in \phi$ and $D=S[M_1,\dots M_s]$, then it is possible to replace the arcs in the digraph $M_i$ with other arcs, so that the resulting digraph is in $\phi$. 
+    \label{lemma:replace} 
+\end{lemma}
+
+This brings us to the definition of a linkage ejector.
+\begin{definition}~\cite{bangJGT85}
+    A class of digraphs $\phi$ that is closed with respect to blow-up is a linkage ejector if the following conditions is true
+    \begin{enumerate}
+        \item There exists a polynomial algorithm $\mathcal{A}_{\phi}$ to find a total $\phi$-decomposition of every totally $\phi$-decomposable digraph.
+        \item There exists a polynomial algorithm $\mathcal{B}_{\phi}$ for a fixed $k$, for solving the $k$-linkage problen on $\phi$
+        \item There exists a polynomial algorithm $\mathcal{C}_{\phi}$ that given a totally-decomposable digraph\\ $D=S[M_1,\dots , M_s]$ constructs a digraph of $\phi$ by replacing the arcs inside each $M_i$ for $i\in [s]$ as in \autoref{lemma:replace}. 
+    \end{enumerate}
+\end{definition}
+
+\textcolor{red}{Algorithm here}
+
+\subsection{linkage for qausi-transitive digraph among other}

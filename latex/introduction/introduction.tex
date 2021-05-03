@@ -1,6 +1,7 @@
 
 \chapter{Intro}
-This chapther is if you do not know what a graph is, there is some notation this thesis may use differently then others are and different articles are doing. this chapther is also going to introduce the notation and names for the classes of digraphs we are looking at. Then in \autoref{sec:complexity} we are going to cover runing time principles and problems that in general are hard to solve, called NP-Hard problems and what these have to do with this thesis. Last \autoref{sec:class} is going to cover all the different classes we are going to use and cover in this thesis.
+This chapther is if you do not know what a graph is, there is some notation this thesis may use differently then others and different articles are doing.  
+Then in \autoref{sec:complexity} we are going to cover runing time principles and problems that in general are hard to solve, called NP-Complete problems and what these have to do with this thesis. Last \autoref{sec:class} is going to introducing the names of all the classes we are going to use and cover in this thesis.
 \label{chap:intro}
 \section{Graphs and Digraphs}
 \label{sec:digraph}
@@ -29,8 +30,8 @@ We have introduced short what a decomposable digraph is but there is subclasses 
 \chapter{Path cover, Hamilton cycles and pancyclic digraphs}
 \label{chap:hamilton}
 In this chapter the focus is the hamilton cycle problem, where we know that if we can solve the path covering problem then we can solve the hamilton cycle problem, and in the end of this chapther we are short going to cover the pancyclic digraphs.\\
-The hamilton cycle problem and path covering are closly related since if you find a path covering all vertecies you can find the hamilton cycle in polynomial time. all this is what we in the first section is going to cover, how to get from a path cover, also called hamilton path, to a hamilton cycle in polynomial time. Then why both problems is NP-hard problems and then shorthly why, finding out wheter a graph is pancyclic is NP-hard problem too.\\
-The next section is about path-mergeable digraphs and that locally semicomplete digraphs are a subclass of these and how this helps in the path covering problem and there by the hamilton cycle problem. Then state some theroems that says knowing special things about the graph we know when it contain a hamilton cycle. \\
+The hamilton cycle problem and path covering are closly related since if you find a path covering all vertecies you can find the hamilton cycle in polynomial time. all this is what we in the first section is going to cover, how to get from a path cover, also called hamilton path, to a hamilton cycle in polynomial time. Then why both problems is NP-hard problems and then shorthly why, finding out wheter a graph is pancyclic, is NP-hard problem too.\\
+The next section is about path-mergeable digraphs and that locally semicomplete digraphs are a subclass of these and how this helps in the path covering problem and there by the hamilton cycle problem. Then state some theorems that says knowing special things about the graph we know when it contain a hamilton cycle. \\
 The following section is covering quasi-transitive digraphs and when we know there exists a hamilton cycle in those, here the decomposition of the quasi-transitive digraphs is going to be a crucial part of proving this. \\
 Last section for this chapther is going to cover when a quasi-transitive digraphs is pancyclic.
 
@@ -43,6 +44,3 @@ Last section for this chapther is going to cover when a quasi-transitive digraph
 \section{Hamiltonian Quasi-transitive Digraphs}
 \label{sec:hquasi}
 \input{hamilton/hquasi}
-\section{Pancyclisc Digraphs}
-\label{sec:pancyclic}
-\input{hamilton/pancyclic}
