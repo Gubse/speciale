@@ -2,9 +2,11 @@ From \autoref{thm:quasidecom} we know that a quasi-transitive digraph is a compo
 We know that $\phi_1$ is the union of acyclic and semicomplete digraphs, which means that every quasi-transitive digraphs are $\phi_1$-decomposable as described in \autoref{chap:decomposable}. 
 \begin{thm}~\cite{bangJGT85}
     For every fixed $k$, there exists a polynomial algorithm for the $k$-linkage problem on acyclic digraphs.
+    \label{thm:acyclicklink}
 \end{thm}
 \begin{thm}
     For every fixed $k$, there exists a polynomial algorithm for the $k$-linkage problem on semicomplete digraph.
+    \label{thm:semiklink}
 \end{thm}
 Note that this means that there exists polynomial algorithms for a fixed $k$ to solve the $k$-linkage problem for digraphs in $\phi_1$.\\
 For a decomposition $D=S[M_1,\dots M_s]$ and a set of terminal pairs, we can split the set into two different sets of terminals. 
@@ -13,11 +15,17 @@ The set of \textbf{internal pairs} $\Pi_i$, where internal pair means that both 
     Let $D=S[M_1,\dots ,M_s]$ be a decomposable digraph and $\Pi$ a set of pairs of terminals. Then $(D,\Pi)$ has a linkage if and only if it has a linkage whose external paths do not use any arc of $D\left<M_i\right>$ for $i\in [s]$.
 \end{lemma}
 \begin{proof}
-    \textcolor{red}{blablabalbalbalab}
+    One of the way is trivial since a linkage where external paths uses no arcs inside any house is still a $(D,\Pi)$-linkage.
+    So Now we assume that $L$ is a $(D,\Pi)$-linkage that uses the smallest amount of vertices possible. 
+    We claim that no external path of $L$ uses any arcs inside any house. 
+    Now we assume that this is not the case, then there must exist a path $P\in L$ where an arc $uv$ of $P$ is containt in a house $uv\in A(P)\cap A(D\left<M_i\right>)$ for some $u,v\in V(P)$ and some $i\in [s]$.\\
+    Since $P$ is external there is at least one vertex outside the house, ($z\in V(P)-V(M_i)$) either $zu$ or $vz$ is an arc of $P$.
+    Without loss of generality say $vz$ is the arc then since $v$ and $u$ are in the same hause $uz\in A(D)$and we can make $P'=P-\lbrace uv,vz\rbrace + uz$, Then we can construct a new linkage $L'=L-P+P'$ which indeed is a $(D,\Pi)$-Linkage with $V(L')<V(L)$ which is a contradiction since $L$ was suppose to be the linkage with the smallest number of vertices. 
+    (for formality say $zu$ was the arc then $P'=P-\lbrace zu,uv\rbrace +zv$ and $L'=L-P+P'$a $(D,\Pi)$-linkage where $V(L')<V(L)$).
 \end{proof}
-Meaning that the external paths do not use arcs inside the hauses only arcs to come from house to house (arcs from the quotient digraph $S$). Be aweare that internal pairs can be linked by an internal path or an external path going out of the house and later in agian, where ofcourse external pairs has to be linked by external paths. 
+Meaning that the external paths do not use arcs inside the hauses only arcs to move from house to house (arcs from the quotient digraph $S$). Be aweare that internal pairs can be linked by an internal path or an external path going out of the house and later in agian, where ofcourse external pairs has to be linked by external paths. 
 
-Before getting into the algorithm for solbing this for $\phi$-decomposable digraphs, we need to set some conditions for the set $\phi$. 
+Before getting into the algorithm for solveing the $k$-linkage problem for $\phi$-decomposable digraphs, we need to set some conditions for the set $\phi$. 
 When a set of digraphs $\phi$ upholds these conditions we are going to say that $\phi$ is a linkage ejector. 
 But first we need to establish that a set of digraphs can be closed with respect to blow-up.
 \textbf{blow-up} means blowing up a vertex $v$, with a digraph $K$(Replacing $v$ with the digraph $K$).
@@ -29,16 +37,72 @@ This definition brings this nice lemma.
     \label{lemma:replace} 
 \end{lemma}
 
-This brings us to the definition of a linkage ejector.
+This brings us to the definition of a linkage ejector. This definition is a reformulation of the one given in article \cite{bangJGT85}.
 \begin{definition}~\cite{bangJGT85}
     A class of digraphs $\phi$ that is closed with respect to blow-up is a linkage ejector if the following conditions is true
     \begin{enumerate}
         \item There exists a polynomial algorithm $\mathcal{A}_{\phi}$ to find a total $\phi$-decomposition of every totally $\phi$-decomposable digraph.
         \item There exists a polynomial algorithm $\mathcal{B}_{\phi}$ for a fixed $k$, for solving the $k$-linkage problen on $\phi$
-        \item There exists a polynomial algorithm $\mathcal{C}_{\phi}$ that given a totally-decomposable digraph\\ $D=S[M_1,\dots , M_s]$ constructs a digraph of $\phi$ by replacing the arcs inside each $M_i$ for $i\in [s]$ as in \autoref{lemma:replace}. 
+        \item There exists a polynomial algorithm $\mathcal{C}_{\phi}$ that given a totally-decomposable digraph $D=S[M_1,\dots , M_s]$ constructs a digraph of $\phi$ by replacing the arcs inside each $M_i$ for $i\in [s]$ as in \autoref{lemma:replace}. 
     \end{enumerate}
+    \label{def:ejector}
 \end{definition}
 
 \textcolor{red}{Algorithm here}
-
+\begin{algorithm}
+    \algio{
+        Digraph $D$, two natural numbers $k$ and $k'$ where $k'\leq k$, a list of $k'$ terminal pairs $\Pi$, A set of arcs $F\subseteq A(D)$ satiesfying:
+        \begin{align*}
+            d^-_F(v),d^+_F(v)&\leq k-k' \ \forall v\in V(D)\\
+            |F|&\leq (k-k')2k
+        \end{align*}
+    }{
+        Either "NO" or "YES"
+    }
+    \begin{algorithmic}[1]
+        \IF{$\Pi=\emptyset$}
+            \STATE output YES
+        \ENDIF
+        \STATE Run $\mathcal{A}_{\phi}$ to find a total $\phi$-decomposition of $D=S[H_1,\dots,H_s]$.
+        \IF{this decomposition is trivial that is $D\in \phi$}    
+            \STATE run $\mathcal{B}^-_{\phi}$ solve the problem.
+        \ENDIF
+        \STATE Let $\Pi^e\subset \Pi$ $(\Pi^i\subset \Pi)$ be the list of external (internal) pairs $(s_q,t_q)\in \Pi$.
+        \STATE \textcolor{red}{Assume that $M_1,\dots , M_l$ is the houses with the internal pairs.}
+        \FOR{every partion of $\Pi^i=\Pi_1\cup\Pi_2$ look for external paths linking the pairs in $\Pi^e\cup \Pi_1$ and internal pairs in $\Pi_2$}
+            \IF{$\Pi^e\cup \Pi _1=\emptyset$, then for $i=1,\dots ,l$:} \label{state 3a}
+                \STATE run $\mathcal{M}$ recursively on input $(D\left<M_1\right>, \Pi_2\cap (V(M_1)\times V(M_1))) , \dots ,(D\left<M_l\right>, \Pi_2\cap (V(M_l)\times V(M_l)))$.
+                \IF{all are linked}
+                    \STATE output YES
+                \ENDIF
+            \ENDIF
+            \IF{$\Pi^e \cup \Pi _1\neq \emptyset $} \label{state 3b}
+                \FOR{each possible choice of $l$ vertex sets $(V_1,\dots V_l)$ and nonnegative numbers $n_1,\dots ,n_l\leq k$ such that $|V_i|=n_i$ and $V(\Pi^e\cup \Pi_1)\cap V(M_i)\subseteq V_i\subseteq V(M_i)-V(\Pi_2)$
+                }
+                    \STATE let $S'\in \phi$ be the the result of running the algorithm $\mathcal{C}_\phi$ on $S[I_{n_1},\dots,I_{n_l},M_{l+1},\dots , M_s]$, where $I_{n_j}$ is the digraph on $n_j$ vertices with no arcs ($V(I_{n_j})=V_j$).            
+                    \STATE Run $B_{\phi}^-$ on $(S',\Pi^e\cup\Pi_1)$.
+                    \IF{$\Pi^e\cup\Pi_1$ is linked}
+                        \STATE run $\mathcal{M}$ recursively on input $(D\left<V(M_1)-V_1\right>, \Pi_2\cap (V(M_1)\times V(M_1))) , \dots ,(D\left<V(M_l)-V_l\right>, \Pi_2\cap (V(M_l)\times V(M_l)))$.
+                    \ENDIF 
+                    \IF{These pairs are linked}
+                        \STATE output YES
+                    \ENDIF
+                \ENDFOR
+            \ENDIF
+        \ENDFOR 
+        \IF{all choices of $\Pi_1,\Pi_2$ have been examined}
+            \STATE output NO.
+        \ENDIF
+    \end{algorithmic}
+    \caption{Algorithm $\mathcal{M}$ for $k$ disjoint paths}
+\end{algorithm}
 \subsection{linkage for qausi-transitive digraph among other}
+To prove that for qausi-transitive digraphs we can solve the linkage problem in polynomial time, we just need to prove that $\phi_1$ is a linkage ejector. 
+Since extended semicomplete digraphs and other classes is also a part of the totally $\phi_1$-decomposable digraphs, this will then also prove that the linkage problem can be solved in polynomial time for these.
+
+\begin{lemma}~\cite{bangJGT85}
+    The class $\phi_1$ is a linkage ejector
+\end{lemma}
+\begin{proof}
+    \textcolor{red}{blabalbalbablab}
+\end{proof}

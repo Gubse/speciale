@@ -1,0 +1,35 @@
+A locally semicomplete digraph is either Round decomposable, Semicomplete or niether.
+We have in section \autoref{sec:locally} called these evil locally semicomplete digraph or just evil.
+The semicomplete part is solved from \autoref{thm:semi} but the theorem will also be important in this section.
+First we will look at the evil semicomplete digraph where we need to recall \autoref{thm:evildecom} $(a)$ where we can see that a evil semicomplete digraph can be partitioned into into maximum 4 semicomplete digraphs $S,D_1',D_2',D_3'$ which leed us to the next theorem.
+\begin{thm}~\cite{bangJGT85}
+    For every fixed pair of positive integers c,k there exists a polynomial algorithm for the $k$-linkage problem on digraphs whose vertex set is partinionable into $c$ sets inducing semicomplete digraphs.
+    \label{thm:inducesemi}
+\end{thm}
+Let $c=4$ in theorem \autoref{thm:inducesemi} then we know from \autoref{thm:evildecom} that every evil locally semicomplete digraph has a polynomial algoritm for the $k$-linkage problem when $k$ is fixed.\\
+
+The remaning class of digraphs inside the class of locally semicomplete digraphs is the round decomposable. 
+Recall the class $\phi_2=\text{Semicomplete digraphs}\cup\text{Round digraphs}$ from \autoref{sec:gdecomposable}.
+As we did in \autoref{sec:lQuasi} we will in the end prove that $\phi_2$ is a linkage ejector and since round decomposable digraphs is totally $\phi_2$-decomposable we would have proven that there exists a polynomial algorithm for them.
+To prove that $\phi_2$ is a linkage ejector we know from \autoref{def:ejector} that it need 3 algorithms $\mathcal{A}_{\phi_2},\mathcal{B}_{\phi_2}$ and $\mathcal{C}_{\phi_2}$. For the algorithm $\mathcal{B}_{\phi_2}$ we only need it for round digraphs.
+\begin{thm}
+    For every fixed $k$, there exists a polynomial algorithm to solve the $k$-linkage problem on round digraphs.
+\end{thm}
+\begin{proof}
+    \textcolor{red}{maybe blablabalbalablbalab}
+\end{proof}
+For the algorithm $\mathcal{A}_{\phi_2}$ we have following theorem.
+\begin{thm}
+    There exists a polynomial algorithm for total $\Phi_2$-decomposition of totally $\phi_2$-decomposable digraphs.
+\end{thm}
+The last algortihm will be in the proof of the next theorem which will end the part about round decomposable digraphs.
+\begin{thm}
+    For every fixed $k$, there exists a polynomial algorithm to solve the $k$-linkage problem on round decomposable digraphs.
+\end{thm}
+\begin{proof}
+    \textcolor{red}{blalablablabalbala}
+\end{proof}
+Now we have an algorithm for all locally semicomplete digraphs and therefore to end this section we have the following theorem.
+\begin{thm}
+    For every fixed $k$, there exsist a polynomial algorithm to solve the $k$-linkage problem on locally semicomplete digraphs.
+\end{thm}

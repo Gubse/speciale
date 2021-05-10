@@ -1,5 +1,5 @@
 Recall that a locally semicomplete digraph is both in-locally semicomplete and out-locally semicomplete. 
-Before this gets relevant we are going to introduce a class of digraphs called path-mergeable they are not introduced under section \autoref{sec:class} since we are only going to use it in this section.
+Before this gets relevant we are going to introduce a class of digraphs called path-mergeable.\\
 A short explanaition of a path mergeable digraph is that it is the class of digraphs where given two paths with the start- and endpoint incommen you can merge the two paths into one using all vertices in the two paths. 
 A more formal definition of path mergeable digraphs is if there exists a pair of distinct vertices $x,y\in V(D)$ and any two disjoint $(x,y)$-paths there exists a new path from $x$ to $y$ where it is a union of the vertices used in the two vertex-disjoint paths (ending up with a "merge" path of the two given path).\\
 These digraphs are easy to regonize with the following corolary we can do it in polynomial time too and the following theroem gives us a nice propertie of path-mergeable digraphs.
@@ -22,7 +22,7 @@ It turns out that in these digraph we can easily determine whether it is a hamil
     \label{cor:polypath}
 \end{cor}
 So it turns out that for path-mergeable digraphs this problem is polynomial solveable, and a subclass of these path-mergeable digraph is namely the locally semicomplete digraphs. 
-If we can prove this we only know that we can solve the hamilton cycle in polynomial time and since the locally semicomplete digraphs is a subclass of in-locally semicomplete digraphs we have an even better time for these.
+If we can prove this we do not only know that we can solve the hamilton cycle in polynomial time since the locally semicomplete digraphs is a special subclass of path-mergeable digraph we have an even better time for these.
 \begin{prop}
     Every locally in-semicomplete (out-semicomplete) digraph is path-mergeable.
 \end{prop}
@@ -84,7 +84,7 @@ It turns out that when looking at the strong locally in-semicomplete digraphs ou
 \end{thm}
 
 This ends the section about hamiltonian locally semicomplete digraphs, now we want to know about traceable locally semicomplete digraph. \\
-Recall that an out-branching for a digraph $D$ is where you have a vertex as the root of this branching and arcs only going out of this for all other vertex they have only one arc going in and arcs going out is $\geq 0$. 
+First we need to know that an \textbf{out-branching} for a digraph $D$ is where you have a vertex as the root of this branching and arcs only going out of this for all other vertex they have only one arc going in and arcs going out is $\geq 0$. 
 An in-branching is the above explaination where all arcs are reversed.
 \begin{thm}
     Every connected locally in-semicomplete digraphs $D$ has an out-branching

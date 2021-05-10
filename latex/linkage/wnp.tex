@@ -1,0 +1,25 @@
+This problem is much like the problem we just went through exept instead of linking terminals with vertex disjoint path these path only need to be arc disjoint.
+Which ofcourse makes the problem apear more likely in digraphs but also harder to control since there is many more checks to go through. \\
+Given two pair of vertices $s_1,t_1$ and $s_2,t_2$ finding arc-disjoint paths between each pair is a weak 2-linkage problem. Then the weak $k$-linkage problem is finding k arc-disjoint paths between k pair of terminals.
+where a terminal  pair is a source and a zink in the paths of the solution of the linkage problem. \\
+The weak linkage problem is also NP-complete and that is because the linkage problem is.
+\begin{thm}
+    \textcolor{red}{weak NP-complete}
+\end{thm}  
+\begin{proof}[sketz]
+    \textcolor{red}{blablabalablbalab}
+\end{proof}
+The notation in this chapther is much like in the last, $D$ as the digraph we are examine and $\Pi$ as the set of pairs of terminals, where $k$ is the number of pairs of terminals. 
+Since we are focusing on arcs then $F$ will be the main use of a set of arcs from the digraph $D$, ($F\subseteq A(D)$). \\
+When talking about linkage problem for decomposable digraph, we can have houses with terminals in and some without any terminals. 
+The houses with no terminals in is called \textbf{clean houses}.
+Then a terminal pair can either be inside the same houses or in different houses. 
+As in linkage the definition of \textbf{internal pairs(and paths)} and \textbf{external pairs(and paths)}.\\
+%If a terminal pair is contained inside the same house it is called an internal pair other wise we call the pair external.
+%The same with a path if it is fully containd inside a house it is called an internal path other wise it is external.
+%you can have an external path for a internal piar if the path go out of the house and in agian.
+$F$ is usely used for arcs that we do not want a part of the linkage we are focusing on mostly because the arcs are already used to link some other pairs, therefore when fousing on a vertex out- and in-degree compared to the set $F$ it is usely bound by the number of pairs already linked. 
+This is important since deleteing arcs could change the class the digraph belongs to. 
+We will by an algorithm maybe end up in the same vertex as another pair that are linked and has to some how control that we do not choose the same arc as we did linking an other pair.
+
+

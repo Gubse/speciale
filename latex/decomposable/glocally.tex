@@ -1,8 +1,11 @@
-blablabla
+
+Every locally semicomplete digraph can be classified into some other groups of digraphs namely semicomplete digraphs and round decomposable digraphs and the last one which is neither of the two is call evil. Round decomposable digraph $D=R[D_1,\dots,D_r]$ is where $R$ is a round digraph of the strong componentents $D_i$ and $|R|=r$.
+
+\textcolor{red}{blablabla}
 \begin{thm}
     \textcolor{red}{round decompose locally semicomplete digraph}
 \end{thm}
-Every locally semicomplete digraph can be classified into some other groups of digraphs namely semicomplete digraphs and round decomposable digraphs and the last one which is neither of the two is call evil. Round decomposable digraph $D=R[D_1,\dots,D_r]$ is where $R$ is a round digraph of the strong componentents $D_i$ and $|R|=r$.
+\textcolor{red}{blablabla}
 \begin{thm}~\cite{bangJGT85}
     Let $D$ be a locally semicomplete digraph. Then exactly one of the following possibilities holds. Furthermore, there is a polynomial algorithm that decides which of the properties hold and gives a certificate for this.
     \begin{itemize}
@@ -44,16 +47,17 @@ First we have to recall what a minimal seperator from \autoref{sec:digraph}, the
     Let $S$ ba a minimal seperator of the locally semicomplete digraph $D$. Then either $D\left< S\right>$ is semicomplete or $D\left< V-S\right>$ is semicomplete.
     \label{lem:whichsemicomplete}
 \end{lemma}
-Then a \textbf{good} seperator of a locally semicomplete digraph is minimal and $D\left<V-S\right>$ is not semicomplete.
-When finding a good seperator in a evil locally semicomplete digraph, then the part that is left $D-S$ a semicomplete decomposition can be found it turns out that there is a lot to say about this decomposition.
+Then a \textbf{good} seperator of a locally semicomplete digraph is minimal and $D\left<S\right>$ is semicomplete.
+When finding a good seperator in a evil locally semicomplete digraph, then the part that is left $D-S$ is a non-strong locally seimcomplete digraph and we can therefore use \autoref{thm:semicompletedecom} to find the semicomplete decomposition of $D\left<V-S\right>$ it turns out that there is a lot to say about this decomposition. 
+With this decomposistion we can classify the quotient graph but we can try to deskribe more deebly how it looks.
 \begin{thm}~\cite{bangJGT85,bangJCT102}
     Let $D$ be an evil locally semicomplete digraph then $D$ is strong and satisfies the following properties.
     \begin{itemize}
         \item[(a)]There is a good seperator S such that the semicomplete decomposition of $D-S$ has exactly three components $D'_1,D'_2,D'_3$ (and $D\left<S\right>$ is semicomplete by \autoref{lem:whichsemicomplete});
         \item[(b)] Furthermore, for each such $S$, there are integers $\alpha, \beta,\mu,\nu$ with $\lambda_2\leq \alpha \leq \beta \leq p-1$ and $p+1\leq \mu \leq \nu \leq p+q$ such that 
         \begin{align}
-            &N^-(D_\alpha)\cap V(D_\mu)\neq \emptyset \text{and} N^+(D_\alpha)\cap V(D_\nu)\neq \emptyset,\\
-            \text{or} &N^-(D_\mu)\cap V(D_\alpha)\neq \emptyset \text{and} N^+(D_\mu)\cap V(D_\beta)\neq \emptyset,
+            &N^-(D_\alpha)\cap V(D_\mu)\neq \emptyset \text{ and } N^+(D_\alpha)\cap V(D_\nu)\neq \emptyset,\\
+            \text{or } &N^-(D_\mu)\cap V(D_\alpha)\neq \emptyset \text{ and } N^+(D_\mu)\cap V(D_\beta)\neq \emptyset,
         \end{align} 
         where $D_1,D_2,\dots, D_p$ and $D_{p+1},\dots,D_{p+q}$ are the strong decomposition of $D-S$ and $D\left< S\right>$, respectively, and $D_{\lambda_2}$is the initial component of $D'_2$ 
     \end{itemize}

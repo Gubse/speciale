@@ -9,8 +9,23 @@ We can also define digraphs called traceable
     A traceable digraph is a digraph containing a hamilton path
 \end{definition}
 A hamilton path is a path containing all vertices of the digraph.\\
-The problems that is considered \textcolor{red}{NP-Hard} is finding out whether an arbitrary digraph is trecable or hamiltonian. 
-We are going to show that hamilton cycle problem is \textcolor{red}{NP-Hard} by reducing it to a problem we know is. 
-Then we are going to show that if we know that a digraph is traceable it takes polynomial time to figure out wheter it is hamiltonian too, making the traceable problem \textcolor{red}{NP-Hard} too. 
-Because if the you in polynomial time could figure out wheter a arbitrary digraph is traceable you know that if it is not, it is defenatly not hamiltonian. 
+The problems that is considered \textcolor{red}{NP-Hard} is finding out whether an arbitrary digraph is trecable or hamiltonian.
+Before going into why the problems are NP, we are going to state some obvious conditions for graphs to be traceable or hamiltonian. \\
+For a digraph to be traceable it needs to be semi connected and for a digraph to be hamiltonian it needs to be strong. And since hamilton cycle is a cycle factor a digraph that is hamiltonian ofcourse need to have a cycle factor.\\
+We are going to show (shortly explain) why the hamilton path problem is \textcolor{red}{NP-Hard} by reducing a problem we know is NP to the hamilton path problem.
+Then we are going to show that if we know that a digraph is traceable it takes polynomial time to figure out wheter it is hamiltonian too, making the traceable problem \textcolor{red}{NP-Hard} too.
+Because if we in polynomial time could figure out wheter a arbitrary digraph is traceable you know that if it is not, it is defenatly not hamiltonian. 
 And if it is you can in polynomial time figure out if it is hamiltonian, making the hamton cycle problem a polynomial time solution problem (not \textcolor{red}{NP-Hard}).
+\begin{thm}
+    Finding out wether a digraph is trecable is a NP-Hard Problem
+\end{thm}
+\begin{proof}
+    sketz \textcolor{red}{blbalbalbalablabala}
+\end{proof}
+
+\begin{thm}
+    Finding out wether a digraph is hamiltonian is a NP-Hard Problem
+\end{thm}
+\begin{proof}
+    sketz \textcolor{red}{blbalbalbalablabala}
+\end{proof}

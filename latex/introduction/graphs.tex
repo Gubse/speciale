@@ -7,13 +7,13 @@ An \textbf{edge} $e \in E$ is where $e \equiv (a, b)$ and $\{ a, b \} \subseteq 
 We call $a,b \in V$ \textbf{adjecent} if there is an edge $(a,b)$ or $(b,a)$ (two given vertices connected by an edge is said to be adjecent).
 If an edge goes from and to the same vertex $(a,a)$ it is called a \textbf{loop}.
 The set of edges $e_1, \dots, e_k$ is usally describe whit the letter $E$ where each edge contains a pair of vertices that are adjecent. The letter $V$ is to denoted the set of vertices in the given graph. \\
-In a graph we have something called a \textbf{walk} which is a repeting ordering of vertices an edges in the graph $G$ where the edge in between the two vertices in the ordering is an edge between the vertices in $G$ (for $(a,e_1,b)$ to be a walk the edge $e_1$ has to be between $a$ and $b$). by repeting it means that a vertex can apear twice in a walk.
+In a graph we have something called a \textbf{walk} which is a repeting ordering of vertices and edges in the graph $G$ where the edge in between the two vertices in the ordering is an edge between the vertices in $G$ (for $(a,e_1,b)$ to be a walk the edge $e_1$ has to be an edge $(a,b)$). by repeting it means that a vertex can apear twice in a walk.
 We call a walk closed if the first vertex in the walk is the same as the last.\\
 Every vertex $v\in V$ of $G(V,E)$ have a \textbf{degree} denoted $d(v)$ which is the number of incident edges to $v$.
 A \textbf{path} in a graph is a walk where each vertex in the ordering can only apear one time. 
 A \textbf{cycle} is a closed walk where the only vertex pressent more then one time is the first vertex( also called a closed path). 
 Let $X$ be a subset of the vertices $X\subseteq V$ then we say that $V\backslash X$ is the set of vertices with out the vertices in $X$, i.e. $V\backslash X \equiv V-X$. 
-A subgraph $H$ of $G$ can contain any of the vertices and the arcs connected to the chossen vertecies in H. 
+A \textbf{subgraph} $H$ of $G$ can contain any of the vertices and the arcs connected to the chossen vertecies in H. 
 you can not have an edge conecting no vertices in $H$ but you do not have to choose all the arcs in $G$ between the chossen vertices in $H$ for $H$ to be a subgraph. \\
 As we can look at subsets we sometimes need to look at sub-paths, for a path $P=x_1\dots x_k$ a \textbf{sub-path} is a path $P'=x_i\dots x_j$ of $P$ where $1\leq i < j \leq k$.
 %The describe example can be seen in figure \autoref{fig:graph}.
@@ -89,18 +89,18 @@ These graph contaning only arcs and no edges is called a digraph $D(V,A)$ which 
 For two vertices $x$ and $y$ in $D(V,A)$ then if we have an arc from $x$ to $y$ we say that $x$ \textbf{dominates} $y$ this is denoted like this $x \rightarrow y$. If we talk about subgraphs $A$ and $B$, then $A$ \textbf{dominates} $B$ if for all $a\in A$ and $b\in B$, $a \rightarrow b$. If there is no arcs from $B$ to $A$ we denote it $A\mapsto B$ and if both $A\rightarrow B$ and $A \mapsto B$ we say that $A$ \textbf{completely dominates} $B$ and this is denoted $A\Rightarrow B$.\\ 
 
 Sometimes when working with a digraph or solving a problem we have a subset of vertices $X\subseteq V(D)$ that want to work with as one vertex. 
-Then we \textbf{contract} the vertecies $X$ into one vertex $x$ where $N^+(X)\backslash X=N^+(x)$ and $N^-(X)\backslash X=N^-(x)$ (so we only keep the ingoing and outgoing arcs of $X$ and delete all vertices of $X$ and the arcs inside). When we contract $X$ of $D$ we will try uding the notation $D/X$. There is also another kind of contraction where you also delete possible multiple arcs, if this is the case it will be explained in the section.\\
+Then we \textbf{contract} the vertecies $X$ into one vertex $x$ where $N^+(X)\backslash X=N^+(x)$ and $N^-(X)\backslash X=N^-(x)$ (so we only keep the ingoing and outgoing arcs of $X$ and delete all vertices of $X$ and the arcs inside). When we contract $X$ of $D$ we will try useing the notation $D/X$. There is also another kind of contraction where you also delete possible multiple arcs, if this is the case it will be explained in the section.\\
 
 In a digraph we have something called the \textbf{underlying graph} denoted $UG(D)$. 
 An underlying graph of a digraph is where all arcs are replaced by edges (edge is used every time we talk about undirected edges between vertices, when using directions it is called an arc).
-Let $X \subseteq V$ Then we can make the subdigraph $D\left< X\right>$ which is the subgraph $D$ induced by the set $X$ meaning that all the vertices is from $X$ and the arcs is from $A\in G$ but where both head and tail is incedent to the vertices in $X$. 
-We will denote the graph $D\left< V\backslash X\right>$ for some $X\subseteq V$ as $D-X$.
+Let $X \subseteq V$ then we can make the subdigraph $D\left< X\right>$ which is the subgraph $D$ \textbf{induced by} the set $X$ meaning that the subdigraphcontains all the vertices in $X$ and all arcs in $A\in G$ where both head and tail is incedent to the vertices in $X$. 
+We will denote the graph $D\left< V\backslash X\right>$ for some $X\subseteq V$ as $D-X$.\\
 A digraph is \textbf{connected} if the underlying graph is connected, (also called weakly connected), a digraph can be \textbf{strongly connected} and \textbf{semi connected} too.
 A digraph is called \textbf{semi connected} if there for each pair $u$ and $v$ exists a path from either $u$ to $v$ or $v$ to $u$.  
 It is said to be \textbf{strongly connected} if for each pair of vertices $u$ and $v$ there exists a path from both $u$ to $v$ and $v$ to $u$. A strongly connected digraph is also called a \textbf{strong} digraph. 
 A strong digraph have a subset $S$ called a \textbf{seperator} if $D-S$ is not strong, we also say that $S$ \textbf{seperates} $D$. 
 A seperator $S$ is called \textbf{minimal seperator} of $D$ if there exists no proper subset $X\subset S$ that seperates $D$.
-Now we can introduce a \textbf{$k$-strong} digraph $D$ which is a strong digraph where $|V|> k$ and a minimal seperator $S$ where $|S|= k$.
+Now we can introduce a \textbf{$k$-strong} digraph $D$ which is a strong digraph where $|V|> k$ and a minimal seperator $S$ is  where $|S|= k$.
 In the same way we can define $k$\textbf{-arc-strong} digraph is where you need to delete at least $k$ arcs for the digraph to no longer be strong. 
 
 In a digraph $D(V,A)$ we mostly use the \textbf{dregree} as two different degrees namely \textbf{out degree}, $d^+(v)$, and \textbf{in degree}, $d^-(v)$, that is the arcs from $v$ and to $v$ respectively. 
@@ -117,5 +117,7 @@ When mentioning paths in a digraph it sometimes makes more sence specifing the h
 In some digraphs there is more than one path between the same two vertices these paths can use the same arcs or same vertices or be totally distinct from eachother, the maximum number of disjoint path between two vertices in a digraph is denoted $\lambda_D(s,t)$
  
 
-
+\begin{thm}
+    mengers thm
+\end{thm}
 
