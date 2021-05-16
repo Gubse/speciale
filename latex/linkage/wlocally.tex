@@ -1,1 +1,40 @@
-hej 
+Locally semicomplete digraph can be round-decomposable it turns out that we can from the independece number $\alpha (D)$ tell wether a digraph is round-decomposable or not.
+Recall independence number from \autoref{sec:digraph}. The theorem below is from \cite{bangJGT77} where we omits some part of it since we have it statet elsewhere in the thises.
+\begin{thm}~\cite{bangJGT77}
+    A locally semicomplete digraph $D$ havinng idependece number $\alpha (D)$ at least 3 is round decomposable with a unique round -decomposition. 
+    \label{thm:independenceround}
+\end{thm} 
+This means when considering all other locally semicomplete digraphs it has an independence number $\alpha (D) \leq 2$ which means for all not round-decomposable locally semicomplete digraphs we can use the algorithm in \autoref{thm:independencepoly} to solve the weak $k$-linkage problem when $k$ is fixed.
+\begin{thm}
+        For every natural number $\alpha$ the weak $k$-linkage problem is polynomial for every fixed $k$, when we consider digraphs with independence number at most $\alpha$.
+    \label{thm:independencepoly}
+\end{thm}
+For solving the weak $k$-linkage problem in locally semicomplete digraphs we now only need to find a polynomial algorithm for the round-decomposable once.
+Before going into this we have to introduce something called the cutwitdh. This definition of cutwidth is inspired by the describtion of the cutwitdh in \cite{bangJGT77}.\\
+Given a digraph $D$ and an ordering of the vertices $O=v_1,\dots,v_n$ we say that the ordering $O$ has a \textbf{cutwidth} at most $\theta$ if $\forall j\in {2,3, \dots n}$ there are at most $\theta$ arcs $u,v$ with $u\in \lbrace v_1,\dots ,v_{j-1}\rbrace$ and $v\in \lbrace v_j,\dots ,v_n\rbrace$ 
+\textcolor{red}{inset figur som viser cutwitdh $\theta$ for givet ordering}.
+Say we have another ordering $O'$of the same digraph $D$, if $O'$ has a cutwitdh at most $\theta$ for all possible orderings $O'$ of $D$, then $D$ is said to have a \textbf{cutwidth} at most $\theta$. \\
+The minimum natural number $\theta$ such that $D$ has a cutwidth at most $\theta$, we call $\theta$ \textbf{the cutwidth} of $D$.
+When we know the cutwidth of the digraph we can solve the weak $k$-linkage problem for those i polynomial time.
+\begin{thm}~\cite{bangJGT77}
+    For every natural number $\theta$ the weak $k$-linkage problem is polynomial for every fixed $k$, when we consider digraphs with cutwidth at most $\theta$.
+\end{thm}
+\textcolor{red}{introduction to $D_{\Pi}$(side 102 and 104 in \cite{bangJGT77}) + introduce $\Theta$}
+\begin{lemma}
+    Let $B$ be a digraph of the form $B=R[H_1,\dots H_r]$, where $R$ is round and has cutwidth at least $\Theta$. Let $\Pi$ be a list of piars of terminals. $B$ has a $\Pi$-linkage if and only if $B_\Pi$, has a $\Pi$-linkage.
+\end{lemma}
+Now we can use all this to prove that $\phi_2$ which is defined in \autoref{sec:gdecomposable} is bombproof and recall that round-decomposable digraphs is totally $\phi_2$-decomposable.
+\begin{lemma}
+    The class $\phi_2$ is bombproof
+\end{lemma}
+\begin{proof}
+    \textcolor{red}{blablablabalablaba}
+\end{proof}
+As mensioned above and proved in \autoref{sec:locally} round-decomposable digraphs is totally $phi_2$-decomposable and we have just proved that $\phi_2$ is bombproof so by the algortihm \autoref{alg:weakphi} for bombproof classes every round-decomposable digraph now have a polynomial algorithm to solve the weak $k$-linkage problem.
+\begin{thm}
+    For every fixed $k$ there exists a polynomial algorithm for the weak $k$-linkage problem for round-decomposable digraphs.
+\end{thm}
+This ends the part for round-decomposable digraph and in the begining of this section we proved that all other locally semicomplete digraphs than the round-decomposable once have a polynomial algorithm for the weak $k$-linkage problem. We can now state this.
+\begin{thm}
+    For every fixed $k$ there exists a polynomial algorithm for the weak $k$-linkage problem for locally semicomplete digraphs.
+\end{thm}

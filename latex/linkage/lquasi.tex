@@ -95,6 +95,7 @@ This brings us to the definition of a linkage ejector. This definition is a refo
         \ENDIF
     \end{algorithmic}
     \caption{Algorithm $\mathcal{M}$ for $k$ disjoint paths}
+    \label{alg:phi}
 \end{algorithm}
 \subsection{linkage for qausi-transitive digraph among other}
 To prove that for qausi-transitive digraphs we can solve the linkage problem in polynomial time, we just need to prove that $\phi_1$ is a linkage ejector. 
@@ -104,5 +105,13 @@ Since extended semicomplete digraphs and other classes is also a part of the tot
     The class $\phi_1$ is a linkage ejector
 \end{lemma}
 \begin{proof}
-    \textcolor{red}{blabalbalbablab}
+    First we have to make sure that $\phi$ is closed with respect to blow-ups. 
+    If we blow-up the vertices in with a transitive tournament.
+    Then if $D\in phi_1$ is semicomplete, then since tournaments is semicomplete $D$ after blow-up is still semicomplete.
+    \textcolor{red}{Then if $D\in \phi$ is acyclic and the vertices is blownup by a transitive tournament then it is still acylic since a transitive tournament is acylic} Such $\phi_1$ is closed to blow-ups if the digraphs that the vertices is blown-up with is a transitive tournament.
+    From \autoref{thm:phipoly} we have the polynomial algorithm $\mathcal{A}_{\phi_1}$ meaning we only need the function $\mathcal{B}_{\phi_1}$ and $\mathcal{C}_{\phi_1}$.\\
+    The algorithm $\mathcal{B}_{\phi_1}$ is a algorithm that determines the $k$-linkage problem for a fixed $k$ on digraphs in $\phi_1$ by \autoref{thm:acyclicklink} we have a polynomial algorithm for acyclic digraph and by \autoref{thm:semiklink} we have a polynomial algorithm for semicomplete digraphs such combining these we have an algorithm for solving the $k$-linkage problem on a digraph $D\in \phi_1$ meaning we have $\mathcal{B}_{\phi_1}$. \\
+    For the last algorithm $\mathcal{C}_{\phi_1}$ it takes for every decomposition $D=S[M_1,M_2,\dots , M_s]$ each $M_i$ for $i=[s]$ and delete and add arcs so each $M_i$ is a transitive tournament.
 \end{proof}
+
+Now we have proved that $\phi_1$ is a linkage ejector and in \autoref{sec:quasi} that a quasi-transitive digraph is totally $\phi_1$-decomposable such for any quasi-transitive digraph we can use \autoref{alg:phi}.  

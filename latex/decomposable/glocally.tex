@@ -1,11 +1,10 @@
 
-Every locally semicomplete digraph can be classified into some other groups of digraphs namely semicomplete digraphs and round decomposable digraphs and the last one which is neither of the two is call evil. Round decomposable digraph $D=R[D_1,\dots,D_r]$ is where $R$ is a round digraph of the strong componentents $D_i$ and $|R|=r$.
-
-\textcolor{red}{blablabla}
-\begin{thm}
-    \textcolor{red}{round decompose locally semicomplete digraph}
-\end{thm}
-\textcolor{red}{blablabla}
+Every locally semicomplete digraph can be classified into some other groups of digraphs namely semicomplete digraphs and round decomposable digraphs and the last one which is neither of the two is call evil. Round-decomposable digraph $D=R[D_1,\dots,D_r]$ is where $R$ is a round digraph of the strong componentents $D_i$ and $|R|=r$.
+First we need to recal from \autoref{sec:class} what a round digraph is and we use the definition from \cite{bangJGT77}.
+\begin{definition}~\cite{bangJGT77}
+    A digraph on $n$ vertices is round if we can label its vertices $v_1,\dots ,v_n$so that for each $i$, we have $N^+(v_i)=\lbrace v_{i+1},\dots ,v_{i+d^+(i)}$ and $N^-(v_i)=\lbrace v_{i-d^-(i)},\dots ,v_{i-1)}$. We call the labeling $v_1,\dots ,v_n$ a round ordering. 
+\end{definition}
+So the class of locally semicomplete digraph is split up in these 3 subclasses and these subclasses are going to be important for proving a lot of the problems we are going to corver in this thises.
 \begin{thm}~\cite{bangJGT85}
     Let $D$ be a locally semicomplete digraph. Then exactly one of the following possibilities holds. Furthermore, there is a polynomial algorithm that decides which of the properties hold and gives a certificate for this.
     \begin{itemize}
@@ -13,8 +12,9 @@ Every locally semicomplete digraph can be classified into some other groups of d
         \item[(b)] $D$ is evil 
         \item[(c)] $D$ is a semicomplete digraph thet is not round decomposable. 
     \end{itemize}
+    \label{thm:treesubclasses}
 \end{thm}
-If the locally semicomplete digraph is nonstrong it turns out that it is decomposable this is called a semicomplete decomposition.
+If the locally semicomplete digraph is nonstrong it turns out that it is decomposable this is called a semicomplete decomposition. 
 \begin{thm}~\cite{bangJGT85,banggutin,bangJCT102}
     Let $D$ be a nonstrong locally semicomplete digraph and let $D_1,D_2,\dots,D_p$ be the acyclic order of the strong components of $D$. Then $D$ can be decomposed into $r\geq 2$ disjoint subdigraphs $D_1',D_2',\dots, D_r'$ as follows:
     \begin{align*}
@@ -41,8 +41,32 @@ For simplification of \autoref{thm:semicompletedecom} the properties is drawn ou
     \caption{(a)(b) and (c)}
     \label{fig:properties}
 \end{figure}
-Now we focus more on the structure of the evil locally semicomplete digraph which we have not covered jet, there is a fine understanding of the structure of round decomposable and the semicomplete digraphs, even the semicomplete decomposition which is a part of the evil structure too.
-First we have to recall what a minimal seperator from \autoref{sec:digraph}, then use this to construct what we call a \textbf{good} seperator.
+If $D$ is a locally semicomplete digraph that is not semicomplete, it have a round-decomposition $D=R[D_1,D_2,\dots ,D_r]$ where $R$ is a round digraph but it can also be either of these, then we as above call it evil. If it is a strong digraph we can have a seperator $S$, we have left a non-strong locally semicomplete digraph and therefore we can make a semicomplete decomposition out of $D-S$.
+\begin{thm}~\cite{banggutin}
+    If a strong locally semicomplete digraph $D$ is not semicomplete then there exists a minimal seperating set $S\subseteq V$ such that $D-S$ is not semicomplete. Furthermore, if $D_1,D_2,\dots , D_p$ is the acyclic ordering of the strong componenst of $D-S$ and $D'_1,D'_2,\dots ,D'_r$ is the semicomplete decomposition of $D-S$, then $r\geq 3$, $D\left<S\right>$ is semicomplete and we have $D_p\mapsto S\mapsto D_1$.  
+\end{thm}
+Some of then are round-decomposable that will as we will later see the once where $r>3$. 
+\textcolor{red}{\begin{prop}
+    Let $R[H_1,H_2,\dots , H_{\alpha}]$ be round decomposition of a strong locally semicomplete digraph $D$. Then for every minimal seperating set $S$, there are two integers $i$ and $k\geq 0$ such that $S=V(H_i)\cup \dots \cup V(H_{i+k})$. 
+\end{prop}}
+It also turns out that this round-decomposistion is unique.
+\begin{cor}
+    If a locally semicomplete digraph $D$ is round decomposable, then it has a unique round decomposition $D=R[D_1,D_2,\dots ,D_{\alpha}]$.
+\end{cor}
+\begin{proof}
+    \textcolor{red}{mabey}
+\end{proof}
+From \autoref{thm:treesubclasses} we know that for a round-decomposable digraph the quotient graph is round and the houses are semicomplete making them totally $\phi_2$-decomposable then by \autoref{thm:phipoly} we know that we can find the decomposition in polynomial time.
+\begin{prop}
+    There exists a polynomial algorithm to decide whether a given locally semicomplete digraph $D$ has a round decomposition and to find this decomposition if it exists.
+\end{prop}
+Like we shortly meansioned above the locally semicomplete digraph that are not semicomplete and not round have a semicomplete decomposistions on where $r=3$ also those we call evil.
+The evil locally semicomplete digraphs are the once we are focusing on for the rest of this section.
+\begin{lemma}
+    Let $D$ be a strong locally semicomplete digraph which is not semicomplete. Either $D$ is round decomposable, or $D$ has a minimal seperating set $S$ such that the semicomplete decomposistion of $D-S$ has exactly three components $D'_1,D_2',D_3'$.
+\end{lemma}
+There is a fine understanding of the structure of round-decomposable and the semicomplete digraphs, even the semicomplete decomposition which is a part of the evil structure too.
+We are now going to constructthen use this to construct what we call a \textbf{good} seperator.
 \begin{lemma}~\cite{bangJGT85}
     Let $S$ ba a minimal seperator of the locally semicomplete digraph $D$. Then either $D\left< S\right>$ is semicomplete or $D\left< V-S\right>$ is semicomplete.
     \label{lem:whichsemicomplete}
