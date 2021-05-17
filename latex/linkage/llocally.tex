@@ -14,20 +14,22 @@ As we did in \autoref{sec:lQuasi} we will in the end prove that $\phi_2$ is a li
 To prove that $\phi_2$ is a linkage ejector we know from \autoref{def:ejector} that it need 3 algorithms $\mathcal{A}_{\phi_2},\mathcal{B}_{\phi_2}$ and $\mathcal{C}_{\phi_2}$. For the algorithm $\mathcal{B}_{\phi_2}$ we only need it for round digraphs.
 \begin{thm}
     For every fixed $k$, there exists a polynomial algorithm to solve the $k$-linkage problem on round digraphs.
+    \label{thm:roundklink}
 \end{thm}
 \begin{proof}
     \textcolor{red}{maybe blablabalbalablbalab}
 \end{proof}
-For the algorithm $\mathcal{A}_{\phi_2}$ we have following theorem.
-\begin{thm}
-    There exists a polynomial algorithm for total $\Phi_2$-decomposition of totally $\phi_2$-decomposable digraphs.
-\end{thm}
 The last algortihm will be in the proof of the next theorem which will end the part about round decomposable digraphs.
 \begin{thm}
     For every fixed $k$, there exists a polynomial algorithm to solve the $k$-linkage problem on round decomposable digraphs.
 \end{thm}
 \begin{proof}
-    \textcolor{red}{blalablablabalbala}
+    First we know from \autoref{sec:locally} that round-decomposable digraphs are totally $\phi_2$-decomposable. So if $\phi_2$ is a linkage ejector then we can use \autoref{alg:phi} to find the $k$-linkage of a round decomposable digraph. This means all that are left to prove is that $\phi_2$ is a linkage ejector, for this we need to prove that $\phi_2$ is closed with respect to blow-ups.
+    The semicomplete digraphs we know from the proof of \autoref{thm:phi1ejector} that we can blow it up with a transitive tournament. 
+    \textcolor{red}{A transitive tournament is also a round digraph, which means that we can blow up a vertex in a round digraph and it is still round.}\\
+    The algorithm $\mathcal{A}_{\phi_2}$ is covered by \autoref{thm:phipoly}.
+    Now for algorithm $\mathcal{B}_{\phi_2}$ we have for the semicomplete digraphs a polynomial algorithm for the $k$-linkage problem by \autoref{thm:semiklink} and for round digraphs we have the algorithm \autoref{thm:roundklink} such combining these theorems we have $\mathcal{B}_{\phi_2}$. The last algorithm $\mathcal{C}_{\phi_2}$ takes for each $M_i$ in a decomposition $R[M_1,M_2,\dots , M_r]$ delete and add arcs so it becomes a transitive tournament. 
+    This makes the $\phi_2$ a likage ejector.
 \end{proof}
 Now we have an algorithm for all locally semicomplete digraphs and therefore to end this section we have the following theorem.
 \begin{thm}

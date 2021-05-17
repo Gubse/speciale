@@ -33,9 +33,47 @@ As shortly explain we sometimes have to control the set of arcs already used $F$
     \label{lemma:deletarcs}
 \end{lemma}
 \begin{proof}
-    \textcolor{red}{blabalbalalabalba}
+    Let $D$ be the digraph and $F=\lbrace s_1't_1',\dots ,s'_{k'}t'_{k'}$ be the set of arcs missing in $D$ so $D'=D(V,A\cup F)$ is in the class $\mathcal{C}$ let number of arcs in $F$ be denoted by the non-negative number $k'$ then we create a set of terminal based on every arc in $F$ by the arcs tail and head as the pair of terminals in the set $\Pi'=\lbrace (s'_1,t'_1),\dots ,(s'_{k'},t'_{k'})\rbrace$. 
+    We claim that $D$ has a weak $\Pi$-linkage if and only if $D'$ has a weak $\pi \cup \Pi'$-linkage which will also prove the theorem. 
+    First If $D$ has a weak $\Pi$-linkage we just add the arcs from $F$ as the $\Pi'$-linkage resulting in a $\Pi \cup \Pi'$-linkage in $D'$. 
+    For the other way we assume that $D'$ has a weak $\pi \cup \Pi'$ deleting the arcs in $F$ we would still have a weak $\Pi$-linkage, there are two possibilities either the linkage $\Pi$ do not use any of the arcs in $F$ and we can delete them without problems.
+    the second possibility is that the weak $\Pi$-linkage use an arc of $F$.
+    If this is the case then lets say its the arc $s'_it'_i$. 
+    Since $(s'_i,t'_i)$ is a terminal pair of $\Pi'$ these has to be linked through some other arcs since the arc $s'_it'_i$ is used already it can't be used, otherwise it is not a solution for the $(D',\Pi \cup \Pi')$ linkage problem.
+    Meaning we substitute the path $P'_i$ which link $(s'_i,t'_i)$ with the arc $s'_it'_i$ in $P_j$ which link $s_j,t_j$ which is still a weak $\Pi \cup \Pi'$-linkage in $D'$, we do this for all arcs that are used by the weak $\Pi$-linkage in $D'$ then delete all arcs in $F$ and we have the weak $\Pi$-linkage in $D$.
 \end{proof}
-Now we are going to state the theorem that is used for the existens of the of our main algorithm in this section. This result is found by ... in .... .
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        %\draw [help lines] (0,0) grid (4,4);
+
+        \node (t2) {$t_2$};
+        \node[draw=red,double,fit=(t2) ,inner sep=1.3ex,circle] (inner1) {};
+        
+        \node[below right = of t2] (invis1) {};
+        \node[draw=red,double,fit=(invis1) ,inner sep=2ex,circle] (inner2) {};
+
+        \node[above right = of invis1] (t3) {$t_3$};
+        \node[draw=red,double,fit=(t3) ,inner sep=0.7ex,circle] (inner3) {};
+
+        \node[above = 2cm of t3] (t6) {$t_6$};
+        \node[above = of t6] (s6) {$s_6$};
+        \node[draw=red,double,fit=(t6)(s6) ,inner sep=1ex,ellipse] (inner4) {};
+        
+        \node[above = 2cm of t2] (s3) {$s_3$};
+        \node[draw=red,double,fit=(s3) ,inner sep=2.4ex,ellipse] (inner5) {};
+
+        \node[draw=red,double,fit=(inner1)(inner2)(inner3)(inner4)(inner5) ,inner sep=1ex,ellipse] (outer1) {};
+
+        %\node[below right = of ] (invis1) {$t_3$};
+        %\node (t3) {$t_3$};
+        %\node[below right = of outer1,draw=red,double,fit=(t3) ,inner sep=1ex,circle] (outer2) {};
+
+        %\node [above right = of none] (z){mussi};
+    \end{tikzpicture}
+\end{figure}
+Now we are going to state the theorem that is used for the existens of the of our main algorithm in this section. 
+This result is found by ... in .... .
 \begin{thm}
     Let $\phi$ be a bombproof class of digraph. There is a polynomial algorithm $\mathcal{M}$ that takes as input a 5tuple $[D,k,k',\Pi,F]$ where $D$ is a totally $\phi$-decomposable digraph, $k,k'$ are natural numbers with $k'\leq k$,$\Pi$ is a list of $k'$ terminal pairs and $F\subseteq A(D)$ is a set of arcs satiesfying 
     \begin{equation}
@@ -198,6 +236,12 @@ Now we can prove that $\phi_1$ is bombproof and therefore that quasi-transitive 
     The class $\phi_1$ is bombproof.
 \end{thm}
 \begin{proof}
-    \textcolor{red}{blablabalbalablab}
+    For $\phi_1$ to be bombproof it has to adhere the properties of \autoref{def:bombproof}, the totally $\phi_1$-decomposition can be found in polynomial time for any $\phi_1$-decomposable digraph by \autoref{thm:phipoly}.
+    Now we only need the algorithm $\mathcal{B}_{\phi_1}$ for this we need to look at the constructin of $D(c)$ where $D\in \phi_1$.
+    Let $D'\in D(c)$ Either $D$ is semicomplete or $D$ is acylic.\\
+    If $D$ is semicomplete $D'$has at most $c$ blown-up vertices $H_1,\dots H_c$ of $D$ to size at most $c$.
+    If these $H_i$ is independent we need for each $H_i$ to be semicomplete not need more then $c^2$ arcs. 
+    So there is at most $c^3$ arcs missing from $D'$ for it to be semicomplete, then by \autoref{lemma:deletarcs} we can find a weak $k$-linkage for $D'$ if $D$ is semicomplete.
+    Now suppose $D$ is acyclic blowing up $c$ vertices with at a size at most $c$ for this \textcolor{red}{the rest of the proof}
 \end{proof}
 
