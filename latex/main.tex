@@ -45,6 +45,7 @@
 \newcommand{\exampleautorefname}{Example}
 \newcommand{\propautorefname}{Propertition}
 \newcommand{\chapautorefname}{Chapter}
+\newcommand{\algautorefname}{Algorithm}
 
 %\newcommand{\fitellipsis}[2] % first and second node names without parentheses
 %{\draw [red] let \p1=(#1), \p2=(#2), \n1={atan2(\y2-\y1,\x2-\x1)}, \n2={veclen(\y2-\y1,\x2-\x1)}
@@ -107,16 +108,19 @@
 	\end{center}
 \end{titlepage}
 \tableofcontents
+	\clearpage
 	\section{Introduction}
 	Why we need graphs.
-	\part{Introduction to Decomposable digraphs and some solutions to Hamilton cycle problem on those digraphs.}
+	\part{Decomposable digraphs and solutions for Hamilton cycle problem.}
 	\input{introduction/introduction}
 	\clearpage
 	\part{Linkage and weak linkage}
 	\input{linkage/linkage}
 	\clearpage
 	\part{Spanning disjoint subdigraphs (Arc decomposition)}
+	\input{arcdecomposition/arcdecom}
 	\clearpage
+
 \bibliographystyle{unsrt}
 \bibliography{bib}
 \end{document}

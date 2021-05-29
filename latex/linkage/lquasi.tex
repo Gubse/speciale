@@ -4,28 +4,30 @@ We know that $\phi_1$ is the union of acyclic and semicomplete digraphs, which m
     For every fixed $k$, there exists a polynomial algorithm for the $k$-linkage problem on acyclic digraphs.
     \label{thm:acyclicklink}
 \end{thm}
-\begin{thm}
-    For every fixed $k$, there exists a polynomial algorithm for the $k$-linkage problem on semicomplete digraph.
+\begin{thm}~\cite{chudnovskyAM270}
+    For every fixed $k$, there exists a polynomial algorithm for the $k$-linkage problem on semicomplete digraphs.
     \label{thm:semiklink}
 \end{thm}
 Note that this means that there exists polynomial algorithms for a fixed $k$ to solve the $k$-linkage problem for digraphs in $\phi_1$.\\
 For a decomposition $D=S[M_1,\dots M_s]$ and a set of terminal pairs, we can split the set into two different sets of terminals. 
-The set of \textbf{internal pairs} $\Pi_i$, where internal pair means that both $s_i$ and $t_i$ is in the same hause, and the set of \textbf{external pairs} $\Pi_e$ which is the rest such that $\Pi=\Pi_i \cup \Pi_e$.\\
+The set of \textbf{internal pairs} $\Pi_i$, where internal pair means that both $s_i$ and $t_i$ is in the same house, and the set of \textbf{external pairs} $\Pi_e$ which is the rest such that $\Pi=\Pi_i \cup \Pi_e$.\\
 \begin{lemma}~\cite{bangJGT85}
     Let $D=S[M_1,\dots ,M_s]$ be a decomposable digraph and $\Pi$ a set of pairs of terminals. Then $(D,\Pi)$ has a linkage if and only if it has a linkage whose external paths do not use any arc of $D\left<M_i\right>$ for $i\in [s]$.
+    \label{lemma:externalhouse}
 \end{lemma}
 \begin{proof}
-    One of the way is trivial since a linkage where external paths uses no arcs inside any house is still a $(D,\Pi)$-linkage.
-    So Now we assume that $L$ is a $(D,\Pi)$-linkage that uses the smallest amount of vertices possible. 
+    One direction is trivial since a linkage where external paths uses no arcs inside any house is still a $(D,\Pi)$-linkage.
+    So now we assume that $L$ is a $(D,\Pi)$-linkage that uses the smallest amount of vertices possible. 
     We claim that no external path of $L$ uses any arcs inside any house. 
-    Now we assume that this is not the case, then there must exist a path $P\in L$ where an arc $uv$ of $P$ is containt in a house $uv\in A(P)\cap A(D\left<M_i\right>)$ for some $u,v\in V(P)$ and some $i\in [s]$.\\
+    Now we assume that this is not the case, then there must exist a path $P\in L$ where an arc $uv$ of $P$ is \textcolor{red}{containt in} a house $uv\in A(P)\cap A(D\left<M_i\right>)$ for some $u,v\in V(P)$ and some $i\in [s]$.\\
     Since $P$ is external there is at least one vertex outside the house, ($z\in V(P)-V(M_i)$) either $zu$ or $vz$ is an arc of $P$.
     Without loss of generality say $vz$ is the arc then since $v$ and $u$ are in the same hause $uz\in A(D)$and we can make $P'=P-\lbrace uv,vz\rbrace + uz$, Then we can construct a new linkage $L'=L-P+P'$ which indeed is a $(D,\Pi)$-Linkage with $V(L')<V(L)$ which is a contradiction since $L$ was suppose to be the linkage with the smallest number of vertices. 
     (for formality say $zu$ was the arc then $P'=P-\lbrace zu,uv\rbrace +zv$ and $L'=L-P+P'$a $(D,\Pi)$-linkage where $V(L')<V(L)$).
 \end{proof}
-Meaning that the external paths do not use arcs inside the hauses only arcs to move from house to house (arcs from the quotient digraph $S$). Be aweare that internal pairs can be linked by an internal path or an external path going out of the house and later in agian, where ofcourse external pairs has to be linked by external paths. 
+Meaning that the external paths do not use arcs inside the houses only arcs to move from house to house (arcs from the quotient digraph $S$). 
+Be \textcolor{red}{aweare} that internal pairs can be linked by an internal path or an external path going out of the house and later in agian, where of course external pairs have to be linked by external paths. 
 
-Before getting into the algorithm for solveing the $k$-linkage problem for $\phi$-decomposable digraphs, we need to set some conditions for the set $\phi$. 
+Before getting into the algorithm for solving the $k$-linkage problem for $\phi$-decomposable digraphs, we need to set some conditions for the set $\phi$. 
 When a set of digraphs $\phi$ upholds these conditions we are going to say that $\phi$ is a linkage ejector. 
 But first we need to establish that a set of digraphs can be closed with respect to blow-up.
 \textbf{blow-up} means blowing up a vertex $v$, with a digraph $K$(Replacing $v$ with the digraph $K$).
@@ -47,15 +49,15 @@ This brings us to the definition of a linkage ejector. This definition is a refo
     \end{enumerate}
     \label{def:ejector}
 \end{definition}
-
-\textcolor{red}{Algorithm here}
+Now we are going to introduce the theorem that proves that for some classes $\phi$ we can solve the $k$-linkage problem i polynomial time.
+\begin{thm}
+    Let $\phi$ be a linkage ejector. For every fixed $k$, there exists a polynomial algorithm to solve the $k$-linkage problem on totally $\phi$-decomposable digraphs. 
+    \label{thm:philinked}
+\end{thm}
+The prove of this theorem is oviously the algorithm $\mathcal{M}$ which we state in \autoref{alg:phi} but to be sure it does what it suppose to we are in the prove going to prove that it works and that it solves the problem in polynomial time for a fixed $k$. 
 \begin{algorithm}
     \algio{
-        Digraph $D$, two natural numbers $k$ and $k'$ where $k'\leq k$, a list of $k'$ terminal pairs $\Pi$, A set of arcs $F\subseteq A(D)$ satiesfying:
-        \begin{align*}
-            d^-_F(v),d^+_F(v)&\leq k-k' \ \forall v\in V(D)\\
-            |F|&\leq (k-k')2k
-        \end{align*}
+        Digraph $D$, a set of terminal pairs $\Pi$.
     }{
         Either "NO" or "YES"
     }
@@ -65,10 +67,10 @@ This brings us to the definition of a linkage ejector. This definition is a refo
         \ENDIF
         \STATE Run $\mathcal{A}_{\phi}$ to find a total $\phi$-decomposition of $D=S[H_1,\dots,H_s]$.
         \IF{this decomposition is trivial that is $D\in \phi$}    
-            \STATE run $\mathcal{B}^-_{\phi}$ solve the problem.
+            \STATE run $\mathcal{B}_{\phi}$ solve the problem.
         \ENDIF
         \STATE Let $\Pi^e\subset \Pi$ $(\Pi^i\subset \Pi)$ be the list of external (internal) pairs $(s_q,t_q)\in \Pi$.
-        \STATE \textcolor{red}{Assume that $M_1,\dots , M_l$ is the houses with the internal pairs.}
+        \STATE Assume that $M_1,\dots , M_l$ is the houses with the internal pairs.
         \FOR{every partion of $\Pi^i=\Pi_1\cup\Pi_2$ look for external paths linking the pairs in $\Pi^e\cup \Pi_1$ and internal pairs in $\Pi_2$}
             \IF{$\Pi^e\cup \Pi _1=\emptyset$, then for $i=1,\dots ,l$:} \label{state 3a}
                 \STATE run $\mathcal{M}$ recursively on input $(D\left<M_1\right>, \Pi_2\cap (V(M_1)\times V(M_1))) , \dots ,(D\left<M_l\right>, \Pi_2\cap (V(M_l)\times V(M_l)))$.
@@ -80,7 +82,7 @@ This brings us to the definition of a linkage ejector. This definition is a refo
                 \FOR{each possible choice of $l$ vertex sets $(V_1,\dots V_l)$ and nonnegative numbers $n_1,\dots ,n_l\leq k$ such that $|V_i|=n_i$ and $V(\Pi^e\cup \Pi_1)\cap V(M_i)\subseteq V_i\subseteq V(M_i)-V(\Pi_2)$
                 }
                     \STATE let $S'\in \phi$ be the the result of running the algorithm $\mathcal{C}_\phi$ on $S[I_{n_1},\dots,I_{n_l},M_{l+1},\dots , M_s]$, where $I_{n_j}$ is the digraph on $n_j$ vertices with no arcs ($V(I_{n_j})=V_j$).            
-                    \STATE Run $B_{\phi}^-$ on $(S',\Pi^e\cup\Pi_1)$.
+                    \STATE Run $B_{\phi}$ on $(S',\Pi^e\cup\Pi_1)$.
                     \IF{$\Pi^e\cup\Pi_1$ is linked}
                         \STATE run $\mathcal{M}$ recursively on input $(D\left<V(M_1)-V_1\right>, \Pi_2\cap (V(M_1)\times V(M_1))) , \dots ,(D\left<V(M_l)-V_l\right>, \Pi_2\cap (V(M_l)\times V(M_l)))$.
                     \ENDIF 
@@ -97,8 +99,67 @@ This brings us to the definition of a linkage ejector. This definition is a refo
     \caption{Algorithm $\mathcal{M}$ for $k$ disjoint paths}
     \label{alg:phi}
 \end{algorithm}
-\subsection{linkage for qausi-transitive digraph among other}
-To prove that for qausi-transitive digraphs we can solve the linkage problem in polynomial time, we just need to prove that $\phi_1$ is a linkage ejector. 
+Before proveing \autoref{alg:phi} we are going to explain the steps in the algorithm in more deepth.
+Since the algorithm for arc-disjoint path (the weak $k$-linkage) \autoref{alg:weakphi} involvs more complicated steps, but is overall much like \autoref{alg:phi}. 
+The biggest differece is that \autoref{alg:weakphi} need to keep trac of the arcs already used. 
+So the example in \autoref{sec:wQuasi} would overall be as if we had an example for this algorithm.
+
+\begin{itemize}
+    \item[Step 1-3] Are the trival step in the algorithm if there is no pair of terminals we are already done.
+    \item[Step 4-7] Calles an algorithm to find the decomposition of the digraph $D$ if it is trivial we call the algorithm $\mathcal{B}_\phi$ which solve the problem and we are done.(at least with this part of the graph, since it could be a recursive call).
+    \item[Step 8] We split the piars in internal and external pairs compared to the decomposition we found in step 4.
+    \item[Step 9] Here we seperate the houses of the internal pairs from the houses that only contains the external pairs or non pairs at all.
+    We are not really intersted in the other houses since we do not need to use any arcs inside any of the houses for the external pairs, we know this from \autoref{lemma:externalhouse}.
+    \item[Step 10] Make a partition of the digraphs internal pairs. We pair the one partition of the internal pairs with the external pairs, since internal pairs can have external paths.
+    \item[Step 11-16] If theres no terminal pairs in the union, we have only internal pairs that we want to link internally. 
+    So when linking the pairs we do not need to consider the rest of the digraph but only the house where the terminals we are considering is inside. 
+    So we call the algorithm agian recursivly on the houses with the internal pairs $M_1,\dots , M_l$, and the terminals from $\Pi_2$ that is a part of that house $\Pi_2 \cap (V(M_i)\cup V(M_i))$. 
+    \item[Step 17] Now when ther is pairs we want to link external we continue from here.
+    \item[Step 18-20] We make some smaller set of vertices inside the houses, we do not need any arcs inside the houses for the external paths. 
+    There is $k$ pair of terminals and therefore maximum $k$ external pairs, So we do not need more than max $k$ vertices in each house. Since it does not matter how many we use in the houses without internal pairs we only make smaller vertex sets for the once where we may need some of the vertices for the internal paths and that is only needed in the houses $M_1,\dots M_l$. Of course we should not have the vertices that is terminals of $\Pi_2$ as a part of the new vertex sets but just as we do not need those we have to have the terminals of the once we try to link $\Pi^e \cup \Pi_1$.
+    Since we do not need any arcs inside these modulse we makes independent set out of these vertex sets $V_1,\dots V_l$ and construct a new digraph $S$. 
+    Then we run $\mathcal{C}_\phi$ such that we know have an digraph $S'\in \phi$ which means we can run $\mathcal{B}_\phi$ on $(S',\Pi^e\cup \Pi_1)$.    
+    \item[Step 21-23] Since D is totally $\phi$-decomposable and that is a hereditary property from \autoref{lemma:hereditary} meaning every induced subdigraph of $D$ is totally $\phi$-decomposable, so each $D\left< V(M_i)-V_i \right>$ is totally $\phi$-decomposable and we know that when we can call $\mathcal{M}$ it will accept the digraph and return a answer.
+    \item[Step 24-29] If all external pairs are linked we go into the if statement in Step 21. and we only return if these are also linked so we can go into this statement and output that a linkage exists. If not then the pairs are not linked and we go to step 30.  
+    \item[Step 30-32] We have not been able to link the pairs in any partition of the internal pairs and we output that it does not exists.
+\end{itemize}
+
+\begin{proof}
+    We are going to show that the algorithm works by induction on $|V(D)|+k$ where $k$ is the number of terminal pairs.\\
+    If $k=0$ we are done.
+    If $\mathcal{A}_\phi$ return $D\in \phi$, then since $\mathcal{B}_\phi$ is correct we are done.
+    So we assume $k>0$ and $D\notin \phi$, then we assume that $D$ has a $\Pi$-linkage, and we will show that in every case the algorithm will output yes.
+    Since $D$ has a $\Pi$-linkage it means there exists some choice of $\Pi_1,\Pi_2$ and there exists possible choices for $V_1,\dots ,V_l$ such that $\Pi^e\cup \Pi_1$ is linked and by induction hypothesis the \autoref{alg:phi} links $D\left<V(M_i)-V_i \right>$ for every recursive call on $i\in [l]$. Agian by the induction hypothesis the \autoref{alg:phi} $D\left< M_i\right>$ for every recursive call on $i\in [l]$. Then in both cases the algorithm output yes.\\
+
+    We only need to prove that the algorithm is polyniomial.
+    the runningtime of the algorithm deppends on the size of $n=|V(D)|$ and $k$ the number of terminal pairs to be linked, the algorithm is polyniomial as long as $k$ is fixed.
+    We let $T(n,k)$ be the running time for the algorithm for $D$ we are going to show that $T(n,k)$ is $O(n^{d(k)})$ for some funktion on $d(k)$.\\
+    The first steps are oviusely constant. 
+    Step 4 finding the decomposition is a polynomial algorithm $\mathcal{A}_\phi$ and finding the the external and internal paths in $D$ so we say that it takes $O(n^{a(k)})$.\\
+    Running $\mathcal{B}_\phi$ is also polynomial let this be $O(n^{b(k)})$.
+    We also have a part of the algorithm where we first run $\mathcal{C}_\phi$ followed by $\mathcal{B}_\phi$ both polynomial algorithms meaning the product is also polynomial say this is $O(n^{c(k)})$.
+    Step 11-15 is a recursive call on $K_i$ $\forall i\in[l]$
+    so step 11-15 takes $\sum_{i=1}^lT(n_i,k_i)$ where $n_i=|V(K_i)|<n$ and $k_i=|\Pi_2\cap (V(K_i)\times V(K_i))|\leq k$ by induction hypothesis each of these recursive calls takes $O(n_i^{d(k_i)})$ so time is $\sum_{i=1}^ln_i^{d(k_i)}$.
+    Since we entered the if statement in step 11 we know that $\sum_{i=1}^lk_i=k$ and in worst case $\sum_{i=1}^ln_i=n$ such that step 11-15 takes at most $O(n^{d(k)})$.\\
+    Step 14-26 Is a bit more trikky, we still have in worst case $\sum_{i=1}^ln_i=n$. 
+    But first we need to make the vertex sets $V_i$ $\forall i\in [l]$ which can be of size between 1 and $k$ in worst case we have to go through all of the possebilities for these vertex sets.
+    For one set $V_i$ we need all the possible combinations $\sum_{j=1}^k{{n}\choose{j}}$ the worst possibility is if all $k$ pairs are internal and all in seperate houses so we need to create these $k$ times since there is at most $k$ houses and they can be combine in any way $\left(\sum_{j=1}^k{{n}\choose{j}}\right)$. 
+    For all these choices of vertex set $V_i$ we have to go through step 19 and 20 which takes $O(n^{c(k)})$ and the recursive calls $\sum_{i=1}^l T(n_i,k_i)$.
+    We define $d(k)=k^3+a(k)+c(k)$ and we are going to show that what ever we come up with is going to be smaller than this $O(n^{d(k)})$ is clearly polynomial. \\
+    $\sum_{j=1}^k{{n}\choose {j}}=n^2-1,\ (n^2)^k=n^{k^2}$ since we entered step 17 there is at least one pair in $\Pi^e\cup \Pi_1$ meaning in the worst case the recursive calls in step 21-23 is $T(n,k-1)$ so step 17-23 takes $O(n^{k^2})(T(n,k-1)+O(n^{c(k)}))$. We split this up into $O(n^{k^2})T(n,k-1)$ and $O(n^{k^2})O(n^{c(k)})$ 
+    $T(n,k-1)$ takes $O(n^{d(k-1)})$ so $O(n^{k^2})T(n,k-1)=O(n^{k^2})O(n^{d(k-1)})=O(n^{k^2+d(k-1)})$ we are going to show that $k^2+d(k-1)\leq d(k)$.
+
+    \begin{align}
+        d(k-1)=(k-1)^3+a(k-1)+b(k-1)=k^3-3k^2+3k-1+a(k-1)+c(k-1)\\
+        k^2+d(k-1)=k^3-k^2+3k-1+a(k-1)+c(k-1)\leq k^3+a(k)+c(k)=d(k)
+    \end{align} 
+    We also need to show that for the other half, $O(n^{k^2})O(n^{c(k)})=O(n^{k^2+c(k)})$, we deffenetly have that $k^2+c(k)\leq d(k)$.
+    So step 17-23 takes $O(n^{d(k)})$
+    Since there is $2^k$ choice of partitioning the set $\Pi^i$ into $\Pi_1$ and $\Pi_2$ so 10-29 takes $O(2^kn^{d(k)})$ since we treat $k$ as fixed it is considered a constant and the running time of $T(n,k)$ is $O(n^{a(k)})+O(n^{b(k)})+O(n^{d(k)})=O(n^{d(k)})$.
+\end{proof}
+
+\subsection{Linkage for Quasi-transitive Digraph}
+To prove that for quasi-transitive digraphs we can solve the linkage problem in polynomial time, we just need to prove that $\phi_1$ is a linkage ejector. 
 Since extended semicomplete digraphs and other classes is also a part of the totally $\phi_1$-decomposable digraphs, this will then also prove that the linkage problem can be solved in polynomial time for these.
 
 \begin{lemma}~\cite{bangJGT85}
@@ -108,8 +169,15 @@ Since extended semicomplete digraphs and other classes is also a part of the tot
 \begin{proof}
     First we have to make sure that $\phi$ is closed with respect to blow-ups. 
     If we blow-up the vertices in with a transitive tournament.
-    Then if $D\in phi_1$ is semicomplete, then since tournaments is semicomplete $D$ after blow-up is still semicomplete.
-    \textcolor{red}{Then if $D\in \phi$ is acyclic and the vertices is blownup by a transitive tournament then it is still acylic since a transitive tournament is acylic} Such $\phi_1$ is closed to blow-ups if the digraphs that the vertices is blown-up with is a transitive tournament.
+    Then if $D\in \phi_1$ is semicomplete, then since tournaments is semicomplete $D$ after blow-up is still semicomplete.
+    Then if $D\in \phi$ is acyclic and the vertices is blown-up by a transitive tournament then it is still acylic since a transitive tournament is acylic. which we shortly prove.\\
+    Lets assume that a transitive tournament is not acyclic, then for some acylic ordering $v_1,v_2,\dots , v_n$ we have what we call a backwards arc which is an arc going back in the ordirng. 
+    Lets say that the first backwards arc in the ordering goes from $v_y$. 
+    We know that it is transitive so if $v_z \rightarrow v_x$ and $v_x \rightarrow v_y$ Then $v_z\rightarrow v_y$. 
+    Since it is a tournament we have for $v_{y-1}$ that every vertex $v_1,v_2,\dots v_{y-2}$ dominates $v_{y-1}$ if not then we will have an backwards arc before the one from $v_y$ a contradiction.
+    So if $v_{y-1}$ dominates $v_y$ then by the transitive property $v_1,v_2,\dots v_{y-2}$ also dominates $v_y$.
+    So the only way we can have a backwards arc is if $v_y$ dominates $v_{y-1}$ but since $v_1,v_2,\dots v_{y-2}$ also dominates $v_{y-1}$, $v_y$ would be earlier than $v_{y-1}$ in the acylic ordering a contradiction. An therefore a transitive tournament is acylic.\\
+    This indicates that $\phi_1$ is closed to blow-ups if the digraphs that the vertices is blown-up with is a transitive tournament.
     From \autoref{thm:phipoly} we have the polynomial algorithm $\mathcal{A}_{\phi_1}$ meaning we only need the function $\mathcal{B}_{\phi_1}$ and $\mathcal{C}_{\phi_1}$.\\
     The algorithm $\mathcal{B}_{\phi_1}$ is a algorithm that determines the $k$-linkage problem for a fixed $k$ on digraphs in $\phi_1$ by \autoref{thm:acyclicklink} we have a polynomial algorithm for acyclic digraph and by \autoref{thm:semiklink} we have a polynomial algorithm for semicomplete digraphs such combining these we have an algorithm for solving the $k$-linkage problem on a digraph $D\in \phi_1$ meaning we have $\mathcal{B}_{\phi_1}$. \\
     For the last algorithm $\mathcal{C}_{\phi_1}$ it takes for every decomposition $D=S[M_1,M_2,\dots , M_s]$ each $M_i$ for $i=[s]$ and delete and add arcs so each $M_i$ is a transitive tournament.

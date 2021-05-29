@@ -1,19 +1,19 @@
-Before going deep into structural properties of decomposable digraphs we first need to establish what a graph is.
-For some graph $G(V,E)$ where $V$ and $E$ are two sets contaning the \textbf{vertices} (also commonly called nodes) and \textbf{egdes} of the graph respectivlely.
+Before delving into structural properties of decomposable digraphs, we first need to establish what a graph is.
+Let $G(V,E)$ where $V$ and $E$ are two sets contaning the \textbf{vertices} (also commonly called nodes) and \textbf{egdes} of the graph respectivlely (example of one see \autoref{fig:graph}). 
 %Example $V=\lbrace a,b,c \rbrace$ then $a,\ b$ and $c$ are three distinct vertices of the graph $G$ and the only vertices of $G$.
 We define the \textbf{size} of the graph to be the number of vertices $|V|$ this is also known as \textbf{cardinality} of $V$.
 %In the case of the example the size of $G$ $|V|=3$ it is also called the order of a graph.
-An \textbf{edge} $e \in E$ is where $e \equiv (a, b)$ and $\{ a, b \} \subseteq V$ we then say $e$ is an edge in $G$, $e$ is in this case called \textbf{incedent} to $a$ and $b$. 
-We call $a,b \in V$ \textbf{adjecent} if there is an edge $(a,b)$ or $(b,a)$ (two given vertices connected by an edge is said to be adjecent).
-If an edge goes from and to the same vertex $(a,a)$ it is called a \textbf{loop}.
-The set of edges $e_1, \dots, e_k$ is usally describe whit the letter $E$ where each edge contains a pair of vertices that are adjecent. The letter $V$ is to denoted the set of vertices in the given graph. \\
-In a graph we have something called a \textbf{walk} which is a repeting ordering of vertices and edges in the graph $G$ where the edge in between the two vertices in the ordering is an edge between the vertices in $G$ (for $(a,e_1,b)$ to be a walk the edge $e_1$ has to be an edge $(a,b)$). by repeting it means that a vertex can apear twice in a walk.
+An \textbf{edge} $e \in E$ means $e \equiv (a, b)$ and $\{ a, b \} \subseteq V$ such that we say $e$ is an edge in $G$, $e$ is called \textbf{incedent} to $a$ and $b$. 
+We call $a,b \in V$ \textbf{adjacent} if there is an edge $(a,b)$ or $(b,a)$ (two given vertices connected by an edge is said to be adjecent).
+If an edge goes from and to the same vertex $(a,a)$ then the edge is called a \textbf{loop}.
+The set of edges $e_1, \dots, e_k$ are denoted by $E$ where each edge is a pair of vertices that are adjecent. The letter $V$ denotes the set of vertices in a graph. \\
+In a graph we have something called a \textbf{walk} which is a alternating sequence $W=x_1e_1x_2e_2x_3\dots x_{k-1}a_{k-1}x_k$ of vertices $x_i$ and edges $a_j$ from the graph $G$ such that the edge $e_i$ is between $x_{i-1}$ and $x_i$ for every $i\in [k]$. 
 We call a walk closed if the first vertex in the walk is the same as the last.\\
 Every vertex $v\in V$ of $G(V,E)$ have a \textbf{degree} denoted $d(v)$ which is the number of incident edges to $v$.
 A \textbf{path} in a graph is a walk where each vertex in the ordering can only apear one time. 
 A \textbf{cycle} is a closed walk where the only vertex pressent more then one time is the first vertex( also called a closed path). 
 Let $X$ be a subset of the vertices $X\subseteq V$ then we say that $V\backslash X$ is the set of vertices with out the vertices in $X$, i.e. $V\backslash X \equiv V-X$. 
-A \textbf{subgraph} $H$ of $G$ can contain any of the vertices and the arcs connected to the chossen vertecies in H. 
+A \textbf{subgraph} $H$ of $G$ can contain any of the vertices and the arcs connected to the chossen vertices in H. 
 you can not have an edge conecting no vertices in $H$ but you do not have to choose all the arcs in $G$ between the chossen vertices in $H$ for $H$ to be a subgraph. \\
 As we can look at subsets we sometimes need to look at sub-paths, for a path $P=x_1\dots x_k$ a \textbf{sub-path} is a path $P'=x_i\dots x_j$ of $P$ where $1\leq i < j \leq k$.
 %The describe example can be seen in figure \autoref{fig:graph}.
@@ -25,10 +25,13 @@ As we can look at subsets we sometimes need to look at sub-paths, for a path $P=
             \node[main][fill=gray!20!white] (a){$a$};
             \node[main][fill=gray!20!white] (b)[right of = a]{$b$};
             \node[main][fill=gray!20!white](c)[below of= a]{$c$};
-            \draw (a) to (b) (c) to (a) (c) to [bend right =10](b) (c) to [bend left =10](b); 
-            \draw (a) to [loop,red] (a);
+            \draw (a) to (b);
+            \draw (c) to (a) ;
+            \draw (c) to [bend right =10](b) ;
+            \draw (c) to [bend left =10](b); 
+            \draw[red] (a) to [loop] (a);
         \end{tikzpicture} 
-        \caption{graph $G(V,E)$ is an example of a graphs, the red edge is a loop, and all pair of vertices in this graph is adjecent.}
+        \caption{graph $G(V,E)$ is an example of a graphs, the red edge is a loop, and all pair of vertices in this graph is adjacent.}
         \label{fig:graph}
     \end{subfigure}\hfill
    \begin{subfigure}{0.48\textwidth}
@@ -42,7 +45,7 @@ As we can look at subsets we sometimes need to look at sub-paths, for a path $P=
             \draw[->](c) to (a);
             \draw[->](c) to [bend left =10](b);
             \draw[->](b) to [bend left =10](c); 
-            \draw[->] (a) to [loop,red] (a);
+            \draw[red, ->] (a) to [loop] (a);
         \end{tikzpicture} 
         \caption{This is an oriantation of the edges in the graph which makes this a digraph}
         \label{fig:digraph}
@@ -76,9 +79,9 @@ With multiple edges it means multiple edges between the same pair of vertices li
 \label{fig:complete}
 \end{figure}
 
-A graph is \textbf{connected} if there exists a path between all pair of vertices in the graph and \textbf{disconnected} otherwise.
+A graph is \textbf{connected} if there exists a path between every pair of vertices in the graph and \textbf{disconnected} otherwise.
 A graph is called \textbf{complete} if there for all pair of vertices in the graph is an edge between them see \autoref{fig:complete}.\\
-Somtimes when looking at specifiks set of vertices we are actually interested in something called \textbf{independents set} which is a set of vertices of $G$ where there is no edge between the vertices in the set. A maximal independet set of $G$ is a independent set where you can not add any new vertex in the set that is not adjencent to any vertex in the set(adding a vertex makes the set no longer independent).  
+Somtimes when looking at specifics set of vertices we are actually interested in something called an \textbf{independent set} which is a set of vertices of $G$ where there is no edge between the vertices in the set. A maximal independet set of $G$ is a independent set where you can not add any new vertex in the set that is not adjencent to any vertex in the set(adding a vertex makes the set no longer independent).  
 A maximum independent set is the maximal independent set with greatest cardinality. 
 Let $I\subset V$ be a maximum independet set then $|I|$ is called the \textbf{independence number}. \\ 
 
@@ -89,7 +92,7 @@ These graph contaning only arcs and no edges is called a digraph $D(V,A)$ which 
 For two vertices $x$ and $y$ in $D(V,A)$ then if we have an arc from $x$ to $y$ we say that $x$ \textbf{dominates} $y$ this is denoted like this $x \rightarrow y$. If we talk about subgraphs $A$ and $B$, then $A$ \textbf{dominates} $B$ if for all $a\in A$ and $b\in B$, $a \rightarrow b$. If there is no arcs from $B$ to $A$ we denote it $A\mapsto B$ and if both $A\rightarrow B$ and $A \mapsto B$ we say that $A$ \textbf{completely dominates} $B$ and this is denoted $A\Rightarrow B$.\\ 
 
 Sometimes when working with a digraph or solving a problem we have a subset of vertices $X\subseteq V(D)$ that want to work with as one vertex. 
-Then we \textbf{contract} the vertecies $X$ into one vertex $x$ where $N^+(X)\backslash X=N^+(x)$ and $N^-(X)\backslash X=N^-(x)$ (so we only keep the ingoing and outgoing arcs of $X$ and delete all vertices of $X$ and the arcs inside). When we contract $X$ of $D$ we will try useing the notation $D/X$. There is also another kind of contraction where you also delete possible multiple arcs, if this is the case it will be explained in the section.\\
+Then we \textbf{contract} the vertices $X$ into one vertex $x$ where $N^+(X)\backslash X=N^+(x)$ and $N^-(X)\backslash X=N^-(x)$ (so we only keep the ingoing and outgoing arcs of $X$ and delete all vertices of $X$ and the arcs inside). When we contract $X$ of $D$ we will try useing the notation $D/X$. There is also another kind of contraction where you also delete possible multiple arcs, if this is the case it will be explained in the section.\\
 
 In a digraph we have something called the \textbf{underlying graph} denoted $UG(D)$. 
 An underlying graph of a digraph is where all arcs are replaced by edges (edge is used every time we talk about undirected edges between vertices, when using directions it is called an arc).
@@ -103,7 +106,7 @@ A seperator $S$ is called \textbf{minimal seperator} of $D$ if there exists no p
 Now we can introduce a \textbf{$k$-strong} digraph $D$ which is a strong digraph where $|V|> k$ and a minimal seperator $S$ is  where $|S|= k$.
 In the same way we can define $k$\textbf{-arc-strong} digraph is where you need to delete at least $k$ arcs for the digraph to no longer be strong. 
 
-In a digraph $D(V,A)$ we mostly use the \textbf{dregree} as two different degrees namely \textbf{out degree}, $d^+(v)$, and \textbf{in degree}, $d^-(v)$, that is the arcs from $v$ and to $v$ respectively. 
+In a digraph $D(V,A)$ we mostly use the \textbf{dregree} as two different degrees namely \textbf{out degree}, $d^+(v)$, and \textbf{in degree}, $d^-(v)$, that is the number of arcs going from $v$ and to $v$ respectively. 
 In a digraph $D$ we can talk about the over all \textbf{minimum out degree}, $\delta ^+(D)=\min\lbrace d^+(v)|v\in V\rbrace$ and \textbf{minimum in degree}, $\delta ^-(D)=\min\lbrace d^-(v)|v\in V\rbrace$
 somtime we are going to need the minimum of these to $\delta(D)=\min \lbrace\delta ^+(D),\delta ^-(D) \rbrace$ called the \textbf{minimum degree}.
 For every vertex $v$ the vertices that is \textbf{adjacent} with $v$ is called \textbf{nieghbours} of $v$.
@@ -114,7 +117,8 @@ This means that $d^+(v)=|N^+(v)|$ and $d^-(v)=|N^-(v)|$.\\
 For simplicity when mentioning paths and cycles in digraphs it will be \textbf{directed} paths and cycles if not anything else is mensioned. 
 By \textbf{directed} means that we go from tail to head on every arc on the path or cycle.
 When mentioning paths in a digraph it sometimes makes more sence specifing the head an tail of the path, so a path from $s$ to $t$ is denoted as an \textbf{($s,\ t$)-path}.
-In some digraphs there is more than one path between the same two vertices these paths can use the same arcs or same vertices or be totally distinct from eachother, the maximum number of disjoint path between two vertices in a digraph is denoted $\lambda_D(s,t)$
+In some digraphs there is more than one path between the same two vertices say $Q$ and $P$ are these paths.
+iI the paths are \textbf{disjoint} they have no vertices incommen $V(Q)\cap V(P)=\emptyset$ and if they are \textbf{arc-disjoint} if they have no arcs incommen $A(Q)\cap A(P)=\emptyset$ the maximum number of disjoint path between two vertices in a digraph is denoted $\lambda_D(s,t)$.
  
 
 \begin{thm}

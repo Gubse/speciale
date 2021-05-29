@@ -1,15 +1,15 @@
 A locally semicomplete digraph is either Round decomposable, Semicomplete or niether.
 We have in section \autoref{sec:locally} called these evil locally semicomplete digraph or just evil.
-The semicomplete part is solved from \autoref{thm:semi} but the theorem will also be important in this section.
+The semicomplete part is solved from \autoref{thm:semiklink} but the theorem will also be important in this section.
 First we will look at the evil semicomplete digraph where we need to recall \autoref{thm:evildecom} $(a)$ where we can see that a evil semicomplete digraph can be partitioned into into maximum 4 semicomplete digraphs $S,D_1',D_2',D_3'$ which leed us to the next theorem.
-\begin{thm}~\cite{bangJGT85}
+\begin{thm}~\cite{chudnovskyJCT135}
     For every fixed pair of positive integers c,k there exists a polynomial algorithm for the $k$-linkage problem on digraphs whose vertex set is partinionable into $c$ sets inducing semicomplete digraphs.
     \label{thm:inducesemi}
 \end{thm}
 Let $c=4$ in theorem \autoref{thm:inducesemi} then we know from \autoref{thm:evildecom} that every evil locally semicomplete digraph has a polynomial algoritm for the $k$-linkage problem when $k$ is fixed.\\
 
-The remaning class of digraphs inside the class of locally semicomplete digraphs is the round decomposable. 
-Recall the class $\phi_2=\text{Semicomplete digraphs}\cup\text{Round digraphs}$ from \autoref{sec:gdecomposable}.
+The remaning class of digraphs inside the class of locally semicomplete digraphs is the class of round decomposable digraphs. 
+Recall the class $\phi_2=\lbrace\text{Semicomplete digraphs}\rbrace\cup\lbrace\text{Round digraphs}\rbrace$ from \autoref{sec:gdecomposable}.
 As we did in \autoref{sec:lQuasi} we will in the end prove that $\phi_2$ is a linkage ejector and since round decomposable digraphs is totally $\phi_2$-decomposable we would have proven that there exists a polynomial algorithm for them.
 To prove that $\phi_2$ is a linkage ejector we know from \autoref{def:ejector} that it need 3 algorithms $\mathcal{A}_{\phi_2},\mathcal{B}_{\phi_2}$ and $\mathcal{C}_{\phi_2}$. For the algorithm $\mathcal{B}_{\phi_2}$ we only need it for round digraphs.
 \begin{thm}
@@ -17,7 +17,24 @@ To prove that $\phi_2$ is a linkage ejector we know from \autoref{def:ejector} t
     \label{thm:roundklink}
 \end{thm}
 \begin{proof}
-    \textcolor{red}{maybe blablabalbalablbalab}
+    $D$ is round so let $v_1,\dots ,v_n$ be the round ordering and $\Pi = \lbrace (s_1,t_1), \dots (s_k,t_k)\rbrace$ the set of pairs of terminals.
+    Given $j\in [n-1]$ we say that an arc $v_av_b$ is \textbf{over} another arc $v_jv_{j+1}$ if $v_b\in \lbrace v_j+1,\dots v_{a-1}$. 
+    we are now going to show that for a $(s_i,t_i)$-path it only needs to use one arc over $v_jv_{j+1}$. 
+    Lets assume this is not the case and that the $(s_i,t_i)$-path uses two arcs over $v_jv_{j+1}$ call these two arcs $u_1w_1$ and $u_2w_2$. 
+    There are four ways these vertices can be placed in relation to each other in the ordering and still be arcs over $v_jv_{j+1}$. See figure \textcolor{red}{lav figur}
+    Let say w.l.o.g. that the $(s_i,t_i)$-path fist the arc $u_1w_1$ and then later $u_2w_2$.
+    We can in all cases of constalations of the vertices mentioned in \textcolor{red}{ref figur blalbalbal} make the $(s_i,t_i)$-path sorther by use of other arcs. 
+    If we are in either case 1 we can make the path shorter by using the arc $u_1u_2$ and therefore not need to use the arc $u_1w_1$ since $u_1u_2$ is not an arc over $v_jv_{j+1}$ the $(s_i,t_i)$-path only uses one arc over.
+    If we instead have the constalation in case 2, case 3 and case 4 we can use the arc $u_1w_2$ which is an arc over $v_jv_{j+1}$ but it means that the path does not use neither $u_1w_1$ or $u_2w_2$. 
+    This proves that any $(s,t)$-path only need to use max one arc over $v_jv_{j+1}$.
+    Hence each path in the $k$-linkage only use maximum $k$ arcs over $v_jv_{j+1}$.
+    we also know that deleting all arcs over $v_jv_{j+1}$ we get an acyclic digraph and from \autoref{thm:acyclicklink} that we can solve the $k$-linkage problem in polynomial time on this digraph.\\
+    Since the digraph is not acylic some of the paths can and may need to use an arc over $v_jv_{j+1}$ so we make a combination of some of the piars not nessesary all in order, so we rename the $h$ choosen pairs $(s_{i_1},t_{i_1}),\dots ,(s_{i_h},t_{i_h})$ where $0\leq h\leq k$ where $i_k$ is a function mapping $i_1$ to $z\in [k]$ the first choosen piar of the $k$ terminal pairs. \\
+    These are the pairs we predict uses the arcs $\lbrace u_1w_1,\dots ,u_hw_h\rbrace$ which is all arcs over $v_jv_{j+1}$.
+    Then we construct $D'$ by deleting all arcs over $v_jv_{j+1}$ then we have the $2h$-linkage for the pairs $(s_{i_1},u_1),(w_1,t_{i_1}),\dots ,(s_{i_h},u_h),(w_h,t_{i_h})$ and the rest of the original pairs $k-h$-linkage, then we use the algorithm for acyclic digraphs and solve the $k+h$-linkage on $D'$. Do this for all combinations of $h$ pairs. 
+    If there exists a $k$-linkage in $D$ there exists some $k+h$-linkage in $D'$ for some combination of $h$ pairs.
+    When the $k+h$-linkage is found we add the arcs $u_1w_1,\dots , u_hw_h$ to the linkage and create a path $P_{i_j}$ is the path $(s_{i_j},u_j)$-path then the arc $(u_j,w_j)$ and at last  $(w_j,t_{i_j})$-path which is a $(s_{i_j},t_{i_j})$.
+    This creats the $k$-linkage for $D$. 
 \end{proof}
 The last algortihm will be in the proof of the next theorem which will end the part about round decomposable digraphs.
 \begin{thm}
@@ -26,9 +43,12 @@ The last algortihm will be in the proof of the next theorem which will end the p
 \begin{proof}
     First we know from \autoref{sec:locally} that round-decomposable digraphs are totally $\phi_2$-decomposable. So if $\phi_2$ is a linkage ejector then we can use \autoref{alg:phi} to find the $k$-linkage of a round decomposable digraph. This means all that are left to prove is that $\phi_2$ is a linkage ejector, for this we need to prove that $\phi_2$ is closed with respect to blow-ups.
     The semicomplete digraphs we know from the proof of \autoref{thm:phi1ejector} that we can blow it up with a transitive tournament. 
-    \textcolor{red}{A transitive tournament is also a round digraph, which means that we can blow up a vertex in a round digraph and it is still round.}\\
+    A transitive tournament is also a round digraph, which means that we can blow up a vertex in a round digraph and it is still round. A short prove/argument of this.\\
+    We know from the prove of \autoref{thm:phi1ejector} that a transitive tournament is acyclic maening we have an acyclic ordering of the vertices $v_1,v_2,\dots , v_n$ since it is a tournament we know for a vertex $v_i$ is dominated by all vertices in the acylic ordirng $v_1,\dots v_{i-1}=N^-(i)$ and dominate $v_{i+1},\dots v_n=N^+(i)$ this is true for all $i\in[n]$. Thus the acyclic ordering is also the round ordering.\\
+    So know we know that $\phi_2$ is closed to blow-ups as long as it blows-up to a transitive tournament. 
     The algorithm $\mathcal{A}_{\phi_2}$ is covered by \autoref{thm:phipoly}.
-    Now for algorithm $\mathcal{B}_{\phi_2}$ we have for the semicomplete digraphs a polynomial algorithm for the $k$-linkage problem by \autoref{thm:semiklink} and for round digraphs we have the algorithm \autoref{thm:roundklink} such combining these theorems we have $\mathcal{B}_{\phi_2}$. The last algorithm $\mathcal{C}_{\phi_2}$ takes for each $M_i$ in a decomposition $R[M_1,M_2,\dots , M_r]$ delete and add arcs so it becomes a transitive tournament. 
+    Now for algorithm $\mathcal{B}_{\phi_2}$ we have for the semicomplete digraphs a polynomial algorithm for the $k$-linkage problem by \autoref{thm:semiklink} and for round digraphs we have the algorithm \autoref{thm:roundklink} thus combining these theorems we have $\mathcal{B}_{\phi_2}$. 
+    The last algorithm $\mathcal{C}_{\phi_2}$ takes for each $M_i$ in a decomposition $R[M_1,M_2,\dots , M_r]$ delete and add arcs so it becomes a transitive tournament. 
     This makes the $\phi_2$ a likage ejector.
 \end{proof}
 Now we have an algorithm for all locally semicomplete digraphs and therefore to end this section we have the following theorem.

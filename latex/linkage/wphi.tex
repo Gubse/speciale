@@ -2,7 +2,7 @@ In this section we need to astablish some new properties for the class $\phi$. M
 For a integer $c$, the class denoted $D(c)$ is a digraph $D$ where first there is added as many parallel arcs to arcs that already exists in $D$ then blow-up $b$ vertices where $0\leq b\leq c$, the digraph that is blown up has to have a size $\leq c$. 
 
 \begin{definition}~\cite{bangJGT85}
-    We say that a class of digraphs $\phi$ is Bombproof is there exsists a polynomial algorithm $\mathcal{A}_{\phi}$ to find a totally $\phi$-decomposition of every totally $\phi$-decomposable digraph and, for every integer $c$, there exists a polynomial algorithm  $\mathcal{B}_{\phi}$ to decide the weak $k$-linkage problem for the class
+    We say that a class of digraphs $\phi$ is Bombproof is there exsists a polynomial algorithm $\mathcal{A}_{\phi}$ to find a total $\phi$-decomposition of every totally $\phi$-decomposable digraph and, for every integer $c$, there exists a polynomial algorithm  $\mathcal{B}_{\phi}$ to decide the weak $k$-linkage problem for the class
     \begin{equation}
         \phi(c):=\bigcup_{D\in \phi}D(c) 
     \end{equation}
@@ -18,14 +18,11 @@ The clean houses $(D,\Pi)$ actually have an important part, namely the part that
 \end{proof}
 The external pairs do not need the same amount of vertices and arcs inside a house as maybe the internal pairs. It turns out that in \cite{bangJGT77} we bound the number of vertices for the external paths. The lemma below is a reformulation of the lemma from \cite{bangJGT77}. 
 \begin{lemma}
-    Let $D=S[H_1,\dots H_s]$ be a decomposable digraph, let $\Pi'$ be a list of $h$ terminal pair and let $F$ be a set of arcs in $D$ satisfying that $d^-_F(v),d^+_F(v) \leq r$ for all $v \in V(D)$.
-    If $(D\backslash F,\Pi')$ has a weak linkage, then it has a weak linkage $P_1,\dots , P_h$ such that, we have $|V\left( \bigcup_{i\in \mathcal{E}} P_i\cap H_j \right)|\leq 2h(h+r)$, for every $j\in [1,\dots,s]$, where $\mathcal{E}$ denotes the set of indeces $i$ for wich $P_i$ is external.
-    \textcolor{red}{omformulere}
+    Let $D=S[H_1,\dots H_s]$ be a decomposable digraph let $\Pi '$ be a list of $h$ terminal pairs and let $F$ be a set of arcs in $D$ satisfying that $d^-_F(v)$, $d^+_F(v)\leq r, \forall v\in V(D)$.
+    If $(D\backslash F , \Pi')$ has a weak linkage $\mathcal{L}=P_1,\dots ,P_h$. 
+    Then for any external path $P_i\in \mathcal{L}$ we have $|A(P_i\cap H_j)|\leq 2(h+r)$ and $|V(P_i\cap H_j)|\leq 2(h+r)$ for every $j\in \lbrace 1,\dots ,s\rbrace$.
     \label{lemma:external}
 \end{lemma}
-\begin{proof}
-    \textcolor{red}{blablabalbalabal}
-\end{proof}
 
 As shortly explain we sometimes have to control the set of arcs already used $F$ but as we remove these arcs from the digraph it may longer belong to the class it did before. we therefore need to make sure the removing some arcs from a digraph do not affect that we have an algorithm for the weak linkage if we had one without removing the arcs.
 \begin{lemma}
@@ -42,36 +39,7 @@ As shortly explain we sometimes have to control the set of arcs already used $F$
     Since $(s'_i,t'_i)$ is a terminal pair of $\Pi'$ these has to be linked through some other arcs since the arc $s'_it'_i$ is used already it can't be used, otherwise it is not a solution for the $(D',\Pi \cup \Pi')$ linkage problem.
     Meaning we substitute the path $P'_i$ which link $(s'_i,t'_i)$ with the arc $s'_it'_i$ in $P_j$ which link $s_j,t_j$ which is still a weak $\Pi \cup \Pi'$-linkage in $D'$, we do this for all arcs that are used by the weak $\Pi$-linkage in $D'$ then delete all arcs in $F$ and we have the weak $\Pi$-linkage in $D$.
 \end{proof}
-\begin{figure}
-    \centering
-    \begin{tikzpicture}
-        %\draw [help lines] (0,0) grid (4,4);
 
-        \node (t2) {$t_2$};
-        \node[draw=red,double,fit=(t2) ,inner sep=1.3ex,circle] (inner1) {};
-        
-        \node[below right = of t2] (invis1) {};
-        \node[draw=red,double,fit=(invis1) ,inner sep=2ex,circle] (inner2) {};
-
-        \node[above right = of invis1] (t3) {$t_3$};
-        \node[draw=red,double,fit=(t3) ,inner sep=0.7ex,circle] (inner3) {};
-
-        \node[above = 2cm of t3] (t6) {$t_6$};
-        \node[above = of t6] (s6) {$s_6$};
-        \node[draw=red,double,fit=(t6)(s6) ,inner sep=1ex,ellipse] (inner4) {};
-        
-        \node[above = 2cm of t2] (s3) {$s_3$};
-        \node[draw=red,double,fit=(s3) ,inner sep=2.4ex,ellipse] (inner5) {};
-
-        \node[draw=red,double,fit=(inner1)(inner2)(inner3)(inner4)(inner5) ,inner sep=1ex,ellipse] (outer1) {};
-
-        %\node[below right = of ] (invis1) {$t_3$};
-        %\node (t3) {$t_3$};
-        %\node[below right = of outer1,draw=red,double,fit=(t3) ,inner sep=1ex,circle] (outer2) {};
-
-        %\node [above right = of none] (z){mussi};
-    \end{tikzpicture}
-\end{figure}
 Now we are going to state the theorem that is used for the existens of the of our main algorithm in this section. 
 This result is found by ... in .... .
 \begin{thm}
@@ -86,7 +54,8 @@ This result is found by ... in .... .
     \label{thm:mainalgo}
 \end{thm}
    
-To proof \autoref{thm:mainalgo} we first state the algorithm $\mathcal{M}$ then we prove that it works, and last that the time for the algorithm is polynomial. Since the existens of the algorithm lyes in the proof that it works and it is polynomial we will first state it explain it come with an example of the choiches that it makes and then we will prove that is indeed the alforithm mensioned in \autoref{thm:mainalgo}.
+To proof \autoref{thm:mainalgo} we state \autoref{alg:weakphi} then we prove that it works, and last that the time for the algorithm is polynomial. 
+The existens of the algorithm lyes in the proof that it works and it is polynomial. we will first explain step by step what happens in the algorithm then an example of the choiches that it makes and when. Then we will prove that is indeed the algorithm mensioned in \autoref{thm:mainalgo}.
 \begin{algorithm}   
     \algio{
         Digraph $D$, two natural numbers $k$ and $k'$ where $k'\leq k$, a list of $k'$ terminal pairs $\Pi$, A set of arcs $F\subseteq A(D)$ satiesfying:
@@ -199,7 +168,91 @@ To proof \autoref{thm:mainalgo} we first state the algorithm $\mathcal{M}$ then 
     \end{align}
     Clearly the tuple for $F$ holds forall its conditions.
 
-\textcolor{red}{Example of algorithm $mathcal{M}$}
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        %\draw [help lines] (0,0) grid (4,4);
+
+        \node (t2) {$t_2$};
+        \node[draw=red,fit=(t2) ,inner sep=1.3ex,circle] (inner1) {};
+        
+        \node[below right = of t2] (invis1) {};
+        \node[draw=red,fit=(invis1) ,inner sep=2ex,circle] (inner2) {};
+
+        \node[above right = of invis1] (t3) {$t_3$};
+        \node[draw=red,fit=(t3) ,inner sep=0.7ex,circle] (inner3) {};
+
+        \node[above = 2cm of t3] (t6) {$t_6$};
+        \node[above = of t6] (s6) {$s_6$};
+        \node[draw=red,fit=(t6)(s6) ,inner sep=1ex,ellipse] (inner4) {};
+        
+        \node[above = 2cm of t2] (s3) {$s_3$};
+        \node[above = of s3] (blank) { };
+        \node[draw=red,fit=(s3)(blank) ,inner sep=2.4ex,ellipse] (inner5) {};
+
+        \node[draw=red,fit=(inner1)(inner2)(inner3)(inner4)(inner5) ,inner sep=1ex,ellipse] (outer1) {};
+
+
+        \node[right = 4cm of t6] (s5) {$s_5$};
+        \node[below right = of s5] (s7) {$s_7$};
+        \node[below left = of s7] (t7) {$t_7$};
+        \node[draw=red, fit=(s5)(s7)(t7),inner sep=3ex,ellipse] (Outer) {};
+
+        \node[below = 5.2cm of s7] (s8) {$s_8$};
+        \node[left = of s8] (t8) {$t_8$};
+        \node[draw=red, fit=(t8)(s8), inner sep=0.7ex,ellipse] (inner6) {};
+        \node[below = of s8] (invis2) {};
+        \node[draw=red, fit=(invis2), inner sep=0.7ex,ellipse] (inner7) {};
+        \node[left = of invis2] (invis3) {};
+        \node[draw=red, fit=(invis3), inner sep=0.7ex,ellipse] (inner8) {};
+        \node[draw=red, fit=(inner6)(inner7)(inner8), inner sep=0.2ex,ellipse] (innerout1) {};
+        \node[below left = 2.4cm of t8] (invis4) {};
+        \node[left = of invis4] (invis5) {};
+        \node[draw=red, fit=(invis4)(invis5), inner sep=2.4ex,ellipse] (innerout2) {};
+        \node[draw=red, fit=(innerout1)(innerout2), inner sep=0.5ex,ellipse] (outer2) {};
+
+        \node[above = 4.5cm of s3] (s2) {$s_2$};
+        \node[above right = 2cm of s2] (t1) {$t_1$};
+        \node[draw=red, fit=(s2)(t1),ellipse] (outer3) {};
+        \node[right = 5cm of t1] (s1) {$s_1$};
+        \node[below right = 1.5cm of s1] (t4) {$t_4$};
+        \node[below left = 1cm of t4] (t5) {$t_5$};
+        \node[above left= 0.5cm of t5] (s4) {$s_4$};
+        \node[draw=red, fit=(s1)(t4)(t5)(s4), inner sep=0.5ex,ellipse] (outer4) {};
+        %\node[below right = of ] (invis1) {$t_3$};
+        %\node (t3) {$t_3$};
+        %\node[below right = of outer1,draw=red,double,fit=(t3) ,inner sep=1ex,circle] (outer2) {};
+
+        %\node [above right = of none] (z){mussi};
+    \end{tikzpicture}
+    \caption{Example for the algorithm $\mathcal{M}$.}
+    \label{fig:mainexample}
+\end{figure}
+\begin{example}
+    This exaple  is based on \autoref{fig:mainexample}.
+    The whole figure is considered one digraph $D$ and the set $\Pi = \lbrace (s_1,t_1),\dots ,(s_8,t_8)\rbrace$.
+    $D$ is totally $\phi$-decomposable and contain a $\Pi$-linkage. 
+    Step 4 gives the houses that is the outer red circles in the figure. 
+    Since the decomposition is not trival $D'=D$ we look for clean houses for which there are non. So after step 8 we split $\Pi$ up to external pairs $\Pi^e=\lbrace (s_1,t_1),(s_2,t_2),(s_5,t_5)\rbrace$ and internal pairs $\Pi^i=\lbrace (s_3,t_3), (s_4,t_4), (s_6,t_6),(s_7,t_7),(s_8,t_8)\rbrace$. 
+    In this example the partition of the internal pairs is going to be focused on internal paths before external path, meaning $\Pi_1=\emptyset$ first than all set combination of one pair than two pairs and so on.
+    So first we have $\Pi_1=\emptyset$ and $\Pi_2=\Pi^i$
+    Since $\Pi^e\cup \Pi_1\neq \emptyset$ we enter the if statement in step 14. 
+    Then we make the vertex sets $W_i$ which we do not go deep into in this example.\\ 
+    Lets say that that we succesfully link the external paths and we now call $\mathcal{M}$ recursively on each house starting with the house in the upper left corner.
+    Since we have linked the pairs that was present in this house $\Pi=\emptyset$ and we return. 
+    The algorithm now calls itself recursively on the house in the upper right corner.
+    Let say this house $H_2\in \phi$ since there are two external terminals in house originally $F$ is properly not empty but it does not matter since we call $\mathcal{B}_{\phi}^-$ that account for this.
+    In this case $\mathcal{B}_{\phi}^-$ succesfully link the pair $(s_4,t_4)$.  
+    The next house will be the one right under, lets say that the decomposition of this is also trivial but $\mathcal{B}_{\phi}^-$ finds no paths, meaning the algorithm return and make a new partition $\Pi_1=\lbrace (s_3,t_3) \rbrace$ and the rest in $\Pi_2$ but since there is no difference when it comes to the house $H_3$ so the algorithm end up  returning agian making a new partition $\Pi_1=\lbrace (s_4,t_4) \rbrace$ and $\Pi_2=\lbrace (s_3,t_3),(s_6,t_6),(s_7,t_7),(s_8,t_8)\rbrace$. 
+    All the external pairs are linked including the pair $(s_4,t_4)$ we call the 3 first houses and like before exept now $H_3$ has no terminals that need to be linked so we return and continue with the house to the left.\\
+    $H_4$ has unliked terminals and the $\phi$-decomposition is not trivial, we see the houses clear from the \autoref{fig:mainexample}. The green house is a clean house and so is the house contaning $t_2$ since it is already linked we therefore in step 8 we contract these two sets. 
+    In step 9 we split the pairs into external and internal pairs $\Pi^e=\lbrace(s_3,t_3)\rbrace$ and $\Pi^i=\lbrace (s_6,t_6)\rbrace$, So agin since $\Pi^e\cup \Pi_1\neq \emptyset$.
+    So we enter the if statement in step 14 link the enternal pair and then call recursively on the houses in except the ones we have contracted either we end up linking the pair internal or ruturn and link it external. 
+    We return all the way to the main digraph an call $\mathcal{M}$ on the last house this is not a trival decomposition and there is only an internal pair no external pairs, we contract the green house and instead of entering the if statement in step 14 we enter the if statement in step 11. 
+    In this if statement there is no construction of anything and we directly call $\mathcal{M}$ recursive on the house, there is only one and this house does not have a trivial decomposition we contract the two green clean houses and enter the if statement at step 11 since $\Pi_1=\emptyset$ and $\Pi_2=\lbrace (s_8,t_8)\rbrace$   
+    It turns out that there only is a $t_8s_8$-path but no $s_8t_8$-path so we return and make a new partition  $\Pi_1=\lbrace (s_8,t_8)\rbrace$ and $\Pi_2=\emptyset$ and enter step 14 instead and we end up linking the piar external. \\
+    We enter step 27 and return and enter step 27 and return and now we are at the main digraph enter step 27 and output that a linkage exists. 
+\end{example}
 \begin{proof}
     We have now proved and explained each step in the algorithm, that it does what we think. 
     Now we need to check whether given your favorite digraph, that upholds the conditions, the algorithm gives the right result.
@@ -207,8 +260,8 @@ To proof \autoref{thm:mainalgo} we first state the algorithm $\mathcal{M}$ then 
     Now if this is not the case and $k''>0$ step 12 is then entered and we construct $D''$ which we have described belong to $\phi(2k^2)$ and then as descirbed before we can use $B_\phi^-$ which is correct by \autoref{def:bombproof}, so the algorithm will find a weak $\Pi''$-linkage if it exists in $D''\backslash F'$. 
     After all this there is made a recursiv call on each $K_i$ finding $k'_i$ weak linkages and by the above proof we know it works. 
     So since $B_\phi^-$ correctly finds the weak linkage inside $D''\backslash F'$ using only arcs from $F_i$ $\forall i\in[l]$, then each $K_i$ is recursively called from $D''$ we can easily come back to $D'$ since we find the weak $k'_i$-linkage inside each $K_i$ which is not using any of the arcs from $F_i$ we know that together these stil form the seperated weak linkages.
-    By \autoref{lemma:deletarcs} we know that we can find a weak linkage in $D\backslash F$ if we can find it in $D''\backslash F'$ which just proved we can. given a perfekt weak $\Pi$-linkage.
- \textcolor{red}{Polytime...}
+    By \autoref{lemma:deletarcs} we know that we can find a weak linkage in $D\backslash F$ if we can find it in $D''\backslash F'$ which just proved we can. 
+    Given a perfekt weak $\Pi$-linkage.\\
 \end{proof}
 
 \subsection{$k$-linkage problem for quasi-transitive digraphs}
@@ -224,6 +277,7 @@ It turns out that we just have to prove that $\phi_1$ is bombproof, for that we 
 Since the bombproof class alows the digraph to no longer be a part of that class we need to consider that an acyclic digraph can get a cycle when blowing up a vertex. 
 \begin{thm}
     For every natural number $p$ the weak $k$-linkage problem is polynomial for every fixed $k$, when we consider digraphs with most $p$ directed cycles.
+    \label{thm:cycleklink}
 \end{thm}
 % This is a direct consequence of 
 %\begin{thm}
@@ -234,6 +288,7 @@ Now we can prove that $\phi_1$ is bombproof and therefore that quasi-transitive 
 
 \begin{thm}
     The class $\phi_1$ is bombproof.
+    \label{thm:phi1bomb}
 \end{thm}
 \begin{proof}
     For $\phi_1$ to be bombproof it has to adhere the properties of \autoref{def:bombproof}, the totally $\phi_1$-decomposition can be found in polynomial time for any $\phi_1$-decomposable digraph by \autoref{thm:phipoly}.
@@ -242,6 +297,10 @@ Now we can prove that $\phi_1$ is bombproof and therefore that quasi-transitive 
     If $D$ is semicomplete $D'$has at most $c$ blown-up vertices $H_1,\dots H_c$ of $D$ to size at most $c$.
     If these $H_i$ is independent we need for each $H_i$ to be semicomplete not need more then $c^2$ arcs. 
     So there is at most $c^3$ arcs missing from $D'$ for it to be semicomplete, then by \autoref{lemma:deletarcs} we can find a weak $k$-linkage for $D'$ if $D$ is semicomplete.
-    Now suppose $D$ is acyclic blowing up $c$ vertices with at a size at most $c$ for this \textcolor{red}{the rest of the proof}
+    Now suppose $D$ is acyclic blowing up $c$ vertices with at a size at most $c$, inside these houses of the acyclic digraph there can be no more than $O(c^c)$ cycles pressent in the house.
+    Since $D$ is acyclic there is no cycles between the hoouses. 
+    There is at most $k$ parallel arcs since no more is needed. which brings up the number of cycles in the house to $O((ck)^c)$ so there is at most $O(c\cdot (ck)^c)$ cycles in $D'$. 
+    Then we can use \autoref{thm:cycleklink} where we let $p=c\cdot (ck)^c$.
+    So for alll posibilitys of $D$ and all cases of $D'\in D(c)$ we have a pollynomial algorithm that solves the $k$-linkage problem meaning the $\mathcal{B}_{\phi_1}$ algorithm exists and $\phi_1$ is a bombproof class.
 \end{proof}
 

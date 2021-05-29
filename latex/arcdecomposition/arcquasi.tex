@@ -1,0 +1,11 @@
+When we talk about quasi-transitive digraphs we know that it is composed from either a semicomplete digraph or an acyclic transitive digraph depending if it is strong or non-strong respectively.
+Since we need it to be 2-arc-strong we do not focus on the non-strong quasi-transitive digraphs, which means we have to compose the quasi-transitive digraph from a semicomplete digraph. 
+So we are going to estabilsh some results for this problem on semicomplete digraphs.
+\begin{thm}~\cite{bangjgt}
+    A 2-arc-strong semicomplete digraph $D=(V,A)$ has a arc-decomposition $A_1,A_2$ where both $D_1=(V,A_1)$ and $D_2=(V,A_2)$ are strong digraphs if abd only if $D$ is not isomorphic to $S_4$, where $S_4$ is obtained from the complete digraph with four vertices by deleting the arcs of a cycle of length four. Furthermore, this decomposition can be obtainted in polynomial time when it exists. 
+\end{thm}
+We have a very semilar theorem for a strong composition of the semicomplete digraphs which is among others the quasi-transitive digraphs.
+\begin{thm}
+    Let S be a strong semicomplete digraph on $s\geq 2$ vertices and let $H_1,\dots ,H_s$be arbitrary digraphs, each with at least two vertices. Then $D=S[H_1,\dots ,H_s]$ has a strong arc decomposition if and only if $D$ is not isomorphic to one of the following three digraphs: $\overrightarrow{C}_3[\overline{K}_2,\overline{K}_2,\overline{K}_2]$, $\overrightarrow{C}_3[\overline{K}_2,\overline{K}_2,\overrightarrow{P}_2]$, and $\overrightarrow{C}_3[\overline{K}_2,\overline{K}_2]\overline{K}_3$.
+\end{thm}
+\textcolor{red}{Figur of 3 digraphs above}

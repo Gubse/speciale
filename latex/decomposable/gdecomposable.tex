@@ -1,25 +1,26 @@
-Recall that a decomposable digraph $D$ can be decomposed into a main graph $S$ (also sometimes called \textbf{quotient} graph) where $|S|=k$ and $k$ houses $H_1,H_2,\dots , H_k$, where each vertex in $S=\lbrace v_1,v_2\dots ,v_k\rbrace$ is replaced by the house ($H_i$ replaces $v_i$).
+Recall that a decomposable digraph $D=S[H_1,H_2,\dots H_k]$ can be decomposed into a main graph $S$ (also sometimes called \textbf{quotient} graph) where $|S|=k$ and $k$ houses $H_1,H_2,\dots , H_k$, where each vertex in $S=\lbrace v_1,v_2\dots ,v_k\rbrace$ is replaced by the house ($H_i$ replaces $v_i$).
 The arcs between the houses is as follows $H_i \rightarrow H_j$ in $D$ if $v_i\rightarrow v_j$ in $S$ remember that for a set $X$ to dominate an other set $Y$ (meaning every vertex in the dominating set dominates every vertex in the dominated set) we denoted it $X \rightarrow Y$. 
 If no arc between $v_a$ and $v_b$ in $S$ then there is no arc between the sets $H_a$ and $H_b$ in $D$. 
 The thing about decomposable digraphs is that if there is an arc between $H_i$ and $H_j$ either one of the houses totally dominates the other (ex. $H_i \Rightarrow H_j$) or they dominate each other (ex. $H_i \rightarrow H_j$ and $H_j\rightarrow H_i$).
 
-Decomposable digraphs can be classed by a set of digraphs $\phi$, when \\
+\noindent Decomposable digraphs can be classed by a set of digraphs $\phi$, when 
 $D=S[H_1,H_2,\dots ,H_k]$ it is \textbf{$\phi$-decomposable} if $D\in \phi$ or if $S\in \phi$. The chioces of $H_i$ for $i=1,2\dots , k$ does not determine anything about the digraph being $\phi$-decomposable but the class of \textbf{totally $\phi$-decomposable} digraphs is where $D$ is $\phi$-decomposable and each $H_i$ is totally $\phi$-decomposable. 
-We are going to make two shuch sets of digraphs $\phi_1$ which is the union of semicomplete digraph and acyclic digraph both classes deskribed in \autoref{sec:class} and $\phi_2$ which is the union of semicomplete and round digraphs also deskribed in \autoref{sec:class}.  
+We are going to make two such sets of digraphs $\phi_1$ which is the union of semicomplete digraphs and acyclic digraphs both classes described in \autoref{sec:class} and $\phi_2$ which is the union of semicomplete and round digraphs also described in \autoref{sec:class}.  
 \begin{align}
-    \phi_1=\text{Semicomplete digraphs}\cup \text{Acyclic digraphs}
+    \phi_1=\lbrace \text{Semicomplete digraphs}\rbrace\cup \lbrace \text{Acyclic digraphs}\rbrace
     \label{eq:phi1}\\
-    \phi_2=\text{Semicomplete digraphs}\cup \text{Round Digraphs}
+    \phi_2=\lbrace \text{Semicomplete digraphs}\rbrace\cup \lbrace \text{Round Digraphs}\rbrace
     \label{eq:phi2}
 \end{align}
 
-Take these sets $\phi_1$ and $\phi_2$ then for every induced subdigraph of a digraph $D$ where either $D\in \phi_1$ or $D\in \phi_2$ then the induced digraph is agian in the same set (so if $D\in \phi_1$ the induced subdigraph is in $\phi_1$, same goes for $\phi_2$).
+Take these sets $\phi_1$ and $\phi_2$ then for every induced subdigraph of a digraph $D$ where either $D\in \phi_1$ or $D\in \phi_2$ then the induced digraph is in the same set (so if $D\in \phi_1$ the induced subdigraph is in $\phi_1$, same goes for $\phi_2$).
 When this is true for a set $\phi$ the set is called \textbf{hereditary}. So both $\phi_1$ and $\phi_2$ is hereditary.
 \begin{lemma}
     Let $\phi$ be a hereditary set of digraphs. If a given digraph $D$ is totally $\phi$-decomposable, then every induced subdigraph $D'$ of $D$ is totally $\phi$-decomposable.
+    \label{lemma:hereditary}
 \end{lemma}
 It also turns out that for $\phi_1$ and $\phi_2$ there exists an algorithm that checks for a digraph $D$ is totally $\phi_i$-decomposable ($i=1,2$).
-\begin{thm}~\c ite{banggutin}
+\begin{thm}~\cite{banggutin}
     There exists an $O(n^2m+n^3)$-algorithm for chekking if a digraph with $n$ vertices and $m$ arcs is totally $\phi_i$-decomposable for $i=1,2$.
     \label{thm:phipoly}
 \end{thm}

@@ -1,33 +1,29 @@
-We can classefy specific collection of graphs the reason for this is that digraphs of smaller collections of digraphs (like tournaments is a smaller collection of semicomplete digraphs) might be because of problems that is hard to solve on general digraph but is \\
-easy/polynomial solvable on specific types of digraphs.
-
-A group of these problems is called NP-complete problems which sometimes sound easy solvable for graphs but only for some specific graphs we know how to solve it in polynomial time. 
-Like finding paths in digraphs or cycles or more specific things, but in general des more we know about a digraph we can use to solve hard problems which in general would be time consuming like the problems that are NP-hard.
-By some quick fast algorithm you can checks wheter a digraph belongs to a certion \textbf{class} of digraphs. 
-A class of digraph is a collection of digraph with certain properties incommen like \textbf{tournaments}.\\
-\subsection{introduction to some digraph classes}
-\textbf{Tournaments} is a digraph where the underlying graph is complete. 
+A \textbf{Tournament} is a digraph \textcolor{red}{where the} underlying graph is complete. 
 So a complete graph of order 5 any orientation of the edges concludes in a tournament.
 Strong digraphs is also in it self a classification of digraphs. Classes of digraphs can be overlapping each other or be fully containt in each other like tournaments is fully containt in the class called semicomplete digraph.
-A \textbf{semicomplete} digraph is where the underlying graph is complete multigraph, there can be some multiple edges in between the same pair of vertices in the underlying graph. Since the class called semicomplete digraphs contains all digraphs where the underlying graph is a complete multigraph it clearly also contains the graph with only one arc between every pair of vertecies (Tournaments).
-A \textbf{complete} digraph is where every pair of vertices $a,b\in V$ the arc $(a,b)$ and $(b,a)$ is present in the graph. \\
-If you can split the graph into two sets of vertices $A$ and $B$ such that $A\cup B=V$ and there is no arcs inside these sets, then we classify this as an \textbf{bipartite} digraph This means all arcs in the graph is in the form $(a,b)$ or $(b,a)$ for all $a\in A$ and $b\in B$. 
-The sets $A$ and $B$ are called the partites of $D(V,A)$. 
+A \textbf{semicomplete} digraph is where the underlying graph is complete multigraph, there can be some multiple edges in between the same pair of vertices in the underlying graph. Since the class called semicomplete digraphs contains all digraphs where the underlying graph is a complete multigraph it clearly also contains the graph with only one arc between every pair of vertices (Tournaments).
+A digraph is \textbf{complete} if every pair of vertices $a,b\in V$ the arc $(a,b)$ and $(b,a)$ is present in the graph. \\
+If you can split the vertices of a graph $V$ into two sets of vertices $A$ and $B$ such that $A\cup B=V$ and there is no arcs inside these sets, then we classify this as an \textbf{bipartite} digraph this means all arcs in the graph is in the form $(a,b)$ or $(b,a)$ for all $a\in A$ and $b\in B$. 
+The sets $A$ and $B$ are called the parttites of $D(V,A)$. 
 The underlying graph of a bipartite digraph is also called bipartite since there is no edges inside $A$ or $B$.
-If there exists more then two of these partite sets we call the digraphs \textbf{multipartite}, since there is multiple partite sets in the graph, bipartite sets $\subset$ multipartite. \\
+\textcolor{red}{ If there exists more then two of these partite sets we call the digraphs \textbf{multipartite}, since there is multiple partite sets in the graph, bipartite sets $\subset$ multipartite. }\\
 A much used type of digraph is an \textbf{acyclic} digraph. 
-It is a digraph where for an specific ordering of the vertices $V={v_1, v_2,\dots , v_n}$ the arcs in the digraph is $(v_i, v_j)$ where $i<j$ for all $(v_i, v_j)\in A$. This ordering is called an \textbf{acyclic ordering} and can also be used to order strong components in an non-strong digraph such that the ordering of the componentent $C_1,C_2,\dots C_k$ is an acyclic digraph when contracting the components into $k$ vertices. 
+It is a digraph where there exists an ordering of the vertices $V={v_1, v_2,\dots , v_n}$ where the arcs in the digraph is $(v_i, v_j)$ where $i<j$ for all $(v_i, v_j)\in A$. 
+This ordering is called an \textbf{acyclic ordering} and there can be many of these orderings in the same digraph.
+This ordering can also be used to order strong components in an non-strong digraph such that the ordering of the componentent $C_1,C_2,\dots C_k$ is an acyclic digraph when contracting the components into $k$ vertices. 
 When classifying digraphs there is several ways of doing this, like \textbf{transitive} digraphs which are digraphs where for all vertices $a,d,c\in V$ where the arc $(a,b)$ and $b,c$ is present in the digraph ($\in A$), the arc $(a,c)$ has to be a part of $A$ too. 
-using the same kind of classification there is digraphs which are \textbf{Quasi-transitive} which is forall vertices $a,d,c\in V$ where the arc $(a,b)$ and $b,c$ is present in the digraph ($\in A$), $a$ and $c$ has to be adecent by at \textit{least} one (more arcs in between are also allowed) arc in either direction ($(a,c)$ or $(c,a)$). These graphs are going to be mentioned a lot in this thises since the graph is also what we call \textbf{decomposable}.\\
-\textbf{Decomposable} digraphs is also a clasification of graphs which are decomposable, for a graph $D$ to be decomposable we have $H_1,H_2, \dots , H_k$ \textbf{houses} and $S$ where $V(S)={s_1,s_2,\dots,s_k}$ which are all digraphs by them self but if each $s_i$ is replaced by the digraph $H_i$ $i=1,2,\dots,k$ we have the graph $D$, where $H_i\rightarrow H_j \in D$ if $s_i\rightarrow s_j\in S$  denote this decomposition like $D=S[H_1,H_2,\dots H_k]$.
-This is the class of digraphs we are focusing on in this thises. 
+using the same kind of classification there is digraphs which are \textbf{Quasi-transitive} which is forall vertices $a,d,c\in V$ where the arc $(a,b)$ and $b,c$ is present in the digraph ($\in A$, $a$ and $c$ has to be adecent by at \textit{least} one (more arcs in between are also allowed) arc in either direction ($(a,c)$ or $(c,a)$). These graphs are going to be mentioned a lot in this thises since the graph is also what we call \textbf{decomposable}.\\
+A \textbf{Decomposable} digraphs $D=S[H_1,H_2,\dots H_s]$ digraphs which can be decomposed into $H_1,H_2, \dots , H_s$ \textbf{houses} and $S$ called the sometimes denoted as the \textbf{quotient} digraph where $|V(S)|=s$. 
+Let $S$ be the quotient digraph of $D$ where $V(S)=\lbrace s_1,s_2,\dots,s_s\rbrace$ if each $s_i$ is replaced by the digraph $H_i$ $i=1,2,\dots,k$ we have the digraph $D$, where $H_i\rightarrow H_j \in D$ if $s_i\rightarrow s_j\in S$ this is called a \textbf{composition} of $S$ or a \textbf{decomposition} of $D$.
+This is the class of digraphs we are focusing on in this thesis. 
 If all the houses are independent sets we call $D=S[H_1,H_2,\dots ,H_k]$ the extension of $S$. 
-If $S$ is a semicomplete digraph we call the extensin of these \textbf{extended semicomplete} digraph.
-Like we already mentioned Quasi-transitive digraphs are decomposable but we have several classes that are decomposable, and another class of digraphs that is giong to be used a lot in this is \textbf{locally semicomplete} digraphs.\\
-First we are going to introduce \textbf{in-locally semicomplete} digraphs and \textbf{out-locally semicomplete} digraphs which is for every in-nieghboor of a vertex $x\in V$ they have to be adjecent ($x\cup N^-(x)$ induces a semicomplete digraph) is the in-locally semicomplete digraph if it is true for all $x\in V$. 
-Respectively it is called an out-locally semicomplete digraph if $\forall x\in V$ the out-nieghboors, $N^+(x)$, has to be adjecent. 
-If a digraph is both in-locally semicomplete and out-locally semicomplete, it is called a \textbf{locally semicomplete} digraph. Why both Quasi transitive digraphs and some locally semicomplete digraphs are decomposeble will be described in section \autoref{sec:Decomposable}.\\
-The last class of digraph that are important for this thises is the round digrphs. 
+If $S$ is a semicomplete digraph we call the extension of these \textbf{extended semicomplete} digraph.
+Like we already mentioned Quasi-transitive digraphs are decomposable but we have several classes that are decomposable, and another class of digraphs that we are giong to cover in this dissertation \textbf{locally semicomplete} digraphs.\\
+First we introduce \textbf{locally in-semicomplete} digraphs where for every in-nieghboor of a vertex $x\in V$ have to be adjacent this has to be true for all $x\in V$ ($x\cup N^-(x)$ induces a semicomplete digraph $\forall x\in V$). When $x\cup N^+(x)$ for all vertices in $D$, it classyfies as a \textbf{locally out-semicomplete} digraph. 
+Respectively it is called an out-locally semicomplete digraph if $\forall x\in V$ the out-nieghboors, $N^+(x)$, has to be adjacent. 
+If a digraph is both locally in-semicomplete and locally out-semicomplete, it is called a \textbf{locally semicomplete} digraph. 
+Why both Quasi-transitive digraphs and some locally semicomplete digraphs are decomposeble will be described in section \autoref{sec:gdecomposable}.\\
+The last class of digraph that are important for this thesis is the round digraphs. 
 A digraph is called a \textbf{round} digraph if there exists an ordering of the vertices $v_1,v_2,\dots,v_n$ such that for all $v_i$, $N^+(v_i)={v_{i+1},v_{i+2},\dots ,v_{i+d^+(v_i)}}$ and $N^-(v_i)={v_{i-d^-(v_i)},v_{i-(d^-(v_i)-1)},\dots ,v_{i-1}}$.
 
 

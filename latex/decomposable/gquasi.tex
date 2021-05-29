@@ -1,12 +1,12 @@
 First we need to recall what a quasi transitive digraph is. 
 For every triplet $x,y,z$ in a quasi-transitive digraph if $x\rightarrow y$ ($x$ dominates $y$) and $y\rightarrow z$ ($y$ domitaes $z$), then there has to be at least one arc in either dirction between $x$ and $z$. 
-When working with quasi-transitive digraphs there are many things you can depend on, things that the structure has already diceded for us.
+When working with quasi-transitive digraphs there are many things you can depend on, things that the structure has \textcolor{red}{already diceded} for us.
 \begin{lemma}~\cite{banggutin}
     Suppose that $A$ and $B$ are distinct strong components of a quasi-transitive digraph $D$ with at least one arc from $A$ to $B$. Then $A\rightarrow B$.
     \label{lemma:dominatingset}
 \end{lemma}
 Recall that this means that every vertex in $A$ has an arc to every vertex in $B$.
-Like non-strong quasi-transitive digraph we can also say something about strong quasitransitive digraphs.
+Like non-strong quasi-transitive digraph we can also say something about strong quasi-transitive digraphs.
 \begin{lemma}~\cite{banggutin,bangJGT2}
     Let $D$ be a strong quasi-transitive digraph on at least two vertices. Then the following hold:
     \begin{itemize}
@@ -15,17 +15,17 @@ Like non-strong quasi-transitive digraph we can also say something about strong 
     \end{itemize} 
     \label{lemma:underlyinggraph}
 \end{lemma}
-These to lemmas is also a part of proving the one theorem which states that quasi-transitive digraphs can be decomposed no matter if there are strong or nonstrong digraphs. 
+These to lemmas play an important part in proving the following theorem which states that quasi-transitive digraphs can be decomposed no matter if there are strong or nonstrong digraphs. 
 
-\begin{thm}\cite{bangJGT85}
+\begin{thm}~\cite{bangJGT2}
     Let $D$ be a quasi-transitive digraph.
-    \begin{enumerate}
-        \item If $D$ is not strong, then there exists a transitive acyclic digraph $T$ on $t$ vertices and strong quasitransitive digraphs $H_1,\dots,H_t$ such that $D=T[H_1,\dots,H_t]$.
-        \item If $D$ is strong, then there exists a strong semicomplete digraph $S$ on $s$ vertices and quasitransitive digraphs $Q_1,\dots ,Q_s$ such that each $Q_i$ is either a single vertex or is nonstrong and $D=S[Q_1,\dots,Q_s]$.
-    \end{enumerate}
     \label{thm:quasidecom}
+    \begin{enumerate}
+        \item If $D$ is not strong, then there exists a transitive acyclic digraph $T$ on $t$ vertices and strong quasi-transitive digraphs $H_1,\dots,H_t$ such that $D=T[H_1,\dots,H_t]$.
+        \item If $D$ is strong, then there exists a strong semicomplete digraph $S$ on $s$ vertices and quasi-transitive digraphs $Q_1,\dots ,Q_s$ such that each $Q_i$ is either a single vertex or is nonstrong and $D=S[Q_1,\dots,Q_s]$.
+    \end{enumerate}
 \end{thm}
-This theroem is also what we are going to use more then ones, to prove several of the problem solving theorems through out this thises.
+This theorem is also what we are going to use more then ones, to prove several of the problem solving theorems throughout this thesis.
 \begin{proof}
     Since we can decompose both strong quasi-transitive digraphs and non-strong quasi-transitive digraph we are going to prove if $D$ is not strong first and there after if $D$ is strong.
     So suppose $D$ is not strong, then we know we can enumerate the strong components in an acyclic order let these be $H_1,\dots , H_t$. \\
@@ -43,7 +43,7 @@ This theroem is also what we are going to use more then ones, to prove several o
     We have that every pair of vertex in $S$ have one arc between in either direction or one in both direction making $S$ semicomplte. \\
     This concludes the proof.
 \end{proof}
-From this theorem we can see that quasi-transitive digraphs is totally $\phi_1$-decomposable. 
+From this theorem we can see that quasi-transitive digraphs are totally $\phi_1$-decomposable. 
 Since the transitive digraph for the nonstrong quasi-transitive digraphs is acyclic $T\in \phi_1$ and each $H_i$ is itself strong quasi-triansitive digraphs and you can therefore use \autoref{thm:quasidecom} agian.  
 For the strong quasi-transitive digraphs $D$, $S$ is semicomplete so $S\in \phi_1$ and each $Q_i \in \phi_1$ because it is either one vertex which is a digraph that is both acyclic and semicomplete or it is non-strong and must be quasi-transitive and therefore \autoref{thm:quasidecom} can be used agian. So every nonstrong and strong quasi-transitive digraphs is totally $\phi_1$-decomposable.
 \textcolor{red}{could not find a therom lemma or anything else so i made my own corolary}.

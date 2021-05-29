@@ -1,20 +1,20 @@
 First of all we have to recall \autoref{thm:quasidecom} since it is the key theorem to solve the hamiltonian problem in polynomial time. \\
-Remember that a condition for a digraph to be hamiltonian is that it need to be strong, so for finding a hamilton cycle in a quasi-transitive digraph, we are not interested in the non-strong digrpahs. 
+Remember that a condition for a digraph to be hamiltonian is that it need to be strong, so for finding a hamilton cycle in a quasi-transitive digraph, we are not interested in the non-strong digraphs. 
 Leving only the strong quasi-transitive digraphs with decomposition $S[Q_1,\dots Q_s]$ from \autoref{thm:quasidecom}. 
 The given decomposition of strong quasi-transitive digraphs has a semicomplete digraph as the quotient. This is why we need some inside to these before the main solution in this subsection can be proven. another composition of semicomplete digraphs is the extension of these, called extended semicomplete digraph. An extension of a digraph is a composition of the given digraph $S$ where the hauses of the composition is either a single vertex or independence sets. \\
 Before we explain when we can find a hamilton cycle in strong quasi-transitive digraphs we need to recall what a cycle factor is. 
 From \autoref{sec:digraph} we shortly explain that a cycle factor is when we can find $C_1,\dots C_k$ cycles in $D$ contaning all vertices of $D$. 
-\begin{thm}
+\begin{thm}~\cite{gutinMNN2}
     An extended semicomplete digraph $D$ is hamiltonian if and only if $D$ is strong and contains a cycle factor. One can check whether $D$ is hamiltonian and construct a Hamilton cycle of $D$ (if one exsists) in time $O(n^{2.5})$.
     \label{thm:extended}
 \end{thm}
-\begin{thm}
+\begin{thm}~\cite{bangJGT20}
     A strong quasi-transitive digraph $D$ with a canonical decomposition \\$D=S[Q_1\dots, Q_s]$ is hamiltonian if and only if it has a cycle factor $\mathcal{F}$ such that no cycle of $\mathcal{F}$ is a cycle of some $Q_i$.
     \label{thm:qhcycle}
 \end{thm}
 \begin{proof}
     Since a hamiltonian cycle need to cover all vertices in a digraph, we know that it must cross every $Q_i$. 
-    Moreover the hamilton cycle is a cycle factor not fully containt in any $Q_i$. So we only need to show that if we have a cycle factor $\mathcal{F}$, where no cycle is in any $Q_i$, then $D$ is hamiltonian. $\forall i$ $V(Q_i)\cap \mathcal{F}=\\mathcal{F}_i$, there can not be any circle in this and since every vertex is in $\mathcal{F}$ all vertices in $Q_i$ must be containt in $\mathcal{F}_i$ and there is no cycle containt in $\mathcal{F_i}$ whcich makes it a path factor of $Q_i$.\\
+    Moreover the hamilton cycle is a cycle factor not fully containt in any $Q_i$. So we only need to show that if we have a cycle factor $\mathcal{F}$, where no cycle is in any $Q_i$, then $D$ is hamiltonian. $\forall i$ $V(Q_i)\cap \mathcal{F}=\mathcal{F}_i$, there can not be any circle in this and since every vertex is in $\mathcal{F}$ all vertices in $Q_i$ must be containt in $\mathcal{F}_i$ and there is no cycle containt in $\mathcal{F}_i$ whcich makes it a path factor of $Q_i$.\\
     \textcolor{red}{Figure here}\\
     For all paths in $\mathcal{F}_i$ we make a path contraction. 
     After contraction or before we delete the remaining arcs if this is done before its the arcs going from the end of a path to a begining of an other path. This action will make $Q_i$ an independent set $\forall i\in [s]$. Since $S$ is a semicomplete digraph our new digraph would then because of the independence of each $Q_i$ after the action be an extended semicomplete digraph $S'$. 
@@ -23,15 +23,15 @@ From \autoref{sec:digraph} we shortly explain that a cycle factor is when we can
 \end{proof}
 
 A hamilton path does not have the same condition for a digraphs to be strong meaning we are also interested in the non-strong quasi-transitive digraphs $T[H_1,\dots ,H_t]$. 
-The next theorem is proven in much the same as \autoref{qhcycle}. 
-\begin{thm}
-    A quasi-transitive digraph $D$ with at least two vertices and with canonical decomposition $D=R[G_1,G_2,\dots , G_r]$ is traceable if and only if it has a $1$-path-cycle factor $\mathcal{F}$ such that no cycle or path of $\mathcal{F}$is completely in some $D<V(G_i)>$.
+The next theorem is proven in much the same as \autoref{thm:qhcycle}. 
+\begin{thm}~\cite{bangJGT20}
+    A quasi-transitive digraph $D$ with at least two vertices and with canonical decomposition $D=R[G_1,G_2,\dots , G_r]$ is traceable if and only if it has a $1$-path-cycle factor $\mathcal{F}$ such that no cycle or path of $\mathcal{F}$is completely in some $D\left< V(G_i)\right>$.
 \end{thm}
 
 We know that the canonical decomposition of a quasi-transitive digraph can be found i polynomial time. 
 We can also find the hamilton cycle in a quasi-transitive digraph in polynomial time, but also verify if it does not exists for the given graph. This result was proved by Gutin. ... 
 
-\begin{thm}
+\begin{thm}~\cite{banggutin94}
     There is an $O(n^4)$ algorithm which, given a quasi-transitive digraph $D$, either returns a hamiltonian cycle in $D$ or verifies that no such cycle exists.
 \end{thm}
 
