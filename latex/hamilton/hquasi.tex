@@ -18,8 +18,157 @@ From \autoref{sec:digraph}, we shortly explained that a cycle factor is when we 
     Since a Hamiltonian cycle needs to cover all vertices in a digraph, we know that it must cross every $Q_i$. 
     Moreover the Hamilton cycle is a cycle factor not fully contained in any $Q_i$. 
     So we only need to show that if we have a cycle factor $\mathcal{F}$, where no cycle is in any $Q_i$, then $D$ is Hamiltonian. $\forall i$ $V(Q_i)\cap \mathcal{F}=\mathcal{F}_i$, there can not be any cyrcle in this and since every vertex is in $\mathcal{F}$, all vertices in $Q_i$ must be contained in $\mathcal{F}_i$ and there is no cycle contained in $\mathcal{F}_i$ which makes it a path factor of $Q_i$.\\
-    \textcolor{red}{Figure here}\\
-    For all paths in $\mathcal{F}_i$, we make a path contraction. 
+    \begin{figure}[htpb]
+        \begin{subfigure}[b]{1\textwidth}
+        \centering
+    \begin{tikzpicture}[declare function={rr=1+0.1*rnd;}]
+    \begin{scope}[every node/.style={circle,thick,draw}]
+        %level 1
+        \node (level11) {};
+        \node[right = of level11] (level12) {};
+        \node[right = of level12] (level13) {};
+    
+        %level 2
+        \node[below left = 1cm and 0.5cm of level11] (level21) {};
+        \node[right = of level21] (level22) {};
+        \node[right = of level22] (level23) {};
+        \node[right = of level23] (level24) {};
+    
+        %level 3
+        \node[below right = 1cm and 0.5cm of level21] (level31) {};
+        \node[right = 1.5cm of level31] (level32) {};
+    
+        %level 4
+        \node[below right = 1cm and 0.6cm of level31] (level41) {};
+    
+        \node[draw=black,double,fit=(level11)(level13)(level21)(level24)(level41) ,inner sep=1ex,ellipse] (tmp) {};
+    
+        \node[draw=none,left = 2.5cm of level11] (level1start) {};
+        \node[draw=none,left = 1.8cm of level21] (level2start) {};
+        \node[draw=none,left = 2.5cm of level31] (level3start) {};
+        \node[draw=none,left = 3.4cm of level41] (level4start) {};
+        
+        \node[draw=none,right = 2.5cm of level13] (level1end) {};
+        \node[draw=none,right = 1.8cm of level24] (level2end) {};
+        \node[draw=none,right = 3.2cm of level32] (level3end) {};
+        \node[draw=none,right = 4cm of level41] (level4end) {};
+    \end{scope}
+    
+    %blacks
+    \begin{scope}[very thick,decoration={
+        markings,
+        mark=at position 0.5 with {\arrow{>}}}
+        ] 
+        %level 1
+        \draw[postaction={decorate}] (level11)--(level12);
+        \draw[postaction={decorate}] (level12)--(level13);
+    
+        %level 2
+        \draw[postaction={decorate}] (level21)--(level22);
+        \draw[postaction={decorate}] (level22)--(level23);
+        \draw[postaction={decorate}] (level23)--(level24);
+    
+        %level 3
+        \draw[postaction={decorate}] (level31)--(level32);
+    
+        %start
+        \draw[postaction={decorate}] (level1start)--(level11);
+        \draw[postaction={decorate}] (level2start)--(level21);
+        \draw[postaction={decorate}] (level3start)--(level31);
+        \draw[postaction={decorate}] (level4start)--(level41);
+        
+        %end
+        \draw[postaction={decorate}] (level13)--(level1end);
+        \draw[postaction={decorate}] (level24)--(level2end);
+        \draw[postaction={decorate}] (level32)--(level3end);
+        \draw[postaction={decorate}] (level41)--(level4end);
+    \end{scope}
+    
+    %reds
+    \begin{scope}
+        \path [->,red] (level11) edge node[left] {} (level21);
+        \path [->,red] (level12) edge node[left] {} (level23);
+        \path [->,red] (level13) edge node[left] {} (level21);
+        \path [->,red] (level24) edge node[left] {} (level11);
+        \path [->,red] (level31) edge node[left] {} (level21);
+        \path [->,red] (level21) edge[bend right=45] node[left] {} (level31);
+        \path [->,red] (level31) edge[bend right=45] node[left] {} (level41);
+        \path [->,red] (level41) edge node[left] {} (level31);
+        \path [->,red] (level32) edge node[left] {} (level41);
+        \path [->,red] (level41) edge node[left] {} (level11);
+        \path [->,red] (level13) edge node[left] {} (level41);
+        \path [->,red] (level24) edge node[left] {} (level31);
+    \end{scope}
+    \end{tikzpicture}
+    \caption{Before path contraction}
+    \end{subfigure}
+    
+    %SECOND
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+    \begin{tikzpicture}[declare function={rr=1+0.1*rnd;}]
+        \begin{scope}[every node/.style={circle,thick,draw}]
+            %level 1
+            \node (level1) {};
+        
+            %level 2
+            \node[below = of level1] (level2) {};
+        
+            %level 3
+            \node[below = of level2] (level3) {};
+        
+            %level 4
+            \node[below = of level3] (level4) {};
+        
+            \node[draw=black,double,fit=(level1)(level2)(level3)(level4) ,inner sep=2ex,ellipse] (tmp) {};
+        
+            \node[draw=none,left = 2cm of level1] (level1start) {};
+            \node[draw=none,left = 2cm of level2] (level2start) {};
+            \node[draw=none,left = 2cm of level3] (level3start) {};
+            \node[draw=none,left = 2cm of level4] (level4start) {};
+            
+            \node[draw=none,right = 2cm of level1] (level1end) {};
+            \node[draw=none,right = 2cm of level2] (level2end) {};
+            \node[draw=none,right = 2cm of level3] (level3end) {};
+            \node[draw=none,right = 2cm of level4] (level4end) {};
+        \end{scope}
+        
+        %blacks
+        \begin{scope}[very thick,decoration={
+            markings,
+            mark=at position 0.5 with {\arrow{>}}}
+            ] 
+            %start
+            \draw[postaction={decorate}] (level1start)--(level1);
+            \draw[postaction={decorate}] (level2start)--(level2);
+            \draw[postaction={decorate}] (level3start)--(level3);
+            \draw[postaction={decorate}] (level4start)--(level4);
+            
+            %end
+            \draw[postaction={decorate}] (level1)--(level1end);
+            \draw[postaction={decorate}] (level2)--(level2end);
+            \draw[postaction={decorate}] (level3)--(level3end);
+            \draw[postaction={decorate}] (level4)--(level4end);
+        \end{scope}
+        
+        %reds
+        \begin{scope}
+            \path [->,red] (level1) edge[bend right=20] node[left] {} (level2);
+            \path [->,red] (level2) edge[bend right=20] node[left] {} (level1);
+            \path [->,red] (level2) edge node[left] {} (level3);
+            \path [->,red] (level3) edge[bend right=20] node[left] {} (level4);
+            \path [->,red] (level4) edge[bend right=20] node[left] {} (level3);
+    
+            \path [->,red] (level1) edge[bend right=27] node[left] {} (level4);
+            \path [->,red] (level4) edge[bend right=27] node[left] {} (level1);
+        \end{scope}
+    \end{tikzpicture}
+    \caption{After path contraction}
+    \end{subfigure}
+    \caption{}
+    \label{fig:contracting}
+    \end{figure}
+    For all paths in $\mathcal{F}_i$, we make a path contraction (\autoref{fig:contracting}). 
     After contraction or before we delete the remaining arcs if this is done before its the arcs going from the end of a path to a beginning of another path. 
     This action will make $Q_i$ an independent set $\forall i\in [s]$. 
     Since $S$ is a semicomplete digraph, the digraph $D$ would then because of the independence of each $Q_i$ after the path contractions be an extended semicomplete digraph $S'$. 
@@ -44,7 +193,7 @@ but first we need to establish some notation, $pc(D)$ is the path covering numbe
     Supose $D$ has a hamilton cycle $H$.
     $V(Q_j)\cap H$ is a $k_j$-path factor $\mathcal{F}_j$ of $Q_j$. 
     $pc(Q_j)$ is the minimum number of path covering $Q_j$ so $k_j\geq pc(Q_j)$. 
-    For every $j=1,2,\dots ,s$ we use the path contraction of $\mathcal{F}_j$ and delete the remmaining arcs in $Q_j$ results as argued in the proof of \autoref{thm:qhcycle} in a extended semicomplete digraph $S'$ having at least $pc(Q_j)$ vertices in $\overline{K}_{n_j}$ for every $j=1,2,\dots ,s$.\\
+    For every $j=1,2,\dots ,s$ we use the path contraction (\autoref{fig:contracting}) of $\mathcal{F}_j$ and delete the remmaining arcs in $Q_j$ results as argued in the proof of \autoref{thm:qhcycle} in a extended semicomplete digraph $S'$ having at least $pc(Q_j)$ vertices in $\overline{K}_{n_j}$ for every $j=1,2,\dots ,s$.\\
     We are now going to show that the other way.
     Suppose $S'$ contains a cycle subdigraph $\mathcal{L}$ containing $p_j\geq pc(Q_j)$ vertices of $\overline{K}_{n_j}$ for every $j=1,2,\dots ,s$.
     By \autoref{thm:5.7.7} $S'$ has a cycle $C$ containing all vertices of the cycle subdigraph $\mathcal{L}$. $V(C)=V(\mathcal{L})$. 

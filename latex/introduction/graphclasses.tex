@@ -2,7 +2,35 @@ A \textbf{Tournament} is a digraph in which the underlying graph is complete.
 So in a complete graph of order 5, any orientation of the edges concludes in a tournament.
 Strong digraphs are also in themselves a classification of digraphs. 
 Classes of digraphs can overlap each other or fully contained in each other, like tournaments is fully contained in the class called semicomplete digraphs.
-A \textbf{semicomplete} digraph is where the underlying graph is a complete multigraph, there can be some multiple edges in between the same pair of vertices in the underlying graph (parallel edges). 
+A \textbf{semicomplete} digraph is where the underlying graph is a complete multigraph, there can be some multiple edges in between the same pair of vertices in the underlying graph (parallel edges)(\autoref{fig:fourgraph}). 
+\begin{figure}[htp]
+    \begin{subfigure}[b]{1\textwidth}
+        \centering
+        \begin{tikzpicture}
+        %nodes
+        \begin{scope}
+            \node[draw,circle] (v1) {};
+            \node[draw,circle,below = of v1] (v2) {};
+            \node[draw,circle,right = of v1] (v3) {};
+            \node[draw,circle,below = of v3] (v4) {};
+        \end{scope}
+        
+        %crosses
+        \begin{scope}
+            \path [-{Latex[length=3mm]}] (v1) edge[bend left] node[left] {} (v2);
+            \path [-{Latex[length=3mm]}] (v2) edge[bend left] node[left] {} (v1);
+            \path [-{Latex[length=3mm]}] (v1) edge[bend left] node[left] {} (v3);
+            \path [-{Latex[length=3mm]}] (v3) edge[bend left] node[left] {} (v1);
+            \path [-{Latex[length=3mm]}] (v1) edge node[left] {} (v4);
+            \path [-{Latex[length=3mm]}] (v3) edge node[left] {} (v2);
+            \path [-{Latex[length=3mm]}] (v2) edge node[left] {} (v4);
+            \path [-{Latex[length=3mm]}] (v4) edge node[left] {} (v3);
+        \end{scope}
+        \end{tikzpicture}
+    \end{subfigure}
+    \caption{An example of a semicomplete digraph with four vetices.}
+    \label{fig:fourgraph}
+\end{figure}
 Since the class called semicomplete digraphs contains all digraphs where the underlying graph is a complete multigraph, it clearly also contains the graph with only one arc between every pair of vertices (Tournaments).
 A digraph is \textbf{complete} if for every pair of vertices $a,b\in V$, the arc $(a,b)$ and $(b,a)$ are present in the graph. \\
 If you can split the vertices of a graph $V$ into two sets of vertices $A$ and $B$ such that $A\cup B=V$, and there are no arcs inside these sets, then we classify this as an \textbf{bipartite} digraph. 
@@ -12,21 +40,106 @@ The underlying graph of a bipartite digraph is also called bipartite since there
 %If there exists more then two of these partite sets we call the digraphs \textbf{multipartite}, since there is multiple partite sets in the graph, bipartite sets $\subset$ multipartite. \\
 A much used type of digraph is an \textbf{acyclic} digraph. 
 It is a digraph where there exists an ordering of the vertices $V={v_1, v_2,\dots , v_n}$ where the arcs in the digraph are $(v_i, v_j)$ where $i<j$ for all $(v_i, v_j)\in A$. 
+\begin{figure}[htp]
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+        %nodes
+        \begin{scope}
+            \node[draw,circle] (v1) {b};
+            \node[draw,circle,below left = of v1] (v2) {a};
+            \node[draw,circle,below right = of v1] (v3) {c};
+        \end{scope}
+        
+        %crosses
+        \begin{scope}
+            \path [-{Latex[length=3mm]}] (v2) edge node[left] {} (v1);
+            \path [-{Latex[length=3mm]}] (v1) edge node[left] {} (v3);
+            \path [-{Latex[length=3mm]}] (v2) edge node[left] {} (v3);
+        \end{scope}
+        \end{tikzpicture}
+        \caption{If $a \rightarrow b$ and $b \rightarrow c$ then $a \rightarrow c$ for all $a, b, c \in V$, then a digraph is a transitive digraph.}
+        \label{fig:transitive}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+        %nodes
+        \begin{scope}
+            \node[draw,circle] (v1) {b};
+            \node[draw,circle,below left = of v1] (v2) {a};
+            \node[draw,circle,below right = of v1] (v3) {c};
+        \end{scope}
+        
+        %crosses
+        \begin{scope}
+            \path [-{Latex[length=3mm]}] (v2) edge node[left] {} (v1);
+            \path [-{Latex[length=3mm]}] (v1) edge node[left] {} (v3);
+            %\path [-{Latex[length=3mm]},dashed,gray] (v2) edge node[left] {} (v3);
+            \path [<->,dashed] (v3) edge node[left] {} (v2);
+        \end{scope}
+        \end{tikzpicture}
+        \caption{If $a \rightarrow b$ and $b \rightarrow c$ then $a$ and $c$ have to be adjacent for all $a, b, c \in V$, then a digraph is a quasi-transitive digraph.}
+        \label{fig:quasitransitive}
+    \end{subfigure}
+\end{figure}
 This ordering is called an \textbf{acyclic ordering}, and there can be many of these orderings in the same digraph.
 This ordering can also be used to order strong components in a non-strong digraph, such that the ordering of the components $C_1,C_2,\dots C_k$ is an acyclic digraph when contracting the components into $k$ vertices. 
-When classifying digraphs, there are several ways of doing this, like \textbf{transitive} digraphs which are digraphs where for all vertices $a,d,c\in V$ where the arc $(a,b)$ and $b,c$ is present in the digraph ($\in A$), the arc $(a,c)$ has to be a part of $A$ too. 
-Using the same kind of classification, there are digraphs which are \textbf{Quasi-transitive}, which is for all vertices $a,d,c\in V$ where the arc $(a,b)$ and $b,c$ is present in the digraph ($\in A$, $a$ and $c$ has to be adecent by at \textit{least} one (more arcs in between are also allowed) arc in either direction ($(a,c)$ or $(c,a)$)). These graphs are going to be mentioned a lot in this thises since the graph is also what we call \textbf{decomposable}.\\
+When classifying digraphs, there are several ways of doing this, like \textbf{transitive} digraphs which are digraphs where for all vertices $a,d,c\in V$ where the arc $(a,b)$ and $b,c$ is present in the digraph ($\in A$), the arc $(a,c)$ has to be a part of $A$ too (\autoref{fig:transitive}). 
+Using the same kind of classification, there are digraphs which are \textbf{Quasi-transitive}, which is for all vertices $a,d,c\in V$ where the arc $(a,b)$ and $b,c$ is present in the digraph ($\in A$, $a$ and $c$ has to be adecent by at \textit{least} one (more arcs in between are also allowed) arc in either direction ($(a,c)$ or $(c,a)$)) (\autoref{fig:quasitransitive}). These graphs are going to be mentioned a lot in this thises since the graph is also what we call \textbf{decomposable}.\\
 A \textbf{Decomposable} digraph $D=S[H_1,H_2,\dots H_s]$ is a digraph $D$ that can be decomposed into $H_1,H_2, \dots , H_s$ \textbf{houses} and a digraph $S$ denoted as the \textbf{quotient} digraph where $|V(S)|=s$. 
 Let $S$ be the quotient digraph of $D$ where $V(S)=\lbrace s_1,s_2,\dots,s_s\rbrace$. 
 If each $s_i$ is replaced by the digraph $H_i$ $i=1,2,\dots,k$, we have the digraph $D$, where $H_i\rightarrow H_j \in D$ if $s_i\rightarrow s_j\in S$. 
 This is called a \textbf{composition} of $S$ or a \textbf{decomposition} of $D$.
 This is the class of digraphs we are focusing on in this thesis. 
 If all the houses are independent sets, we call $D=S[H_1,H_2,\dots ,H_k]$ the extension of $S$. 
+\begin{figure}[htp]
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+        %nodes
+        \begin{scope}
+            \node[draw,circle] (v1) {};
+            \node[draw,circle,below left = 1cm and 0.5cm of v1] (v2) {};
+            \node[draw,circle,below right = 1cm and 0.5cm of v1] (v3) {};
+        \end{scope}
+        
+        %crosses
+        \begin{scope}
+            \path [-{Latex[length=3mm]}] (v2) edge node[left] {} (v1);
+            \path [-{Latex[length=3mm]}] (v3) edge node[left] {} (v1);
+            \path [<->,dashed] (v3) edge node[left] {} (v2);
+        \end{scope}
+        \end{tikzpicture}
+        \caption{A locally in-semicomplete digraph has the invariant that if there are two incoming arcs, the source of those two arcs must have an arc between them.}
+        \label{fig:localin}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.49\textwidth}
+        \centering
+        \begin{tikzpicture}
+        %nodes
+        \begin{scope}
+            \node[draw,circle] (v1) {};
+            \node[draw,circle,below left = 1cm and 0.5cm of v1] (v2) {};
+            \node[draw,circle,below right = 1cm and 0.5cm of v1] (v3) {};
+        \end{scope}
+        
+        %crosses
+        \begin{scope}
+            \path [-{Latex[length=3mm]}] (v1) edge node[left] {} (v2);
+            \path [-{Latex[length=3mm]}] (v1) edge node[left] {} (v3);
+            \path [<->,dashed] (v3) edge node[left] {} (v2);
+        \end{scope}
+        \end{tikzpicture}
+        \caption{A locally out-semicomplete digraph has the invariant that if there are two outgoing arcs, the sink of those two arcs must have an arc between them.}
+        \label{fig:localout}
+    \end{subfigure}
+\end{figure}
 If $S$ is a semicomplete digraph, we call the extension of these \textbf{extended semicomplete} digraph.
 Like we already mentioned, Quasi-transitive digraphs are decomposable but we have several classes that are decomposable, and another class of digraphs that we are giong to cover in this dissertation are \textbf{locally semicomplete} digraphs.\\
-First, we introduce \textbf{locally in-semicomplete} digraphs where for every in-neighboor of a vertex, $x\in V$ has to be adjacent. 
+First, we introduce \textbf{locally in-semicomplete} digraphs where for every in-neighboor of a vertex, $x\in V$ has to be adjacent (\autoref{fig:localin}). 
 This has to be true for all $x\in V$ ($x\cup N^-(x)$ induces a semicomplete digraph $\forall x\in V$). 
-When $x\cup N^+(x)$ for all vertices in $D$, it classifies as \textbf{locally out-semicomplete} digraphs. 
+When $x\cup N^+(x)$ for all vertices in $D$, it classifies as \textbf{locally out-semicomplete} digraphs (\autoref{fig:localout}). 
 Respectively, it is called an out-locally semicomplete digraph if $\forall x\in V$, $N^+(x)$, has to be adjacent. 
 If a digraph is both locally in-semicomplete and locally out-semicomplete, it is called a \textbf{locally semicomplete} digraph. 
 Why both quasi-transitive digraphs and some locally semicomplete digraphs are decomposeble will be described in \autoref{sec:gdecomposable}.\\

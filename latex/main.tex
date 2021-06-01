@@ -21,9 +21,10 @@
 \usepackage{xcolor}
 \usepackage{wrapfig}
 \usepackage{subcaption}
+\usepackage{titling}
 
 \usepackage{tikz,tkz-graph,tkz-berge,tkz-euclide}
-\usetikzlibrary{calc,shapes,arrows,backgrounds,fit,positioning}
+\usetikzlibrary{calc,shapes,arrows,backgrounds,fit,positioning,arrows.meta,decorations.markings,snakes}
 
 %\setlength{\parindent}{0pt}
 \setlength{\parskip}{2ex} 
@@ -107,6 +108,19 @@
 		\large{}
 	\end{center}
 \end{titlepage}
+\begin{abstract}
+	A decomposable digraph $D = S[H_1, H_2 \dots , H_s]$ is built from a quotient digraph $S$ and the houses $H_1, H_2 \dots H_s$.
+	The quasi transitive digraphs are decomposable with the quotient digraph as either a semicomplete digraph or a acyclic transitive digraph.
+	The locally semicomplete digraphs are split into three subclasses; semicomplete, round-decomposable and evil locally semicomplete digraphs.
+	For the evil locally semicomplete digraphs we can make a semicomplete decomposition.
+	These structures of decomposable digraphs make it possible to solve the hamiltonian cycle problem, the linkage problem and the weak linkage problem in polynomial time, which will be explored in this work.
+	
+	Throughout this work, the classes of digraphs $\phi_1$ and $\phi_2$, will be of interest, where:
+	\begin{align}
+		\phi_1=\lbrace \text{Semicomplete digraphs}\rbrace\cup \lbrace \text{Acyclic digraphs}\rbrace\\
+		\phi_2=\lbrace \text{Semicomplete digraphs}\rbrace\cup \lbrace \text{Round digraphs}\rbrace
+	\end{align}
+\end{abstract}
 \tableofcontents
 	\clearpage
 	\section{Introduction}
@@ -132,7 +146,44 @@
 	%\part{Spanning disjoint subdigraphs (Arc decomposition)}
 	%\input{arcdecomposition/arcdecom}
 	\clearpage
+	\section{Conclusions and further results}
+	In \autoref{chap:Hamilton} we explored the problem of the hamiltonian cycle and path problem.
+	For the locally semicomplete digraphs we did not need to exploit the structure of the decomposability.
+	It was shown that the decomposability was of great importance in quasi transitive digraphs, because that the houses' path cover had a correlation to the cycle in the quotient digraph.
 
+	After which, we then explored the linkage problem in \autoref{chap:linkage}, for which we explored an algorithm which was generally applicable to the class of problems that are linkage ejectors.
+	$\phi_1$ and $\phi_2$ are both linkage ejectors, such that the problems could be solved for quasi transitive and round decomposable digraphs.
+	Since evilly semicomplete digraphs have a semicomplete decomposition of at most three houses, then by \autoref{thm:inducesemi}.
+
+	Finally, in \autoref{chap:weak} we find an algorithm similar to the one used for the linkage problem, with the difference being that the class now must be bombproof.
+	$\phi_1$ and $\phi_2$ are bombproof classes, such that we have a solution for both quasi transitive digraphs and round decomposable digraphs.
+	Here we solve the rest of the locally semicomplete digraphs that are not decomposable, by utilizing their independence number, which is at most two such that we can apply \autoref{thm:independencepoly}, to solve the weak $k$-linkage problem.
+
+	\subsection{Further results}
+	As we have seen throughout this thesis, the structure of decomposable digraphs can be used to solve various problems.
+	A problem that would have been of interest to include in this thesis is the arc disjoint strong spanning subdigraphs.
+	Bang-Jensen, Gutin and Yeo proved that the arc disjoint strong spanning subdigraphs is polynomially solvable for quasi transitive digraphs in~\cite{bangJGT95}.
+	The technique used in~\cite{bangJGT95} is coloring the arcs in two colors, red and blue, which turns out to be the arc decomposition of the digraph $D = (V,A)$.
+	\begin{thm}\label{thm:mainresult}
+		Let $T$ be a strong semicomplete digraph on $t \geq 2$ vertices and let $H_1, \dots ,H_t$ be arbitary digraphs.
+		Then $D = T[H_1, \dots, H_t]$ has a strong arc decomposition if and oly if $D$ is 2-arc-string and is not simorphic to one of the following four digraphs: $S_4,\overrightarrow{C}_3[\overline{K}_2,\overline{K}_2,\overline{K}_2],\overrightarrow{C}_3[\overline{K}_2,\overline{K}_2,\overline{P}_2]$ and $\overrightarrow{C}_3[\overline{K}_2,\overline{K}_2,\overline{K}_3]$.
+	\end{thm}
+	Since a strong quasi transitive digraph is decomposable where quotient digraph is a semicomplete digraph, \autoref{thm:mainresult} can be used on quasi transitive digraphs.
+	\begin{thm}\label{thm:dependent}
+		Let $D = T[H_1, \dots, H_t]$ be 2-arc-strong ($t \geq 2$) where T is a semicomplete digraph and every $H_i$ is an arbitary digraph. Then at lease one of the following cases holds.
+		\begin{itemize}
+			\item[(a)] $D$ has a strong arc decomposition.
+			\item[(b)] $D$ is an extended semicomplete digraph.
+			\item[(c)] For every $i \in [t]$ and eveyr arc $d$ of $H_i$, $D - e$ is 2-arc-strong.
+		\end{itemize}
+	\end{thm}
+	The main result in~\cite{bangJGT95} is \autoref{thm:mainresult}, which build on \autoref{thm:dependent}.
+
+	The problem is also explored for locally semicomplete digraphs by Bang-Jensen and Huang in~\cite{bangJCT102}.
+	\begin{thm}\label{thm:secondpower}
+		A 2-arc-strong locally semicomplete digraph $D$ has a good decomposition if and only if $D$ is not the second power of an even cycle.
+	\end{thm}
+	The proof of \autoref{thm:secondpower} exploits the structure of the evil digraphs described in \autoref{sec:locally}.
 \bibliographystyle{unsrt}
 \bibliography{bib}
 \end{document}
