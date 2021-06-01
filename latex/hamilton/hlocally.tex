@@ -1,34 +1,37 @@
-Recall that a locally semicomplete digraph is both in-locally semicomplete and out-locally semicomplete. 
-Before this gets relevant we are going to introduce a class of digraphs called path-mergeable.\\ 
-A form of definition of path mergeable digraphs is if there exists a pair of distinct vertices $x,y\in V(D)$ and any two disjoint $(x,y)$-paths there exists a new path from $x$ to $y$ where it is a union of the vertices used in the two vertex-disjoint paths (ending up with a "merge" path of the two given path).\\
-These digraphs are easy to regonize with the following corollary we can do it in polynomial time too and the following theorem gives us a nice propertie of path-mergeable digraphs.
+Recall that a locally semicomplete digraph is both locally in-semicomplete and locally out-semicomplete. 
+Before this gets relevant, we are going to introduce a class of digraphs called path-mergeable.\\ 
+A definition of path mergeable digraphs: is if there exists a pair of distinct vertices $x,y\in V(D)$ and any two disjoint $(x,y)$-paths, there exists a new path from $x$ to $y$  a union of the vertices used in the two vertex-disjoint paths (ending up with a "merge" path of the two given path).\\
+These digraphs are easy to recognize with the following corollary. 
+We can do it in polynomial time too, and the following theorem gives us a nice property of path-mergeable digraphs.
 \begin{cor}~\cite{banggutin}
-    Path-mergeable digraphs can be regonized in polynomial time.
+    Path-mergeable digraphs can be recognized in polynomial time.
 \end{cor}
 \begin{thm}~\cite{banggutin}
     A digraph $D$ is path mergeable if and only if for every pair of distict vertices $x,y\in V(D)$ and every pair $P=xx_1\dots x_ry,\ P'=xy_1\dots y_sy$, $r,s\geq 1$ of internally disjoint $(x,y)$-paths in $D$, either there exists an $i\in \lbrace 1,\dots ,r\rbrace$, such that $x_i\rightarrow y_1$, or there exists a $j\in \lbrace 1,\dots, y_j\rightarrow x_1\rbrace$.
     \label{thm:pathmerge}
 \end{thm}
-To explain \autoref{thm:pathmerge} it tells us that for every path mergeable digraph in every two disjoint $(x,y)$-path there has to be from one of the path a vertex that dominates the first vertex after $x$ in the other path. 
+\autoref{thm:pathmerge} tells us, that for every path mergeable digraph in every two disjoint $(x,y)$-path there has to be from one of the path a vertex that dominates the first vertex after $x$ in the other path. 
 This has to hold for every distict pair of vertices $x$ and $y$. \\
-It turns out that in these digraph we can easily determine whether it is a hamiltonian digraph too.
+It turns out that in these digraphs, we can easily determine whether it is a Hamiltonian digraph.
 \begin{thm}~\cite{bangJGT20}
-    A path-mergeable digraph $D$ of order $n\geq 2$ is hamiltonian if and only if $D$ is strong and $UG(D)$ is $2$-connected.
+    A path-mergeable digraph $D$ of order $n\geq 2$ is Hamiltonian if and only if $D$ is strong and $UG(D)$ is $2$-connected.
     \label{thm:pathham}
 \end{thm}
 \begin{cor}~\cite{bangJGT20}
-    There is an $O(nm)$-algorithm to decide whether a given strong path-mergeable digraph has a hamiltonian cycle and find one if it exists.
+    There is an $O(nm)$-algorithm to decide whether a given strong path-mergeable digraph has a Hamiltonian cycle and find one if it exists.
     \label{cor:polypath}
 \end{cor}
-So it turns out that for path-mergeable digraphs this problem is polynomial \textcolor{red}{solveable}, and a subclass of these path-mergeable digraph is namely the locally semicomplete digraphs. 
-If we can prove this we do not only know that we can solve the hamilton cycle in polynomial time since the locally semicomplete digraphs is a special subclass of path-mergeable digraph we have an even better time for these.
+So it turns out that for path-mergeable digraphs this problem is polynomial solvable, and a subclass of these path-mergeable digraph is namely the locally semicomplete digraphs. 
+If we can prove this, we do not only know that we can solve the Hamilton cycle in polynomial time. 
+Since the locally semicomplete digraphs is a special subclass of path-mergeable digraph we have an even better time for these.
 \begin{prop}~\cite{bangJGT20}
     Every locally in-semicomplete (out-semicomplete) digraph is path-mergeable.
 \end{prop}
 \begin{proof}
-    First we prove its true for out-semicomplete and there after for in-semicomplete digraphs.
-    So lets assume that $D$ is an out-semicomplete digraph, and we take $x$ and $y$ where we say that these two have 2 vertex disjoint $(x,y)$-paths called $P$ and $Q$.\\
-    Let $P=y_1y_2\dots y_k$ and $Q=z_1z_2\dots z_s$ where $y_1=x=z_1$ and $y_k=y=z_s$. We want to show that there exists a path $R$ where $V(R)=V(P)\cup V(Q)$, if $|A(P)|+|A(Q)|=3$ it is clear from \autoref{fig:basecase} that we can just choose the longest of the paths and we have all vertex included from both paths.
+    First we prove it is true for out-semicomplete and there after for in-semicomplete digraphs.
+    So letbus assume that $D$ is an out-semicomplete digraph, and we take $x$ and $y$ where we say that these two have 2 vertex disjoint $(x,y)$-paths called $P$ and $Q$.\\
+    Let $P=y_1y_2\dots y_k$ and $Q=z_1z_2\dots z_s$ where $y_1=x=z_1$ and $y_k=y=z_s$. We want to show that there exists a path $R$ where $V(R)=V(P)\cup V(Q)$, if $|A(P)|+|A(Q)|=3$. 
+    It is clear from \autoref{fig:basecase} that we can just choose the longest of the paths and we have all vertices included from both paths.
     \begin{figure}
         \centering
         \begin{subfigure}{0.36\textwidth}
@@ -42,7 +45,7 @@ If we can prove this we do not only know that we can solve the hamilton cycle in
                 \draw[->] (z) to (y);
                 \draw[->] (x) to (y);
             \end{tikzpicture}
-            \caption{An visuel example of two vertex disjoint paths $P$ and $Q$ where $|A(P)|+|A(Q)|=3$.}
+            \caption{A visual example of two vertex disjoint paths $P$ and $Q$ where $|A(P)|+|A(Q)|=3$.}
             \label{fig:basecase}
         \end{subfigure}\hfill
         \begin{subfigure}{0.60\textwidth}
@@ -56,54 +59,56 @@ If we can prove this we do not only know that we can solve the hamilton cycle in
                 \draw[->] (x) to (z);
                 \draw[densely dashed] (y) to (z);
             \end{tikzpicture}
-            \caption{Clearly from the definition of out-semicomplete the dashed line need to be an arc in either direction or both directions.}
+            \caption{Clearly, from the definition of out-semicomplete, the dashed line needs to be an arc in either direction or both directions.}
             \label{fig:outsemi}
         \end{subfigure}
     \end{figure}
-    So we assume that $|A(P)|+|A(Q)|\geq 4$, and ince $D$ is out-semicomplete we know that either $y_2\rightarrow z_2$ or $z_2\rightarrow y_2$ or both has to be true. For conformation see \autoref{fig:outsemi}.
-    This must be true forevery pair of vertices $x$ and $y$ where there is two distict $(x,y)$-paths. The rest of this part of the proof is from \autoref{thm:pathmerge} which conlude the proof for out-semicomplete.\\
+    So we assume that $|A(P)|+|A(Q)|\geq 4$, and ince $D$ is out-semicomplete we know that either $y_2\rightarrow z_2$ or $z_2\rightarrow y_2$ or both has to be true. 
+    For confirmation see \autoref{fig:outsemi}.
+    This must be true for every pair of vertices $x$ and $y$ where there are two distict $(x,y)$-paths. The rest of this part of the proof is from \autoref{thm:pathmerge}, which conludes the proof for out-semicomplete digraph.\\
 
-    Now suppose that $D$ is in-semicomplete then reveersing the arcs will make it out-semicomplete denoted this digraph $D$-revers. 
-    Now for two distict vertices $x$ and $y$ where there exists two distict $(x,y)$-path $P$ and $Q$ in $D$, then in $D$-revers their must exists two distinct $(y,x)$-paths $P$-revers $Q$-revers. \\
-    Since $D$-reverse is out-semicomplete we can find a path $R$ where $V(R)=V(P\text{-revers}) \cup V(Q\text{-revers})$ in $D$-revers. 
-    Then in $D$ we have a $(x,y)$-path $R$-revers where $V(R\text{-revers})=V(P)\cup V(Q)$. 
-    Making every in-semicomplete digraphs path-mergeable.   
+    Now suppose that $D$ is in-semicomplete. 
+    Then reversing the arcs will make it out-semicomplete. Denote this digraph $D$-reverse. 
+    Now for two distict vertices $x$ and $y$ where there exists two distinct $(x,y)$-path $P$ and $Q$ in $D$, then in $D$-reverse there must exist two distinct $(y,x)$-paths $P$-reverse $Q$-reverse. \\
+    Since $D$-reverse is out-semicomplete, we can find a path $R$ where $V(R)=V(P\text{-reverse}) \cup V(Q\text{-reverse})$ in $D$-reverse. 
+    Then in $D$ we have a $(x,y)$-path $R$-reverse where $V(R\text{-reverse})=V(P)\cup V(Q)$. 
+    Making every in-semicomplete digraph path-mergeable.   
 \end{proof}
 
 
-Then it turns out that \autoref{thm:pathham} and \autoref{cor:polypath} can be imporved if we are only looking at the in-locally semicomplete digraph, since the locally semicomplete digraph is a subclass of these, and it is the ones we are interested in, in this thises. 
-It turns out that every strong in-locally semicomplete digraph has a 2-connected underlyning graph, which means the only thing we need to check is whether it is a strong digraph.
+It turns out that \autoref{thm:pathham} and \autoref{cor:polypath} can be improved if we are only looking at the locally in-semicomplete digraphs, since the locally semicomplete digraphs are a subclass of these, and it is the ones we are interested in, in this thesis. 
+It turns out that every strong in-locally semicomplete digraph has a 2-connected underlying graph, which means the only thing we need to check is whether it is a strong digraph.
 \begin{thm}~\cite{bangJCT59}
-    A locally in-semicomplete digraph $D$ of order $n\geq 2$ is hamiltonian if and only if $D$ is strong.
+    A locally in-semicomplete digraph $D$ of order $n\geq 2$ is Hamiltonian if and only if $D$ is strong.
 \end{thm}
 
-It turns out that when looking at the strong locally in-semicomplete digraphs out of the path-mergeable digraph finding the hamiltonian cycle can be done i polynomial time by theorem discorvered by Bang-Jensen and Hell in \cite{bangDM41}.
+It turns out that when looking at the strong locally in-semicomplete digraphs out of the path-mergeable digraph finding the Hamiltonian cycle can be done in polynomial time by a theorem discovered by Bang-Jensen and Hell in \cite{bangDM41}.
 \begin{thm}~\cite{bangDM41}
-    There is an $O(m+n\text{log}n)$-algorithm for finding a hamiltonian cycle in a strong locally in-semicomplete digraph.
+    There is an $O(m+n\log n)$-algorithm for finding a Hamiltonian cycle in a strong locally in-semicomplete digraph.
 \end{thm}
 
-This ends the section about hamiltonian locally semicomplete digraphs, now we want to know about traceable locally semicomplete digraph. \\
-First we need to know that an \textbf{out-branching} for a digraph $D$ is where you have a vertex as the root of this branching and arcs only going out of this for all other vertex they have only one arc going in and arcs going out is $\geq 0$. 
+This ends the section about Hamiltonian locally semicomplete digraphs, now we want to know about traceable locally semicomplete digraphs. \\
+First we need to know that an \textbf{out-branching} for a digraph $D$ is where for one specific vertex, the root, have arcs only going out of it, and for all other vertices they have only one arc going in and the number of arcs going out is $\geq 0$. 
 An in-branching is the above explaination where all arcs are reversed.
 \begin{lemma}~\cite{banggutin}
     Every connected locally in-semicomplete digraphs $D$ has an out-branching
     \label{thm:connected}
 \end{lemma}
 \begin{thm}~\cite{bangJCT59}
-    A locally in-semicomplete digraph is traceable if and only if it contains an in-branching
+    A locally in-semicomplete digraph is traceable if and only if it contains an in-branching.
     \label{thm:branching}
 \end{thm}
-This also means that reversing the arcs that a locally out-semicomplete digraph is traceable if and only if it contains an out-branching. 
-if this out-branching or in-branching exists for locally out-semicomplete or locally in-semicomplete digraphs respectively we want to find the longest path in these and then we have the wanted hamilton path.
+This also means that reversing the arcs, that a locally out-semicomplete digraph is traceable if and only if it contains an out-branching. 
+If this out-branching or in-branching exists for locally out-semicomplete or locally in-semicomplete digraphs respectively, we want to find the longest path in these and then we have the wanted Hamilton path.
 \begin{thm}~\cite{bangDM41}
-    A longest path in a locally in-semicomplete digraph $D$ can be found in time $O(m+n\text{ log}n)$. 
+    A longest path in a locally in-semicomplete digraph $D$ can be found in time $O(m+n\log n)$. 
     \label{thm:tracetime}
 \end{thm}
-And again this is also true for locally out-semicomplete digraphs.
-Connecting \autoref{thm:branching} and \autoref{thm:connected} we know that a locally semicomplete digraph is both locally in-semicomplete meaning from \autoref{thm:connected} in contains an out-branching if it is connected and it is locally out-semicomplete. So if it contains an out-branching it is traceable. 
-\begin{thm}~\cite{bangJGT14}
-    A locally semicomplete digraph has a hamiltonian path if and only if it is connected.
+And again, this is also true for locally out-semicomplete digraphs.
+Connecting \autoref{thm:branching} and \autoref{thm:connected}, we know that a locally semicomplete digraph is both locally in-semicomplete, meaning from \autoref{thm:connected} it contains an out-branching if it is connected, and it is locally out-semicomplete. So if it contains an out-branching it is traceable. 
+\begin{thm}%~\cite{bangJGT14}
+    A locally semicomplete digraph has a Hamiltonian path if and only if it is connected.
 \end{thm}
-And this path can be found in time $O(m+n\text{ log}n)$ from \autoref{thm:tracetime}.
+The hamilton path can be found in time $O(m+n\log n)$ from \autoref{thm:tracetime}.
 
 

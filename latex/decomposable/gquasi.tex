@@ -1,52 +1,58 @@
-First we need to recall what a quasi transitive digraph is. 
-For every triplet $x,y,z$ in a quasi-transitive digraph if $x\rightarrow y$ ($x$ dominates $y$) and $y\rightarrow z$ ($y$ domitaes $z$), then there has to be at least one arc in either dirction between $x$ and $z$. 
-When working with quasi-transitive digraphs there are many things you can depend on, things that the structure has \textcolor{red}{already diceded} for us.
+First we need to recall what a quasi-transitive digraph is. 
+For every triplet $x,y,z$ in a quasi-transitive digraph, if $x\rightarrow y$ ($x$ dominates $y$) and $y\rightarrow z$ ($y$ dominates $z$), then there has to be at least one arc in either dirction between $x$ and $z$. 
+When working with quasi-transitive digraphs, there are many things you can depend on, things that the structure has already decided for us.
 \begin{lemma}~\cite{banggutin}
     Suppose that $A$ and $B$ are distinct strong components of a quasi-transitive digraph $D$ with at least one arc from $A$ to $B$. Then $A\rightarrow B$.
     \label{lemma:dominatingset}
 \end{lemma}
 Recall that this means that every vertex in $A$ has an arc to every vertex in $B$.
-Like non-strong quasi-transitive digraph we can also say something about strong quasi-transitive digraphs.
+Like non-strong quasi-transitive digraphs, we can also say something about strong quasi-transitive digraphs.
 \begin{lemma}~\cite{banggutin,bangJGT2}
-    Let $D$ be a strong quasi-transitive digraph on at least two vertices. Then the following hold:
+    Let $D$ be a strong quasi-transitive digraph on at least two vertices. 
+    Then the following hold:
     \begin{itemize}
         \item[(a)] $\overline{UG(D)}$ is disconnected;
         \item[(b)] If $S$ and $S'$ are two subdigraphs of $D$ such that $\overline{UG(S)}$ and $\overline{UG(S')}$ are distinct connected components of $\overline{UG(D)}$, then either $S\rightarrow S'$ or $S'\rightarrow S$ or both $S\rightarrow S'$ and $S'\rightarrow S$ in which case $|V(S)|=|V(S')|=1$. 
     \end{itemize} 
     \label{lemma:underlyinggraph}
 \end{lemma}
-These to lemmas play an important part in proving the following theorem which states that quasi-transitive digraphs can be decomposed no matter if there are strong or nonstrong digraphs. 
+These to lemmas play an important part in proving the following theorem, which states that quasi-transitive digraphs can be decomposed no matter if there are strong or nonstrong digraphs. 
 
 \begin{thm}~\cite{bangJGT2}
     Let $D$ be a quasi-transitive digraph.
     \label{thm:quasidecom}
     \begin{enumerate}
         \item If $D$ is not strong, then there exists a transitive acyclic digraph $T$ on $t$ vertices and strong quasi-transitive digraphs $H_1,\dots,H_t$ such that $D=T[H_1,\dots,H_t]$.
-        \item If $D$ is strong, then there exists a strong semicomplete digraph $S$ on $s$ vertices and quasi-transitive digraphs $Q_1,\dots ,Q_s$ such that each $Q_i$ is either a single vertex or is nonstrong and $D=S[Q_1,\dots,Q_s]$.
+        \item If $D$ is strong, then there exists a strong semicomplete digraph $S$ on $s$ vertices and quasi-transitive digraphs $Q_1,\dots ,Q_s$ such that each $Q_i$ is either a single vertex or is non-strong and $D=S[Q_1,\dots,Q_s]$.
     \end{enumerate}
 \end{thm}
-This theorem is also what we are going to use more then ones, to prove several of the problem solving theorems throughout this thesis.
+This theorem is also what we are going to use more then once, to prove several of the problem solving theorems throughout this thesis.
 \begin{proof}
-    Since we can decompose both strong quasi-transitive digraphs and non-strong quasi-transitive digraph we are going to prove if $D$ is not strong first and there after if $D$ is strong.
+    Since we can decompose both strong quasi-transitive digraphs and non-strong quasi-transitive digraph, we are going to prove if $D$ is not strong, and then if $D$ is strong.
     So suppose $D$ is not strong, then we know we can enumerate the strong components in an acyclic order let these be $H_1,\dots , H_t$. \\
-    Recall that an acyclic ordering of the strong components does not mean that there is no arcs going back in the ordering, but we will prove that now. \\
+    Recall that an acyclic ordering of the strong components does not mean that there are no arcs going back in the ordering, but we will prove that now. \\
     Now from \autoref{lemma:dominatingset} we know that if there is an arc between two of the strong components, one of them dominates the other.
-    Let with out loss of generality these set be $H_i$ and $H_j$ and let $H_i\rightarrow H_j$. 
-    Then Since $D$ is not-strong $H_j\nrightarrow H_i$ now let say that $H_j \rightarrow H_k$, then since $D$ is quasi-transitive then either $H_k\rightarrow H_i$ or $H_i \rightarrow H_k$. 
-    But since $H_i\cup H_j \cup H_k$ is not strong $H_k\nrightarrow H_i$ meaning contracting each $H_i$ for $i=1\dots,t$ we will have a transitive digraph $T$ and we have also shown that there are no backwards going arcs in the ordering meaning that $T$ is not only transitive but acyclic. 
-    This end the proof of the non-strong quasi-transitive digraph leving only the strong ones left.\\
+    Let without loss of generality these set be $H_i$ and $H_j$ and let $H_i\rightarrow H_j$. 
+    Then Since $D$ is not-strong $H_j\nrightarrow H_i$. 
+    Now, let us say that $H_j \rightarrow H_k$. 
+    This means since $D$ is quasi-transitive, then either $H_k\rightarrow H_i$ or $H_i \rightarrow H_k$. 
+    But since $H_i\cup H_j \cup H_k$ is not strong, $H_k\nrightarrow H_i$, meaning contracting each $H_i$ for $i=1\dots,t$ results in a transitive digraph $T$. 
+    We have also shown that there are no backwards arcs in the ordering, meaning that $T$ is not only transitive but acyclic. 
+    This ends the proof of the non-strong quasi-transitive digraph leaving only the strong ones left.\\
 
-    Now suppose that $D$ is a strong quasi-transitive digraph, we now look at the underlying graph $UG(D)$ after this we find the complement of it, $\overline{UG(D)}$ since $D$ is strong we know from \autoref{lemma:underlyinggraph} that $\overline{UG(D)}$ is disconnected, so we find $Q_1,\dots , Q_s$ where $\overline{UG(Q_i)}$ is connected in $\overline{UG(D)}$ $\forall i \in [s]$.\\ 
-    Since these subdigraphs $\overline{UG(Q_i)}$ of $\overline{UG(D)}$ is connected we know that $Q_i$ is non-strong or a single vertex in $D$. 
-    From the same lemma each $Q_i$ (reprecent $S$ in \autoref{lemma:underlyinggraph}) which means when contracting $Q_i$ $\forall i\in [s]$ into a single vertex $q_i$. 
-    Denote $D$ with contracted $Q_i$'s as $S$. 
-    We have that every pair of vertex in $S$ have one arc between in either direction or one in both direction making $S$ semicomplte. \\
+    Now suppose that $D$ is a strong quasi-transitive digraph. 
+    We now look at the underlying graph $UG(D)$. 
+    After this, we find the complement of it, $\overline{UG(D)}$. 
+    Since $D$ is strong, we know from \autoref{lemma:underlyinggraph} that $\overline{UG(D)}$ is disconnected, so we find $Q_1,\dots , Q_s$ where $\overline{UG(Q_i)}$ is connected in $\overline{UG(D)}$ $\forall i \in [s]$.\\ 
+    Since these subdigraphs $\overline{UG(Q_i)}$ of $\overline{UG(D)}$ are connected, we know that $Q_i$ is non-strong or a single vertex in $D$. 
+    From the same lemma, each $Q_i$ (represent $S$ in \autoref{lemma:underlyinggraph}), which means when contracting $Q_i$ $\forall i\in [s]$ into a single vertex $q_i$ the resulting in a digraph $S$. 
+    We have that every pair of vertices $v,u \in S$ have an arc between them in either direction or arcs in both direction making $S$ semicomplete. \\
     This concludes the proof.
 \end{proof}
-From this theorem we can see that quasi-transitive digraphs are totally $\phi_1$-decomposable. 
-Since the transitive digraph for the nonstrong quasi-transitive digraphs is acyclic $T\in \phi_1$ and each $H_i$ is itself strong quasi-triansitive digraphs and you can therefore use \autoref{thm:quasidecom} agian.  
+From this theorem, we can see that quasi-transitive digraphs are totally $\phi_1$-decomposable. 
+Since the transitive digraph for the nonstrong quasi-transitive digraphs is acyclic $T\in \phi_1$ and each $H_i$ is itself a strong quasi-triansitive digraph, and you can therefore use \autoref{thm:quasidecom} again.  
 For the strong quasi-transitive digraphs $D$, $S$ is semicomplete so $S\in \phi_1$ and each $Q_i \in \phi_1$ because it is either one vertex which is a digraph that is both acyclic and semicomplete or it is non-strong and must be quasi-transitive and therefore \autoref{thm:quasidecom} can be used agian. So every nonstrong and strong quasi-transitive digraphs is totally $\phi_1$-decomposable.
-\textcolor{red}{could not find a therom lemma or anything else so i made my own corolary}.
+Could not find a therom, lemma or anything else so i made my own corollary.
 \begin{cor}
     quasi-transitive digraphs $D$ are totally $\phi_1$-decomposable and you can find the decomposition in polynomial time.
 \end{cor}

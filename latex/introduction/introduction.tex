@@ -1,7 +1,7 @@
 
 \chapter{Notation and Graph Classes}
 This chapter introduces graphs and notation. 
-Notation in this thesis may diverge from the notation of some articles to ensore a uniform notation.  \autoref{sec:class} introduces names and nottions of graph-classes that will be explored throughout this thesis.
+Notation in this thesis may diverge from the notation of some articles to ensure a uniform notation.  \autoref{sec:class} introduces names and notations of graph classes that will be explored throughout this thesis.
 \label{chap:intro}
 \section{Graphs and Digraphs}
 \label{sec:digraph}
@@ -15,36 +15,39 @@ Notation in this thesis may diverge from the notation of some articles to ensore
 
 \chapter{Decomposable Digraphs}
 \label{chap:decomposable}
-Decomposable digraphs is what we in this thesis is focusing on. 
-We have introduced short what a decomposable digraph is but there is subclasses to focus on and a lot of other crucial definitions and theroems to cover about these digraphs before delving into the NP-hard problems. 
-First we cover some general things about decomposable digraphs the next section is about quasi-transitive digraphs, and why they are a subclass of decomposable digraphs and $\phi_1$-decomposable digraphs. At the end of the section we prove that these decompositions can be found in polynomial time. 
-Which is going to be crucial for solving some NP-hard problems for this class of digraphs. Then we are going to look at a very general class of digraphs locally semicomplete digraphs, where this class can be split up to 3 different subclasses where 2 of those are decomposable. 
-This is covered in \autoref{sec:locally} and is going to be used in later chapthers. 
-\section{General about Decomposable digraphs}
+Decomposable digraphs are what we in this thesis is focusing on. 
+We have briefly introduced what a decomposable digraph is, but there are subclasses to focus on and a lot of other crucial definitions and theroems to cover about these digraphs before delving into the NP-hard problems. 
+First, we cover some general things about decomposable digraphs. 
+The next section is about quasi-transitive digraphs, and why they are a subclass of decomposable digraphs and $\phi_1$-decomposable digraphs. 
+At the end of the section, we prove that these decompositions can be found in polynomial time, which is going to be crucial for solving some NP-hard problems for this class of digraphs. 
+Then we have a very general class of digraphs, locally semicomplete digraphs, this class can be split up to 3 different subclasses, where 2 of those are decomposable. 
+This is covered in \autoref{sec:locally} and is going to be used in later chapters. 
+\section{General about Decomposable Digraphs}
 \label{sec:gdecomposable}
 \input{decomposable/gdecomposable}
 \section{Quasi-transitive Digraph}
 \label{sec:quasi}
 \input{decomposable/gquasi}
-\section{Locally semicomplete Digraph}
+\section{Locally Semicomplete Digraph}
 \label{sec:locally}
 \input{decomposable/glocally}
 
-\chapter{Path cover and hamilton cycles}
-\label{chap:hamilton}
-In this chapter the focus is the hamilton cycle problem, where we know that if we can solve the path covering problem then we can solve the hamilton cycle problem for quasi-transitive digraphs.\\
-In the first section we are going to cover, what a hamilton path is, and a hamilton cycle Since these to problems are well know as \textbf{NP-Complete} which will shortly be introduced too.\\
-The next section is about path-mergeable digraphs and that locally semicomplete digraphs are a subclass of these and how this helps in the path covering problem and hamilton cycle problem. 
-%Then state some theorems that says knowing special things about the graph we know when it contain a hamilton cycle. \\
-The following section is covering quasi-transitive digraphs and whether or not there exists a hamilton cycle in those. Here the decomposition of the quasi-transitive digraphs is going to be a crucial part of proving this. \\
+\chapter{Path Cover and Hamilton Cycles}
+\label{chap:Hamilton}
+In this chapter, the focus is the Hamilton cycle problem, where we know that if we can solve the path covering problem, then we can solve the Hamilton cycle problem for quasi-transitive digraphs.\\
+In the first section we are going to cover what a Hamilton path is, and a Hamilton cycle Since these to problems are well known as \textbf{NP-Complete} which will shortly be introduced too.\\
+The next section is about path-mergeable digraphs and that locally semicomplete digraphs are a subclass of these, and how this helps in the path covering problem and Hamilton cycle problem. 
+%Then state some theorems that says knowing special things about the graph we know when it contain a Hamilton cycle. \\
+The following section is covering quasi-transitive digraphs and whether or not there exists a Hamilton cycle in those. 
+Here, the decomposition of the quasi-transitive digraphs is going to be a crucial part of proving this. \\
 
 
 \section{The Hamilton Path and Cycle Problem}
 \label{sec:hNP}
-\input{hamilton/hNP}
-\section{Hamiltonian Locally semicomplete Digraphs}
+\input{Hamilton/hNP}
+\section{Hamiltonian Locally Semicomplete Digraphs}
 \label{sec:hlocally}
-\input{hamilton/hlocally}
+\input{Hamilton/hlocally}
 \section{Hamiltonian Quasi-transitive Digraphs}
 \label{sec:hquasi}
-\input{hamilton/hquasi}
+\input{Hamilton/hquasi}

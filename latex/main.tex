@@ -43,9 +43,9 @@
 \newcommand{\lemmaautorefname}{Lemma}
 \newcommand{\definitionautorefname}{Definition}
 \newcommand{\exampleautorefname}{Example}
-\newcommand{\propautorefname}{Propertition}
+\newcommand{\propautorefname}{Proportition}
 \newcommand{\chapautorefname}{Chapter}
-\newcommand{\algautorefname}{Algorithm}
+\newcommand{\algorithmautorefname}{Algorithm}
 
 %\newcommand{\fitellipsis}[2] % first and second node names without parentheses
 %{\draw [red] let \p1=(#1), \p2=(#2), \n1={atan2(\y2-\y1,\x2-\x1)}, \n2={veclen(\y2-\y1,\x2-\x1)}
@@ -110,15 +110,27 @@
 \tableofcontents
 	\clearpage
 	\section{Introduction}
-	Why we need graphs.
-	\part{Decomposable digraphs and solutions for Hamilton cycle problem.}
+	In everyday life there are many different problems that can be described with graphs.
+	For instance, when planning postal routes for post delivery services it might become of interest if there exists a route in which every house is visited once.
+	The problem of finding a path that visits every house exactly once, is called the hamiltonian path problem.
+	If it is further required that the postman's final destination is the postal office, that is, where the route began, then the problem is called the hamilotnian cycle problem.
+	Both problems lie in a class of problems named NP-complete, which are computationally difficult.
+	In fact, many graph related problems lie within the class of NP-complete.
+	Fortunately, for some particular graphs named ''decomposable digraphs``, a solution might exist that is computationally faster than otherwise.
+	
+	In this work, algorithms are explored that either find a solution in polynomial time or decide that the problem is not solvable in polynomial time.
+	We will focus on three problems that are the hamiltonian path and cycle problem, the linkage problem and the weak linkage problem.
+	In all of the aforementioned problems, the structure of the decomposable digraph in question is the key to finding a computationally fast solution.
+	The decomposable digraphs that investegated the most, are the quasi-transitive and the locally-semicomplete, and therefore are the focus of this thesis.
+
+	\part{Decomposable Digraphs and the Hamilton Cycle Problem.}
 	\input{introduction/introduction}
 	\clearpage
-	\part{Linkage and weak linkage}
+	\part{Linkage and Weak Linkage}
 	\input{linkage/linkage}
 	\clearpage
-	\part{Spanning disjoint subdigraphs (Arc decomposition)}
-	\input{arcdecomposition/arcdecom}
+	%\part{Spanning disjoint subdigraphs (Arc decomposition)}
+	%\input{arcdecomposition/arcdecom}
 	\clearpage
 
 \bibliographystyle{unsrt}
