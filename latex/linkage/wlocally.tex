@@ -12,9 +12,52 @@ This means when considering all other locally semicomplete digraphs, it has an i
 \end{thm}
 For solving the weak $k$-linkage problem in locally semicomplete digraphs, we now only need to find a polynomial algorithm for the round-decomposable digraphs.
 Before going into this, we have to introduce something called the cutwidth. This definition of cutwidth is inspired by the describtion of the cutwidth in \cite{bangJGT77}.\\
-Given a digraph $D$ and an ordering of the vertices $O=v_1,\dots,v_n$ we say that the ordering $O$ has a \textbf{cutwidth} at most $\theta$ if $\forall j\in \lbrace 2,3, \dots n\rbrace$. There are at most $\theta$ arcs $u,v$ with $u\in \lbrace v_1,\dots ,v_{j-1}\rbrace$ and $v\in \lbrace v_j,\dots ,v_n\rbrace$ 
-see ....
-Say we have another ordering $O'$ of the same digraph $D$, if $O'$ has a cutwidth at most $\theta$ for all possible orderings $O'$ of $D$, then $D$ is said to have a \textbf{cutwidth} at most $\theta$. \\
+Given a digraph $D$ and an ordering of the vertices $O=v_1,\dots,v_n$ we say that the ordering $O$ has a \textbf{cutwidth} at most $\theta$ if $\forall j\in \lbrace 2,3, \dots n\rbrace$. There are at most $\theta$ arcs $u,v$ with $u\in \lbrace v_1,\dots ,v_{j-1}\rbrace$ and $v\in \lbrace v_j,\dots ,v_n\rbrace$.
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[declare function={rr=1+0.1*rnd;}]
+        %nodes
+        \begin{scope}[every node/.style={circle,thick,draw}]
+            \node[draw=none] (v1) {$v_1$};
+            \node[draw=none,right = 0.9cm of v1] (v2) {$v_2$};
+            \node[draw=none,right = 0.9cm of v2] (vj-1) {$v_{j - 1}$};
+        
+            \node[draw=black,fit=(v1)(v2)(vj-1) ,inner sep=0.5ex,ellipse] (tmp) {};
+        \end{scope}
+        
+        \begin{scope}[every node/.style={circle,thick,draw}]
+            \node[draw=none,right = 2cm of vj-1] (vj) {$v_j$};
+            \node[draw=none,right = 0.9cm of vj] (vn) {$v_n$};
+            
+            \node[draw=black,fit=(vj)(vn) ,inner sep=0.5ex,ellipse] (tmp2) {};
+        \end{scope}
+        
+        %paths 1
+        \begin{scope}
+            \path [-,dashed] (v2) edge node[left] {} (vj-1);
+            \path [-{Latex[length=1.5mm]},dashed] (v2) edge[bend right=45] node[left] {} (vj-1);
+        \end{scope}
+        
+        %paths 2
+        \begin{scope}
+            \path [-,dashed] (vj) edge node[left] {} (vn);
+            \path [-{Latex[length=1.5mm]},dashed] (vj) edge[bend right=45] node[left] {} (vn);
+        \end{scope}
+        
+        %crosses
+        \begin{scope}
+            \path [-{Latex[length=3mm]},dashed] (tmp2) edge[bend left=45] node[left] {} (tmp);
+            \path [-{Latex[length=3mm]}] (tmp) edge[bend left=47] node[left] {} (tmp2);
+            \path [-{Latex[length=3mm]}] (tmp) edge[bend left=37] node[left] {} (tmp2);
+            \path [-{Latex[length=3mm]}] (tmp) edge[bend left=18] node[left] {} (tmp2);
+            \path [-{Latex[length=3mm]}] (tmp) edge[bend left=10] node[left] {} (tmp2);
+            \path [-{Latex[length=3mm]}] (tmp) edge[bend right=10] node[left] {} (tmp2);
+        \end{scope}
+    \end{tikzpicture}
+    \caption{The cutwitdh of the ordering here is a number $\theta$ such that of arcs going from the left set of vertices to the right set of vertices $\forall j=2,3,\dots ,n$ is at most $\theta$}
+    \label{fig:cutwidth}
+\end{figure}
+Say we have another ordering $O'$ of the same digraph $D$, if $O'$ has a cutwidth at most $\theta$ for all possible orderings $O'$ of $D$, then $D$ is said to have a \textbf{cutwidth} at most $\theta$(\autoref{fig:cutwidth}).  \\
 The minimum natural number $\theta$ such that $D$ has a cutwidth at most $\theta$, we call $\theta$ the \textbf{cutwidth} of $D$.
 When we know the cutwidth of the digraph we can solve the weak $k$-linkage problem for those in polynomial time.
 \begin{thm}~\cite{bangJGT77}

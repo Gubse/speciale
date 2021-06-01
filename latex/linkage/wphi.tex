@@ -15,9 +15,6 @@ The clean houses $(D,\Pi)$ actually have an important role, namely that we do no
     Let $D$ be a digraph, $\Pi$ a list of $k$ terminal pairs, and $H\subset D$ a clean house with respect to $\Pi$. Let $D'$ be the contraction of $H$ into a single vertex $h$. Then $D$ has a waek $\Pi$-linkage if and only if $D'$ has a waek $\Pi$-linkage.  
     \label{lemma:cleanhouse}
 \end{lemma}
-\begin{proof}
-    \textcolor{red}{Maybe prove}
-\end{proof}
 The external pairs do not need the same amount of vertices and arcs inside a house as maybe the internal pairs. It turns out that in \cite{bangJGT77}, we bound the number of vertices for the external paths. The lemma below is a reformulation of the lemma from \cite{bangJGT77}. 
 \begin{lemma}
     Let $D=S[H_1,\dots H_s]$ be a decomposable digraph. 
@@ -145,9 +142,48 @@ Then we will prove that is indeed the algorithm mentioned in \autoref{thm:mainal
     Step 8: This for loop is looking for two different kinds of paths between internal pairs since the path for an internal pair can be an internal path (fully containt in the house) or an external path going out of and later into the house. 
     For simplification look at \autoref{fig:internalpair}
     \begin{figure}
-        \begin{tikzpicture}[main/.style ={draw,circle}]
-            \node[main](a) {$a$};
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+        \begin{tikzpicture}[declare function={rr=1+0.1*rnd;}]
+        %nodes
+        \begin{scope}[every node/.style={circle,thick,draw}]
+            \node[draw=none] (S) {$S$};
+            \node[draw=none,below = 2cm of S] (t) {$t$};
+        
+            \node[draw=black,fit=(S)(t) ,inner sep=0.5ex,ellipse] (tmp) {};
+            \node[draw=none,left] at (tmp.north west){$H_i$};
+        \end{scope}
+        
+        %crosses
+        \begin{scope}
+            \tikzset{decoration={snake}} 
+            \draw[{Latex[length=2.5mm]}-,decorate] (t)--(S);
+        \end{scope}
         \end{tikzpicture}
+        \caption{Internal path}
+        \end{subfigure}
+            \begin{subfigure}[b]{0.49\textwidth}
+                \centering
+        
+        \begin{tikzpicture}[declare function={rr=1+0.1*rnd;}]
+        %nodes
+        \begin{scope}[every node/.style={circle,thick,draw}]
+            \node[draw=none] (S) {$S$};
+            \node[draw=none,below = 2cm of S] (t) {$t$};
+            \node[draw=none,right = 1.5cm of S] (invis) {};
+        
+            \node[draw=black,fit=(S)(t) ,inner sep=0.5ex,ellipse] (tmp) {};
+            \node[draw=none,left] at (tmp.north west){$H_i$};
+        \end{scope}
+        
+        %crosses
+        \begin{scope}
+            \tikzset{decoration={snake}} 
+            \draw[{Latex[length=3mm]}-,decorate] (t) to [bend right=90](S);
+        \end{scope}
+        \end{tikzpicture}
+        \caption{External path}
+        \end{subfigure}
         \caption{The internal pair $(s,t)$ in the house $H_i$ linked internal and linked external}.
         \label{fig:internalpair}
     \end{figure}
@@ -207,12 +243,14 @@ Then we will prove that is indeed the algorithm mentioned in \autoref{thm:mainal
         \node[draw=red,fit=(s3)(blank) ,inner sep=2.4ex,ellipse] (inner5) {};
 
         \node[draw=red,fit=(inner1)(inner2)(inner3)(inner4)(inner5) ,inner sep=1ex,ellipse] (outer1) {};
+        \node[draw=none,left] at (outer1.north west){$H_4$};
 
 
         \node[right = 4cm of t6] (s5) {$s_5$};
         \node[below right = of s5] (s7) {$s_7$};
         \node[below left = of s7] (t7) {$t_7$};
         \node[draw=red, fit=(s5)(s7)(t7),inner sep=3ex,ellipse] (Outer) {};
+        \node[draw=none,left] at (Outer.north west){$H_3$};
 
         \node[below = 5.2cm of s7] (s8) {$s_8$};
         \node[left = of s8] (t8) {$t_8$};
@@ -226,15 +264,18 @@ Then we will prove that is indeed the algorithm mentioned in \autoref{thm:mainal
         \node[left = of invis4] (invis5) {};
         \node[draw=green, fit=(invis4)(invis5), inner sep=2.4ex,ellipse] (innerout2) {};
         \node[draw=red, fit=(innerout1)(innerout2), inner sep=0.5ex,ellipse] (outer2) {};
+        \node[draw=none,left] at (outer2.north east){$H_5$};
 
         \node[above = 4.5cm of s3] (s2) {$s_2$};
         \node[above right = 2cm of s2] (t1) {$t_1$};
         \node[draw=red, fit=(s2)(t1),ellipse] (outer3) {};
+        \node[draw=none,left] at (outer3.north west){$H_1$};
         \node[right = 5cm of t1] (s1) {$s_1$};
         \node[below right = 1.5cm of s1] (t4) {$t_4$};
         \node[below left = 1cm of t4] (t5) {$t_5$};
         \node[above left= 0.5cm of t5] (s4) {$s_4$};
         \node[draw=red, fit=(s1)(t4)(t5)(s4), inner sep=0.5ex,ellipse] (outer4) {};
+        \node[draw=none,left] at (outer4.north west){$H_2$};
         %\node[below right = of ] (invis1) {$t_3$};
         %\node (t3) {$t_3$};
         %\node[below right = of outer1,draw=red,double,fit=(t3) ,inner sep=1ex,circle] (outer2) {};

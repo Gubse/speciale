@@ -23,9 +23,128 @@ To prove that $\phi_2$ is a linkage ejector, we know from \autoref{def:ejector} 
     We are now going to show that for a $(s_i,t_i)$-path, it only needs to use one arc over $v_jv_{j+1}$. 
     Let us assume this is not the case and that the $(s_i,t_i)$-path uses two arcs over $v_jv_{j+1}$. 
     Call these two arcs $u_1w_1$ and $u_2w_2$. 
-    There are four ways these vertices can be placed in relation to each other in the ordering and still be arcs over $v_jv_{j+1}$. See figure \textcolor{red}{lav figur}.
+    There are four ways these vertices can be placed in relation to each other in the ordering and still be arcs over $v_jv_{j+1}$. See figure \autoref{fig:cases}.
+    \begin{figure}
+        \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \begin{tikzpicture}
+            %nodes
+            \begin{scope}
+                \node[draw=none] (u1) {$u_1$};
+                \node[draw=none,right = of u1] (u2) {$u_2$};
+                \node[draw=none,right = of u2] (w1) {$w_1$};
+                \node[draw=none,right = of w1] (w2) {$w_2$};
+            \end{scope}
+        
+            %crosses
+            \begin{scope}[very thick,decoration={
+                markings,
+                mark=at position 0.5 with {\arrow{>}}}
+                ] 
+                \draw[postaction={decorate},red] (u1)--(u2);
+                \draw[postaction={decorate},red] (u2)--(w1);
+                \draw[postaction={decorate},red] (w1)--(w2);
+            \end{scope}
+        
+            \begin{scope}
+                \path [-{Latex[length=3mm]}] (u1) edge[bend left=30] node[left] {} (w1);
+                \path [-{Latex[length=3mm]}] (u2) edge[bend left=30] node[left] {} (w2);
+            \end{scope}
+            \end{tikzpicture}
+        \caption{Case 1}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \begin{tikzpicture}
+            %nodes
+            \begin{scope}
+                \node[draw=none] (u2) {$u_2$};
+                \node[draw=none,right = of u2] (u1) {$u_1$};
+                \node[draw=none,right = of u1] (w1) {$w_1$};
+                \node[draw=none,right = of w1] (w2) {$w_2$};
+            \end{scope}
+            
+            %crosses
+            \begin{scope}[very thick,decoration={
+                markings,
+                mark=at position 0.5 with {\arrow{>}}}
+                ] 
+                \draw[postaction={decorate},red] (u2)--(u1);
+                \draw[postaction={decorate},red] (w1)--(w2);
+                \draw[postaction={decorate},red] (u2) to [bend right] (w1);
+                \draw[postaction={decorate},red] (u1) to [bend right] (w2);
+            \end{scope}
+            
+            \begin{scope}
+                \path [-{Latex[length=3mm]}] (u1) edge node[left] {} (w1);
+                \path [-{Latex[length=3mm]}] (u2) edge[bend left=20] node[left] {} (w2);
+            \end{scope}
+            \end{tikzpicture}
+            \caption{Case 2}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \begin{tikzpicture}
+            %nodes
+            \begin{scope}
+                \node[draw=none] (u1) {$u_1$};
+                \node[draw=none,right = of u1] (u2) {$u_2$};
+                \node[draw=none,right = of u2] (w2) {$w_2$};
+                \node[draw=none,right = of w2] (w1) {$w_1$};
+            \end{scope}
+            
+            %crosses
+            \begin{scope}[very thick,decoration={
+                markings,
+                mark=at position 0.5 with {\arrow{>}}}
+                ] 
+                \draw[postaction={decorate},red] (u1)--(u2);
+                \draw[postaction={decorate},red] (w2)--(w1);
+                \draw[postaction={decorate},red] (u1) to [bend right] (w2);
+                \draw[postaction={decorate},red] (u2) to [bend right] (w1);
+            \end{scope}
+            
+            \begin{scope}
+                \path [-{Latex[length=3mm]}] (u2) edge node[left] {} (w2);
+                \path [-{Latex[length=3mm]}] (u1) edge[bend left=20] node[left] {} (w1);
+            \end{scope}
+            \end{tikzpicture}
+            \caption{Case 3}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.49\textwidth}
+            \centering
+            \begin{tikzpicture}
+            %nodes
+            \begin{scope}
+                \node[draw=none] (u2) {$u_2$};
+                \node[draw=none,right = of u2] (u1) {$u_1$};
+                \node[draw=none,right = of u1] (w2) {$w_2$};
+                \node[draw=none,right = of w2] (w1) {$w_1$};
+            \end{scope}
+            
+            %crosses
+            \begin{scope}[very thick,decoration={
+                markings,
+                mark=at position 0.5 with {\arrow{>}}}
+                ] 
+                \draw[postaction={decorate},red] (u2)--(u1);
+                \draw[postaction={decorate},red] (u1)--(w2);
+                \draw[postaction={decorate},red] (w2)--(w1);
+            \end{scope}
+            
+            \begin{scope}
+                \path [-{Latex[length=3mm]}] (u2) edge[bend left=20] node[left] {} (w2);
+                \path [-{Latex[length=3mm]}] (u1) edge[bend left=20] node[left] {} (w1);
+            \end{scope}
+            \end{tikzpicture}
+            \caption{Case 4}
+        \end{subfigure}
+        \caption{The 4 cases of the sequense the vertices $u_1,u_2,w_1,w_2$ in the ordering, such that $(u_1,w_1)$ and $(u_2,w_2)$ are arcs over the arc $(v_j,v_{j+1})$}
+        \label{fig:cases}
+        \end{figure}
+        
     Let us say without loos of generality that the $(s_i,t_i)$-path first the arc $u_1w_1$ and then later $u_2w_2$.
-    We can in all cases of constellations of the vertices mentioned in \textcolor{red}{ref figur blalbalbal} make the $(s_i,t_i)$-path shorter by use of other arcs. 
+    We can in all cases of constellations of the vertices mentioned in \autoref{fig:cases} make the $(s_i,t_i)$-path shorter by use of other arcs. 
     If we are in either case 1 we can make the path shorter by using the arc $u_1u_2$ and therefore not need to use the arc $u_1w_1$, since $u_1u_2$ is not an arc over $v_jv_{j+1}$ the $(s_i,t_i)$-path only uses one arc over.
     If we instead have the constellation in case 2, case 3 and case 4, we can use the arc $u_1w_2$ which is an arc over $v_jv_{j+1}$, but it means that the path does not use any of the two over arcs $u_1w_1$ or $u_2w_2$. 
     This proves that any $(s,t)$-path only needs to use max one arc over $v_jv_{j+1}$.
